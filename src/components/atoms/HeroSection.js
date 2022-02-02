@@ -7,6 +7,9 @@ const StyledDiv = styled.div`
   height: 550px;
   margin: 0 auto;
   background: no-repeat url('${(props) => props.backgroundImage}') center center / cover;
+  display: flex;
+  justify-content: right;
+  padding: 20px;
 
   @media (max-width: 800px) {
     height: 400px;
@@ -17,8 +20,10 @@ const StyledDiv = styled.div`
   }
 `;
 
-const HeroSection = ({ backgroundImage }) => {
-  return <StyledDiv backgroundImage={backgroundImage} />;
+const HeroSection = ({ backgroundImage, children }) => {
+  return <StyledDiv backgroundImage={backgroundImage}>
+    {children}
+  </StyledDiv>;
 };
 
 export default HeroSection;
