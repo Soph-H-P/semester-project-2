@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import HeroSection from '../components/atoms/HeroSection';
-
+import fetchHeroImage from '../utils/fetchHeroImage';
 
 const Home = () => {
-  return <div>
-    
-    <HeroSection backgroundImage={'https://unsplash.com/photos/LxVxPA1LOVM'}></HeroSection>
-  </div>;
+  const [backgroundImage, setBackgroundImage] = useState('');
+
+  useEffect(() => {
+    fetchHeroImage(setBackgroundImage);
+  }, []);
+
+  return (
+    <div>
+      <HeroSection backgroundImage={backgroundImage}></HeroSection>
+    </div>
+  );
 };
 
 export default Home;

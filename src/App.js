@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
+import GlobalStyle from './styles/GlobalStyle';
 
 import Home from './pages/Home';
 import Product from './pages/Product';
@@ -10,6 +11,7 @@ const App = () => {
   return (
     <Router>
       <div className="wrapper">
+        <GlobalStyle />
         <Navigation>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/Products">Products</NavLink>
