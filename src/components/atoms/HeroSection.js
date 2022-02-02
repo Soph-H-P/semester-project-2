@@ -6,8 +6,7 @@ const StyledDiv = styled.div`
   max-width: 1200px;
   height: 550px;
   margin: 0 auto;
-  background: url('${(props) => props.backgroundImage}') center center;
-  background-size: cover;
+  background: no-repeat url('${(props) => props.backgroundImage}') center center / cover;
 
   @media (max-width: 800px) {
     height: 400px;
