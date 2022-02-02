@@ -8,6 +8,7 @@ const StyledButton = styled.button`
   padding: 0.5rem;
   background: ${(props) => props.theme.primaryColor};
   border: none;
+  cursor: pointer;
 
   &:hover {
     background: ${(props) => props.theme.black};
@@ -32,7 +33,7 @@ const StyledButton = styled.button`
 
 const Button = ({ type, handleClick, children }) => {
   return (
-    <StyledButton onClick={() => handleClick} type={type}>
+    <StyledButton onClick={() => handleClick()} type={type}>
       {children}
     </StyledButton>
   );
