@@ -6,6 +6,7 @@ import Icon from '../components/atoms/Icon';
 import filledHeart from '../assets/icons/filledHeartSvg.svg';
 import Title from '../components/atoms/Title';
 import SubTitle from '../components/atoms/SubTitle';
+import Button from '../components/atoms/Button';
 
 const Home = () => {
   const [backgroundImage, setBackgroundImage] = useState('');
@@ -13,6 +14,10 @@ const Home = () => {
   useEffect(() => {
     fetchHeroImage(setBackgroundImage);
   }, []);
+
+  const handleButtonClick = () => {
+    console.log('I was clicked');
+  };
 
   return (
     <div>
@@ -22,6 +27,12 @@ const Home = () => {
       <Icon iconSource={filledHeart} alt={'heart'}></Icon>
       <Title>H1 Title</Title>
       <SubTitle>H2 Title</SubTitle>
+      <Button handleClick={handleButtonClick} type={'primary'}>
+        Button 1
+      </Button>
+      <Button handleClick={handleButtonClick} type={'secondary'}>
+        Button 2
+      </Button>
     </div>
   );
 };
