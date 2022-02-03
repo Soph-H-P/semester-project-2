@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Product from './pages/Product';
 import Products from './pages/Products';
 import Navigation from './components/organisms/Navagation';
+import Footer from './components/atoms/Footer';
 
 const App = () => {
   return (
@@ -27,7 +28,7 @@ const App = () => {
             <Route path="/product" element={<Product />}></Route>
           </Routes>
         </div>
-        {/* <Footer></Footer> */}
+        <Footer>&copy;  Tracks 2022 </Footer>
       </ThemeProvider>
     </Router>
   );

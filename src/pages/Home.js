@@ -45,6 +45,7 @@ const Home = () => {
         required={true}
       ></NumberInput>
       <BagSummaryRow title={'Subtotal'} value={`£00.00`} details={'2 items'}></BagSummaryRow>
+      
     </div>
   );
 };
