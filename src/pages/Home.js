@@ -11,6 +11,7 @@ import ToggleCheckBox from '../components/atoms/ToggleCheckBox';
 import TextInput from '../components/atoms/TextInput';
 import NumberInput from '../components/atoms/NumberInput';
 import BagSummaryRow from '../components/atoms/BagSummaryRow';
+import Loader from '../components/atoms/Loader';
 
 const Home = () => {
   const [backgroundImage, setBackgroundImage] = useState('');
@@ -45,7 +46,7 @@ const Home = () => {
         required={true}
       ></NumberInput>
       <BagSummaryRow title={'Subtotal'} value={`£00.00`} details={'2 items'}></BagSummaryRow>
-      
+      <Loader/>
     </div>
   );
 };
