@@ -60,8 +60,8 @@ const ToggleCheckBox = ({ label, name }) => {
   return (
     <ToggleLabel htmlFor={name}>
       {label}
-      <input type={'checkbox'} name={name} id={'toggle-switch'} />
-      <ToggleContainer className={'toggle'} />
+      <input type="checkbox" name={name} id="toggle-switch" />
+      <ToggleContainer className="toggle" />
     </ToggleLabel>
   );
 };

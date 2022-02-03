@@ -42,8 +42,8 @@ const TextInput = ({ label, name, required }) => {
   return (
     <StyledLabel htmlFor={name}>
       {label}
-      <input name={name} id={'text-input'} required={required ? 'required' : ''} />
-      <InputUnderline className={'underline'} />
+      <input name={name} id="text-input" required={required ? 'required' : ''} />
+      <InputUnderline className="underline" />
     </StyledLabel>
   );
 };

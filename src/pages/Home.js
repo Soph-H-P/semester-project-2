@@ -29,23 +29,23 @@ const Home = () => {
       <HeroSection backgroundImage={backgroundImage}>
         <HeroText>Start Making Tracks</HeroText>
       </HeroSection>
-      <Icon iconSource={filledHeart} alt={'heart'}></Icon>
+      <Icon iconSource={filledHeart} alt="heart"></Icon>
       <Title>H1 Title</Title>
       <SubTitle>H2 Title</SubTitle>
-      <Button handleClick={handleButtonClick} type={'primary'}>
+      <Button handleClick={handleButtonClick} type="primary">
         Button 1
       </Button>
-      <Button handleClick={handleButtonClick} type={'secondary'}>
+      <Button handleClick={handleButtonClick} type="secondary">
         Button 2
       </Button>
-      <ToggleCheckBox label={'toggle label'} name={'sample-toggle'} />
-      <TextInput label={'text input'} name={'sample-text-input'} required={true}></TextInput>
+      <ToggleCheckBox label="toggle label" name="sample-toggle" />
+      <TextInput label="text input" name="sample-text-input" required={true}></TextInput>
       <NumberInput
-        label={'number input'}
-        name={'sample-number-input'}
+        label="number input"
+        name="sample-number-input"
         required={true}
       ></NumberInput>
-      <BagSummaryRow title={'Subtotal'} value={`£00.00`} details={'2 items'}></BagSummaryRow>
+      <BagSummaryRow title="Subtotal" value="£00.00" details="2 items"></BagSummaryRow>
       <Loader />
     </div>
   );

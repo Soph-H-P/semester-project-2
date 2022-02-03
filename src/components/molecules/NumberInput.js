@@ -42,14 +42,14 @@ const NumberInput = ({ label, name, required }) => {
       {label}
       <input
         name={name}
-        id={'number-input'}
+        id="number-input"
         required={required ? 'required' : ''}
-        type={'number'}
-        min={1}
-        max={10}
-        defaultValue={1}
+        type="number"
+        min="1"
+        max="10"
+        defaultValue="1"
       />
-      <InputUnderline className={'underline'} />
+      <InputUnderline className="underline" />
     </StyledLabel>
   );
 };

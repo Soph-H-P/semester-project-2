@@ -20,8 +20,8 @@ const App = () => {
           <GlobalStyle />
           <Navigation>
             <StyledNavLink to="/">Home</StyledNavLink>
-            <StyledNavLink to="/Products">Sneakers</StyledNavLink>
-            <StyledNavLink to="/Products">Brands</StyledNavLink>
+            <StyledNavLink to="/products">Sneakers</StyledNavLink>
+            <StyledNavLink to="/products">Brands</StyledNavLink>
           </Navigation>
           <Routes>
             <Route exact path="/" element={<Home />}></Route>

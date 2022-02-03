@@ -6,7 +6,6 @@ import shoePrintActiveSvg from '../../assets/icons/shoePrintActiveSvg.svg';
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
   padding: 16px;
-  margin: 30px;
   font-family: ${(props) => props.theme.headingFont};
   font-size: 21px;
   color: ${(props) => props.theme.black};
