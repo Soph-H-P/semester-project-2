@@ -7,10 +7,10 @@ import filledHeart from '../assets/icons/filledHeartSvg.svg';
 import Title from '../components/atoms/Title';
 import SubTitle from '../components/atoms/SubTitle';
 import Button from '../components/atoms/Button';
-import ToggleCheckBox from '../components/atoms/ToggleCheckBox';
-import TextInput from '../components/atoms/TextInput';
-import NumberInput from '../components/atoms/NumberInput';
-import BagSummaryRow from '../components/atoms/BagSummaryRow';
+import ToggleCheckBox from '../components/molecules/ToggleCheckBox';
+import TextInput from '../components/molecules/TextInput';
+import NumberInput from '../components/molecules/NumberInput';
+import BagSummaryRow from '../components/molecules/BagSummaryRow';
 import Loader from '../components/atoms/Loader';
 
 const Home = () => {
@@ -46,7 +46,7 @@ const Home = () => {
         required={true}
       ></NumberInput>
       <BagSummaryRow title={'Subtotal'} value={`£00.00`} details={'2 items'}></BagSummaryRow>
-      <Loader/>
+      <Loader />
     </div>
   );
 };

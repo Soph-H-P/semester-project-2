@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import GlobalStyle from './styles/GlobalStyle';
@@ -10,6 +10,7 @@ import Product from './pages/Product';
 import Products from './pages/Products';
 import Navigation from './components/organisms/Navagation';
 import Footer from './components/atoms/Footer';
+import StyledNavLink from './components/atoms/StyledNavLink';
 
 const App = () => {
   return (
@@ -18,9 +19,9 @@ const App = () => {
         <div className="wrapper">
           <GlobalStyle />
           <Navigation>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/Products">Products</NavLink>
-            <NavLink to="/Login">Login</NavLink>
+            <StyledNavLink to="/">Home</StyledNavLink>
+            <StyledNavLink to="/Products">Sneakers</StyledNavLink>
+            <StyledNavLink to="/Products">Brands</StyledNavLink>
           </Navigation>
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
@@ -28,7 +29,7 @@ const App = () => {
             <Route path="/product" element={<Product />}></Route>
           </Routes>
         </div>
-        <Footer>&copy;  Tracks 2022 </Footer>
+        <Footer>&copy; Tracks 2022 </Footer>
       </ThemeProvider>
     </Router>
   );
