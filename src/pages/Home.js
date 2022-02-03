@@ -10,6 +10,7 @@ import Button from '../components/atoms/Button';
 import ToggleCheckBox from '../components/atoms/ToggleCheckBox';
 import TextInput from '../components/atoms/TextInput';
 import NumberInput from '../components/atoms/NumberInput';
+import BagSummaryRow from '../components/atoms/BagSummaryRow';
 
 const Home = () => {
   const [backgroundImage, setBackgroundImage] = useState('');
@@ -36,13 +37,14 @@ const Home = () => {
       <Button handleClick={handleButtonClick} type={'secondary'}>
         Button 2
       </Button>
-      <form action="">
-         <ToggleCheckBox label={'toggle label'} name={'sample-toggle'} />
-      <TextInput label={'text input'} name={'sample-text-input'} required={true} ></TextInput>
-      <NumberInput label={'number input'} name={'sample-number-input'} required={true} ></NumberInput>
-      <Button handleClick={handleButtonClick} type={'submit'}>Submit</Button>
-      </form>
-     
+      <ToggleCheckBox label={'toggle label'} name={'sample-toggle'} />
+      <TextInput label={'text input'} name={'sample-text-input'} required={true}></TextInput>
+      <NumberInput
+        label={'number input'}
+        name={'sample-number-input'}
+        required={true}
+      ></NumberInput>
+      <BagSummaryRow title={'Subtotal'} value={`£00.00`} details={'2 items'}></BagSummaryRow>
     </div>
   );
 };
