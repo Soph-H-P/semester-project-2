@@ -12,7 +12,7 @@ const StyledLink = styled(Link)`
 `;
 
 const Logo = () => {
-  return <StyledLink to="/">Tracks</StyledLink>;
+  return <StyledLink to="/" >Tracks</StyledLink>;
 };
 
 export default Logo;

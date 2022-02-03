@@ -8,9 +8,11 @@ import theme from './styles/theme';
 import Home from './pages/Home';
 import Product from './pages/Product';
 import Products from './pages/Products';
+import Login from './pages/Login';
+import Bag from './pages/Bag';
+import Favourites from './pages/Favourites';
 import Navigation from './components/organisms/Navagation';
 import Footer from './components/atoms/Footer';
-import StyledNavLink from './components/atoms/StyledNavLink';
 
 const App = () => {
   return (
@@ -18,15 +20,14 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <div className="wrapper">
           <GlobalStyle />
-          <Navigation>
-            <StyledNavLink to="/">Home</StyledNavLink>
-            <StyledNavLink to="/products">Sneakers</StyledNavLink>
-            <StyledNavLink to="/products">Brands</StyledNavLink>
-          </Navigation>
+          <Navigation />
           <Routes>
             <Route exact path="/" element={<Home />}></Route>
             <Route path="/products" element={<Products />}></Route>
             <Route path="/product" element={<Product />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/favourites" element={<Favourites />}></Route>
+            <Route path="/your-bag" element={<Bag />}></Route>
           </Routes>
         </div>
         <Footer>&copy; Tracks 2022 </Footer>
