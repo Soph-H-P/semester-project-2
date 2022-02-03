@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const HeroText = styled.h1`
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: ${(props) => props.theme.headingFont};
   text-align: right;
   font-weight: bold;
   font-size: 64px;

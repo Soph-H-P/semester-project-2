@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         margin: 0;
-        font-family: 'Karla', sans-serif;
+        font-family: ${(props) => props.theme.paragraphFont};
     }
 `;
 

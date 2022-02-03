@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Title = styled.h1`
   color: ${(props) => props.theme.darkFontColor};
   position: relative;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: ${(props) => props.theme.headingFont};
   text-transform: capitalize;
 
   &::after {

@@ -1,10 +1,12 @@
 const theme = {
   darkFontColor: '#19353f',
-  lightBackgroundColor: '#F1F0F0',
+  lightBackgroundColor: '#D9D8D8',
   white: '#FFF',
   black: '#000',
-  primaryColor: '#F16D4F',
+  primaryColor: '#e6411b',
   secondaryColor: '#578FA5',
+  headingFont: "'Josefin Sans', sans-serif",
+  paragraphFont: "'Karla', sans-serif",
 };
 
 export default theme;
