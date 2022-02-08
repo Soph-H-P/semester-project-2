@@ -9,6 +9,7 @@ const StyledButton = styled.button`
   background: ${(props) => props.theme.primaryColor};
   border: none;
   cursor: pointer;
+  transition: all 0.3s ease;
 
   &:hover {
     background: ${(props) => props.theme.black};
@@ -27,6 +28,20 @@ const StyledButton = styled.button`
         background: ${(props) => props.theme.white};
         color: ${(props) => props.theme.primaryColor};
         border: ${props.theme.black} solid 3px;
+      }
+    `}
+  ${(props) =>
+    props.type === 'icon' &&
+    css`
+      background: none;
+      color: ${props.theme.black};
+      border: none;
+      width: fit-content;
+
+      &:hover {
+        background: none;
+        border: none;
+        transform: scale(1.1);
       }
     `}
 `;

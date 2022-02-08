@@ -14,6 +14,7 @@ import BagSummaryRow from '../components/molecules/BagSummaryRow';
 import Loader from '../components/atoms/Loader';
 import SearchInput from '../components/molecules/SearchInput';
 import IntegratedButtonInput from '../components/molecules/IntegratedButtonInput';
+import AddToFavouritesButton from '../components/molecules/AddToFavouritesButton';
 
 const Home = () => {
   const [backgroundImage, setBackgroundImage] = useState('');
@@ -42,15 +43,15 @@ const Home = () => {
       </Button>
       <ToggleCheckBox label="toggle label" name="sample-toggle" />
       <TextInput label="text input" name="sample-text-input" required={true}></TextInput>
-      <NumberInput
-        label="number input"
-        name="sample-number-input"
-        required={true}
-      ></NumberInput>
+      <NumberInput label="number input" name="sample-number-input" required={true}></NumberInput>
       <BagSummaryRow title="Subtotal" value="£00.00" details="2 items"></BagSummaryRow>
       <Loader />
       <SearchInput />
-      <IntegratedButtonInput buttonText="button" inputLabel="Label here" inputName="input-name"/>
+      <IntegratedButtonInput buttonText="button" inputLabel="Label here" inputName="input-name" />
+      <AddToFavouritesButton
+        isFavourite={true}
+        productId="123"
+      ></AddToFavouritesButton>
     </div>
   );
 };
