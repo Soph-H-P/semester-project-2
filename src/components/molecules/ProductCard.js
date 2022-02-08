@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import { baseUrl } from '../../settings/api';
 
@@ -9,7 +10,7 @@ import SubTitle from '../atoms/SubTitle';
 import Icon from '../atoms/Icon';
 import AddToFavouritesButton from './AddToFavouritesButton';
 
-const CardWrapper = styled.a`
+const CardWrpper = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 250px;
@@ -19,7 +20,6 @@ const CardWrapper = styled.a`
   text-decoration: none;
 
   &:hover {
-    transform: scale(1.05);
     border-width: 1px 1px 5px 1px;
   }
 
@@ -28,13 +28,16 @@ const CardWrapper = styled.a`
   }
 
   a {
-    width: 50px;
-    height: 50px;
     transition: all 0.3s ease;
   }
 
   a:hover {
-    transform: scale(1.1);
+    text-decoration: underline;
+    color: ${(props) => props.theme.primaryColor};
+  }
+
+  img {
+    width: 100%;
   }
 `;
 
@@ -55,23 +58,28 @@ const ProductInfoContainer = styled.div`
 
 const ProductCard = ({ product, isFavourite, isAdmin }) => {
   return (
-    <CardWrapper href={`/product?id=${product.id}`}>
-      <img src={baseUrl + product.url} alt="" />
+    <CardWrpper>
+      <Link to={`/product/?id=${product.id}`}>
+        <img src={baseUrl + product.url} alt={product.altText} />
+      </Link>
       <ProductInfoContainer>
         <div>
-          <SubTitle>{product.titleOfProduct}</SubTitle>
+          <Link to={`/product/?id=${product.id}`}>
+            <SubTitle>{product.titleOfProduct}</SubTitle>
+          </Link>
+
           <p>£{product.price}</p>
         </div>
         <div>
           <AddToFavouritesButton isFavourite={isFavourite} productId={product.id} />
           {isAdmin && (
-            <a href="/content-editor">
+            <Link to="/content-editor">
               <Icon iconSource={edit} alt="edit product"></Icon>
-            </a>
+            </Link>
           )}
         </div>
       </ProductInfoContainer>
-    </CardWrapper>
+    </CardWrpper>
   );
 };
 

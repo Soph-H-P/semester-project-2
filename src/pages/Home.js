@@ -16,6 +16,7 @@ import SearchInput from '../components/molecules/SearchInput';
 import IntegratedButtonInput from '../components/molecules/IntegratedButtonInput';
 import AddToFavouritesButton from '../components/molecules/AddToFavouritesButton';
 import ProductCard from '../components/molecules/ProductCard';
+import BagItem from '../components/organisms/BagItem';
 
 const Home = () => {
   const [backgroundImage, setBackgroundImage] = useState('');
@@ -30,11 +31,11 @@ const Home = () => {
 
   const product = {
     titleOfProduct: 'title here',
-    price: 120.00,
+    price: 120.0,
     id: 123,
     isFeatured: true,
     url: '/uploads/lefteris_kallergis_j1_Gi_Plv_SGWI_unsplash_b817ef75da.jpg',
-  }
+  };
 
   return (
     <div>
@@ -57,11 +58,9 @@ const Home = () => {
       <Loader />
       <SearchInput />
       <IntegratedButtonInput buttonText="button" inputLabel="Label here" inputName="input-name" />
-      <AddToFavouritesButton
-        isFavourite={true}
-        productId="123"
-      ></AddToFavouritesButton>
-      <ProductCard product={product} isFavourite={false} isAdmin={true}/>
+      <AddToFavouritesButton isFavourite={true} productId="123"></AddToFavouritesButton>
+      <ProductCard product={product} isFavourite={false} isAdmin={true} />
+      <BagItem product={product} isFavourite={false} />
     </div>
   );
 };

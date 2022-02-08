@@ -7,7 +7,6 @@ const StyledLabel = styled.label`
   font-weight: 300;
   width: 100px;
   cursor: pointer;
-  margin: 10px;
   position: relative;
 
   input {
@@ -36,12 +35,13 @@ const InputUnderline = styled.div`
   }
 `;
 
-const NumberInput = ({ label, name, required }) => {
+const NumberInput = ({ label, inputName, required, onChange }) => {
   return (
-    <StyledLabel htmlFor={name}>
+    <StyledLabel htmlFor={inputName}>
       {label}
       <input
-        name={name}
+        onChange={onChange}
+        name={inputName}
         id="number-input"
         required={required ? 'required' : ''}
         type="number"

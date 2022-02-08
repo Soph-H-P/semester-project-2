@@ -15,7 +15,6 @@ const IntegratedButtonInputWrapper = styled.div`
 `;
 
 const IntegratedButtonInput = ({ buttonText, inputLabel, inputName }) => {
-  console.log(buttonText);
   return (
     <IntegratedButtonInputWrapper>
       <TextInput label={inputLabel} name={inputName}></TextInput>
