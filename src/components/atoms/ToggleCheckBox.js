@@ -34,7 +34,7 @@ const ToggleLabel = styled.label`
 `;
 
 const ToggleContainer = styled.div`
-  background: ${(props) => props.theme.lightBackgroundColor};
+  background: ${(props) => props.theme.darkerBackgroundColor};
   transition: background ease 0.6s;
   height: 50px;
   width: 100px;

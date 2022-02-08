@@ -38,6 +38,8 @@ const loadingAnimationSmall = keyframes`
 const Loader = styled.div`
   height: 150px;
   width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
   background: left / 20% repeat-x url(${loadingSvg});
   position: relative;
   overflow: hidden;

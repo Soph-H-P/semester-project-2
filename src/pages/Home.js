@@ -7,11 +7,13 @@ import filledHeart from '../assets/icons/filledHeartSvg.svg';
 import Title from '../components/atoms/Title';
 import SubTitle from '../components/atoms/SubTitle';
 import Button from '../components/atoms/Button';
-import ToggleCheckBox from '../components/molecules/ToggleCheckBox';
-import TextInput from '../components/molecules/TextInput';
-import NumberInput from '../components/molecules/NumberInput';
+import ToggleCheckBox from '../components/atoms/ToggleCheckBox';
+import TextInput from '../components/atoms/TextInput';
+import NumberInput from '../components/atoms/NumberInput';
 import BagSummaryRow from '../components/molecules/BagSummaryRow';
 import Loader from '../components/atoms/Loader';
+import SearchInput from '../components/molecules/SearchInput';
+import IntegratedButtonInput from '../components/molecules/IntegratedButtonInput';
 
 const Home = () => {
   const [backgroundImage, setBackgroundImage] = useState('');
@@ -47,6 +49,8 @@ const Home = () => {
       ></NumberInput>
       <BagSummaryRow title="Subtotal" value="£00.00" details="2 items"></BagSummaryRow>
       <Loader />
+      <SearchInput />
+      <IntegratedButtonInput buttonText="button" inputLabel="Label here" inputName="input-name"/>
     </div>
   );
 };

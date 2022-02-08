@@ -7,6 +7,7 @@ import outlineHeartSvg from '../../assets/icons/outlineHeartSvg.svg';
 import editSvg from '../../assets/icons/editSvg.svg';
 import loginSvg from '../../assets/icons/loginSvg.svg';
 import bagSvg from '../../assets/icons/bagSvg.svg';
+import SearchInput from '../molecules/SearchInput';
 
 const NavContainer = styled.div`
   margin: 20px;
@@ -26,6 +27,7 @@ const Navagation = () => {
   return (
     <NavContainer>
       <Logo />
+      <SearchInput />
       <nav>
         {isAdmin && (
           <StyledNavLink
