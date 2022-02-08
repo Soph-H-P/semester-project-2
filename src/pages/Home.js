@@ -15,6 +15,7 @@ import Loader from '../components/atoms/Loader';
 import SearchInput from '../components/molecules/SearchInput';
 import IntegratedButtonInput from '../components/molecules/IntegratedButtonInput';
 import AddToFavouritesButton from '../components/molecules/AddToFavouritesButton';
+import ProductCard from '../components/molecules/ProductCard';
 
 const Home = () => {
   const [backgroundImage, setBackgroundImage] = useState('');
@@ -26,6 +27,14 @@ const Home = () => {
   const handleButtonClick = () => {
     console.log('I was clicked');
   };
+
+  const product = {
+    titleOfProduct: 'title here',
+    price: 120.00,
+    id: 123,
+    isFeatured: true,
+    url: '/uploads/lefteris_kallergis_j1_Gi_Plv_SGWI_unsplash_b817ef75da.jpg',
+  }
 
   return (
     <div>
@@ -52,6 +61,7 @@ const Home = () => {
         isFavourite={true}
         productId="123"
       ></AddToFavouritesButton>
+      <ProductCard product={product} isFavourite={false} isAdmin={true}/>
     </div>
   );
 };

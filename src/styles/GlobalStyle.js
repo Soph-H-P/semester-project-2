@@ -24,6 +24,11 @@ const GlobalStyle = createGlobalStyle`
     .wrapper {
         flex: 1;
     }
+
+    a {
+        text-decoration: none;
+        color: ${(props) => props.theme.black};
+    }
 `;
 
 export default GlobalStyle;
