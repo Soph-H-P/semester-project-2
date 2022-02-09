@@ -9,7 +9,7 @@ const IntegratedButtonInputWrapper = styled.div`
   align-items: flex-end;
 
   button {
-    margin: 0px 0px 7px -10px;
+    margin: 0px 0px 17px 0px;
     padding-bottom: 9px;
   }
 `;

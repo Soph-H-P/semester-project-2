@@ -16,7 +16,9 @@ import SearchInput from '../components/molecules/SearchInput';
 import IntegratedButtonInput from '../components/molecules/IntegratedButtonInput';
 import AddToFavouritesButton from '../components/molecules/AddToFavouritesButton';
 import ProductCard from '../components/molecules/ProductCard';
+import SignIn from '../components/molecules/SignIn';
 import BagItem from '../components/organisms/BagItem';
+import OrderSummary from '../components/organisms/OrderSummary';
 
 const Home = () => {
   const [backgroundImage, setBackgroundImage] = useState('');
@@ -61,6 +63,8 @@ const Home = () => {
       <AddToFavouritesButton isFavourite={true} productId="123"></AddToFavouritesButton>
       <ProductCard product={product} isFavourite={false} isAdmin={true} />
       <BagItem product={product} isFavourite={false} />
+      <OrderSummary numberOfItems={9} />
+      <SignIn />
     </div>
   );
 };

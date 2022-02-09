@@ -8,7 +8,7 @@ const StyledLabel = styled.label`
   min-width: 270px;
   max-width: 450px;
   cursor: pointer;
-  margin: 10px;
+  margin-bottom: 20px;
   position: relative;
 
   input {
@@ -38,11 +38,11 @@ const InputUnderline = styled.div`
   }
 `;
 
-const TextInput = ({ label, name, required }) => {
+const TextInput = ({ label, name, required, type = 'text' }) => {
   return (
     <StyledLabel htmlFor={name}>
       {label}
-      <input name={name} id="text-input" required={required ? 'required' : ''} />
+      <input name={name} id={name} required={required ? 'required' : ''} type={type}/>
       <InputUnderline className="underline" />
     </StyledLabel>
   );

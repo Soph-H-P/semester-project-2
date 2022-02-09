@@ -7,7 +7,7 @@ import searchSvg from '../../assets/icons/searchSvg.svg';
 
 const SearchInputWrapper = styled.div`
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     width: max-content;
 `
 
