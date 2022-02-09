@@ -17,6 +17,7 @@ import IntegratedButtonInput from '../components/molecules/IntegratedButtonInput
 import AddToFavouritesButton from '../components/molecules/AddToFavouritesButton';
 import ProductCard from '../components/molecules/ProductCard';
 import SignIn from '../components/molecules/SignIn';
+import EditProduct from '../components/molecules/EditProduct';
 import BagItem from '../components/organisms/BagItem';
 import OrderSummary from '../components/organisms/OrderSummary';
 
@@ -55,7 +56,7 @@ const Home = () => {
       </Button>
       <ToggleCheckBox label="toggle label" name="sample-toggle" />
       <TextInput label="text input" name="sample-text-input" required={true}></TextInput>
-      <NumberInput label="number input" name="sample-number-input" required={true}></NumberInput>
+      <NumberInput label="number input" inputName="sample-number-input" required={true}></NumberInput>
       <BagSummaryRow title="Subtotal" value="£00.00" details="2 items"></BagSummaryRow>
       <Loader />
       <SearchInput />
@@ -65,6 +66,7 @@ const Home = () => {
       <BagItem product={product} isFavourite={false} />
       <OrderSummary numberOfItems={9} />
       <SignIn />
+      <EditProduct title="Edit Product"></EditProduct>
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 import { clearStorage, getUsername } from '../../utils/storage';
@@ -8,36 +7,7 @@ import signInUser from '../../utils/signInUser';
 import Button from '../atoms/Button';
 import Title from '../atoms/Title';
 import TextInput from '../atoms/TextInput';
-
-const StyledForm = styled.div`
-  border: 1px solid ${(props) => props.theme.black};
-  max-width: 380px;
-  padding: 25px 50px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  input[type='submit'] {
-    width: 100px;
-    font-weight: 300;
-    font-size: 18px;
-    padding: 0.5rem;
-    background: ${(props) => props.theme.primaryColor};
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background: ${(props) => props.theme.black};
-      color: ${(props) => props.theme.primaryColor};
-      font-weight: 700;
-    }
-  }
-`;
-
-const ErrorMessage = styled.p`
-  color: ${(props) => props.theme.primaryColor};
-`;
+import StyledFormContainer, { ErrorMessage } from '../atoms/StyledFormContainer';
 
 const SignIn = () => {
   const userName = getUsername();
@@ -69,7 +39,7 @@ const SignIn = () => {
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
+    <StyledFormContainer>
       {signedIn && (
         <>
           <Title>Hi {userName}</Title>
@@ -77,7 +47,7 @@ const SignIn = () => {
         </>
       )}
       {!signedIn && (
-        <form>
+        <form onSubmit={handleSubmit}>
           <Title>Sign In</Title>
           <TextInput label="Email" name="email" required={true} type="email" />
           <TextInput label="Password" name="password" required={true} type="password" />
@@ -90,7 +60,7 @@ const SignIn = () => {
           )}
         </form>
       )}
-    </StyledForm>
+    </StyledFormContainer>
   );
 };
 

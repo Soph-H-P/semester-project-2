@@ -11,7 +11,7 @@ const StyledLabel = styled.label`
   margin-bottom: 20px;
   position: relative;
 
-  input {
+  textarea {
     border: none;
     background: ${(props) => props.theme.lightBackgroundColor};
     padding: 0.5rem;
@@ -20,7 +20,7 @@ const StyledLabel = styled.label`
     font-size: 1rem;
   }
 
-  input:focus ~ .underline::after {
+  textarea:focus ~ .underline::after {
     background: ${(props) => props.theme.secondaryColor};
     width: 100%;
   }
@@ -38,14 +38,14 @@ const InputUnderline = styled.div`
   }
 `;
 
-const TextInput = ({ label, name, required, type = 'text' }) => {
+const TextAreaInput = ({ label, name, required }) => {
   return (
     <StyledLabel htmlFor={name}>
       {label}
-      <input name={name} id={name} required={required ? 'required' : ''} type={type}/>
+      <textarea name={name} id={name} required={required ? 'required' : ''} />
       <InputUnderline className="underline" />
     </StyledLabel>
   );
 };
 
-export default TextInput;
+export default TextAreaInput;

@@ -17,7 +17,7 @@ const StyledLabel = styled.label`
     font-size: 1rem;
   }
 
-  #number-input:focus ~ .underline::after {
+  input:focus ~ .underline::after {
     background: ${(props) => props.theme.secondaryColor};
     width: 100%;
   }
@@ -35,19 +35,20 @@ const InputUnderline = styled.div`
   }
 `;
 
-const NumberInput = ({ label, inputName, required, onChange }) => {
+const NumberInput = ({ label, inputName, required, onChange, isPrice = false }) => {
   return (
     <StyledLabel htmlFor={inputName}>
       {label}
       <input
         onChange={onChange}
         name={inputName}
-        id="number-input"
+        id={inputName}
         required={required ? 'required' : ''}
         type="number"
-        min="1"
-        max="10"
+        min={isPrice ? '0' : '1'}
+        max={isPrice ?  '' : '10'}
         defaultValue="1"
+        step={isPrice ?  '.01' : 'any'}
       />
       <InputUnderline className="underline" />
     </StyledLabel>
