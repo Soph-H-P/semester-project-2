@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { clearStorage, getUsername } from '../../utils/storage';
+import { clearStorage, getUsername, getUserRole } from '../../utils/storage';
 import signInUser from '../../utils/signInUser';
 
 import Button from '../atoms/Button';
@@ -9,11 +9,9 @@ import Title from '../atoms/Title';
 import TextInput from '../atoms/TextInput';
 import StyledFormContainer, { ErrorMessage } from '../atoms/StyledFormContainer';
 
-const SignIn = () => {
-  const userName = getUsername();
+const SignIn = ({ setSignedIn, signedIn, setUserRole }) => {
   const navigate = useNavigate();
 
-  const [signedIn, setSignedIn] = useState(getUsername());
   const [isError, setIsError] = useState(false);
   const [isNetworkError, setIsNetworkError] = useState(false);
 
@@ -27,14 +25,16 @@ const SignIn = () => {
     setIsNetworkError(false);
     const email = e.target.email.value;
     const password = e.target.password.value;
-    signInUser(email, password, reRouteUser, setSignedIn, setIsError, setIsNetworkError);
+    signInUser(email, password, reRouteUser, setSignedIn, setUserRole, setIsError, setIsNetworkError);
     setSignedIn(getUsername());
+    setUserRole(getUserRole());
   };
 
   const handleSignOut = () => {
-    if (window.confirm(`Hi ${userName}! Are you sure you want to log out?`)) {
+    if (window.confirm(`Hi ${signedIn}! Are you sure you want to log out?`)) {
       clearStorage();
       setSignedIn(getUsername());
+      setUserRole(getUserRole());
     }
   };
 
@@ -42,7 +42,7 @@ const SignIn = () => {
     <StyledFormContainer>
       {signedIn && (
         <>
-          <Title>Hi {userName}</Title>
+          <Title>Hi {signedIn}</Title>
           <Button handleClick={handleSignOut}>Sign Out</Button>
         </>
       )}

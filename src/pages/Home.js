@@ -21,7 +21,7 @@ import EditProduct from '../components/molecules/EditProduct';
 import BagItem from '../components/organisms/BagItem';
 import OrderSummary from '../components/organisms/OrderSummary';
 
-const Home = () => {
+const Home = ({ setSignedIn, signedIn, setUserRole, userRole }) => {
   const [backgroundImage, setBackgroundImage] = useState('');
 
   useEffect(() => {
@@ -56,7 +56,11 @@ const Home = () => {
       </Button>
       <ToggleCheckBox label="toggle label" name="sample-toggle" />
       <TextInput label="text input" name="sample-text-input" required={true}></TextInput>
-      <NumberInput label="number input" inputName="sample-number-input" required={true}></NumberInput>
+      <NumberInput
+        label="number input"
+        inputName="sample-number-input"
+        required={true}
+      ></NumberInput>
       <BagSummaryRow title="Subtotal" value="£00.00" details="2 items"></BagSummaryRow>
       <Loader />
       <SearchInput />
@@ -65,8 +69,8 @@ const Home = () => {
       <ProductCard product={product} isFavourite={false} isAdmin={true} />
       <BagItem product={product} isFavourite={false} />
       <OrderSummary numberOfItems={9} />
-      <SignIn />
-      <EditProduct title="Edit Product"></EditProduct>
+      <SignIn setSignedIn={setSignedIn} signedIn={signedIn} setUserRole={setUserRole} />
+      <EditProduct title="Edit Product" userRole={userRole}></EditProduct>
     </div>
   );
 };
