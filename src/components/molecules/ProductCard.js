@@ -15,7 +15,6 @@ const CardWrpper = styled.div`
   flex-direction: column;
   max-width: 250px;
   border: ${(props) => props.theme.black} solid 1px;
-  margin-bottom: 20px;
   transition: all 0.3s ease;
   text-decoration: none;
 
@@ -34,6 +33,17 @@ const CardWrpper = styled.div`
   a:hover {
     text-decoration: underline;
     color: ${(props) => props.theme.primaryColor};
+  }
+
+  #imageContainer {
+    height: 250px;
+    overflow: hidden;
+  }
+
+  #imageContainer img {
+    object-fit: cover;
+    height: 100%;
+    object-position: center;
   }
 
   img {
@@ -59,13 +69,16 @@ const ProductInfoContainer = styled.div`
 const ProductCard = ({ product, isFavourite, isAdmin }) => {
   return (
     <CardWrpper>
-      <Link to={`/product/?id=${product.id}`}>
-        <img src={baseUrl + product.url} alt={product.altText} />
+      <Link to={`/product/?id=${product.id}`} id="imageContainer">
+        <img
+          src={product.image ? baseUrl + product.image.formats.small.url : product.image_url}
+          alt={product.alternativeText}
+        />
       </Link>
       <ProductInfoContainer>
         <div>
           <Link to={`/product/?id=${product.id}`}>
-            <SubTitle>{product.titleOfProduct}</SubTitle>
+            <SubTitle>{product.title}</SubTitle>
           </Link>
 
           <p>£{product.price}</p>
@@ -73,7 +86,7 @@ const ProductCard = ({ product, isFavourite, isAdmin }) => {
         <div>
           <AddToFavouritesButton isFavourite={isFavourite} productId={product.id} />
           {isAdmin && (
-            <Link to="/content-editor">
+            <Link to={`/content-editor?id=${product.id}`}>
               <Icon iconSource={edit} alt="edit product"></Icon>
             </Link>
           )}
