@@ -13,7 +13,7 @@ const ProductGridWrapper = styled.div`
   gap: 20px;
 `;
 
-const ProductsGrid = () => {
+const ProductsGrid = ({userRole}) => {
   const [productsArray, setProductsArray] = useState([]);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const ProductsGrid = () => {
     <ProductGridWrapper>
       {productsArray.map((product) => {
         return (
-          <ProductCard key={product.id} product={product} isFavourite={false} isAdmin={true} />
+          <ProductCard key={product.id} product={product} isFavourite={false} userRole={userRole} />
         );
       })}
     </ProductGridWrapper>

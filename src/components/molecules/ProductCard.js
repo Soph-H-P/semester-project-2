@@ -66,7 +66,7 @@ const ProductInfoContainer = styled.div`
   }
 `;
 
-const ProductCard = ({ product, isFavourite, isAdmin }) => {
+const ProductCard = ({ product, isFavourite, userRole }) => {
   return (
     <CardWrpper>
       <Link to={`/product/?id=${product.id}`} id="imageContainer">
@@ -85,7 +85,7 @@ const ProductCard = ({ product, isFavourite, isAdmin }) => {
         </div>
         <div>
           <AddToFavouritesButton isFavourite={isFavourite} productId={product.id} />
-          {isAdmin && (
+          {userRole === 'Authenticated' && (
             <Link to={`/content-editor?id=${product.id}`}>
               <Icon iconSource={edit} alt="edit product"></Icon>
             </Link>

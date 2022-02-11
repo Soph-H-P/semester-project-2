@@ -37,7 +37,7 @@ const App = () => {
                 <Home setSignedIn={setSignedIn} signedIn={signedIn} setUserRole={setUserRole} userRole={userRole} />
               }
             ></Route>
-            <Route path="/products" element={<Products />}></Route>
+            <Route path="/products" element={<Products userRole={userRole}/>}></Route>
             <Route path="/product" element={<Product />}></Route>
             <Route
               path="/login"
