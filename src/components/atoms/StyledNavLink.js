@@ -10,6 +10,7 @@ const StyledNavLink = styled(NavLink)`
   font-size: 21px;
   display: flex;
   align-items: center;
+  justify-content: center;
   color: ${(props) => props.theme.black};
   background: no-repeat url(${shoePrintSvg}) bottom center / 50px;
   opacity: 0.7;
@@ -19,6 +20,10 @@ const StyledNavLink = styled(NavLink)`
   &:focus  {
     background: no-repeat url(${shoePrintActiveSvg}) bottom center / 50px;
     opacity: 1;
+  }
+
+  @media (max-width: 999px) {
+    margin-top: 20px;
   }
 `;
 

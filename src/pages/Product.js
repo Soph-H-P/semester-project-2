@@ -1,7 +1,9 @@
 import React from 'react';
 
+import PageWrapper from '../components/atoms/PageWrpper';
+
 const Product = () => {
-  return <div>Product</div>;
+  return <PageWrapper>Product</PageWrapper>;
 };
 
 export default Product;

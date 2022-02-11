@@ -1,7 +1,9 @@
 import React from 'react';
 
+import PageWrapper from '../components/atoms/PageWrpper';
+
 const Bag = () => {
-  return <div>bag</div>;
+  return <PageWrapper>bag</PageWrapper>;
 };
 
 export default Bag;

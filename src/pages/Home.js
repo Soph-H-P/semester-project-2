@@ -8,6 +8,7 @@ import Title from '../components/atoms/Title';
 import SubTitle from '../components/atoms/SubTitle';
 import Button from '../components/atoms/Button';
 import ToggleCheckBox from '../components/atoms/ToggleCheckBox';
+import PageWrapper from '../components/atoms/PageWrpper';
 import TextInput from '../components/atoms/TextInput';
 import NumberInput from '../components/atoms/NumberInput';
 import BagSummaryRow from '../components/molecules/BagSummaryRow';
@@ -41,7 +42,7 @@ const Home = ({ setSignedIn, signedIn, setUserRole, userRole }) => {
   };
 
   return (
-    <div>
+    <PageWrapper>
       <HeroSection backgroundImage={backgroundImage}>
         <HeroText>Start Making Tracks</HeroText>
       </HeroSection>
@@ -71,7 +72,7 @@ const Home = ({ setSignedIn, signedIn, setUserRole, userRole }) => {
       <OrderSummary numberOfItems={9} />
       <SignIn setSignedIn={setSignedIn} signedIn={signedIn} setUserRole={setUserRole} />
       <EditProduct title="Edit Product" userRole={userRole}></EditProduct>
-    </div>
+    </PageWrapper>
   );
 };
 

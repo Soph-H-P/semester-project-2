@@ -1,7 +1,9 @@
 import React from 'react';
 
+import PageWrapper from '../components/atoms/PageWrpper';
+
 const Favourites = () => {
-  return <div>favourites</div>;
+  return <PageWrapper>favourites</PageWrapper>;
 };
 
 export default Favourites;

@@ -1,7 +1,9 @@
 import React from 'react';
 
+import PageWrapper from '../components/atoms/PageWrpper';
+
 const ContentEditor = () => {
-  return <div>ContentEditor</div>;
+  return <PageWrapper>ContentEditor</PageWrapper>;
 };
 
 export default ContentEditor;
