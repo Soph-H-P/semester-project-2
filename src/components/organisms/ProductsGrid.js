@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import fetchProducts from '../../utils/fetchProducts';
-import Title from '../atoms/Title';
 import ProductCard from '../molecules/ProductCard';
+import Loader from '../atoms/Loader';
 
 const ProductGridWrapper = styled.div`
   max-width: 1200px;
@@ -33,13 +33,21 @@ const ProductsGrid = ({ userRole }) => {
   }, []);
 
   return (
-    <ProductGridWrapper>
-      {productsArray.map((product) => {
-        return (
-          <ProductCard key={product.id} product={product} isFavourite={false} userRole={userRole} />
-        );
-      })}
-    </ProductGridWrapper>
+    <>
+      {productsArray.length === 0 && <Loader />}
+      <ProductGridWrapper>
+        {productsArray.map((product) => {
+          return (
+            <ProductCard
+              key={product.id}
+              product={product}
+              isFavourite={false}
+              userRole={userRole}
+            />
+          );
+        })}
+      </ProductGridWrapper>
+    </>
   );
 };
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import fetchProducts from '../../utils/fetchProducts';
+import Loader from '../atoms/Loader';
 import Title from '../atoms/Title';
 import ProductCard from '../molecules/ProductCard';
 
@@ -35,6 +36,7 @@ const FeaturedProducts = ({ userRole }) => {
 
   return (
     <FeaturedProductsdWrapper>
+      {productsArray.length === 0 && <Loader />}
       <Title>Featured Sneakers</Title>
       <FeaturedProductsdGrid>
         {productsArray.map((product) => {
