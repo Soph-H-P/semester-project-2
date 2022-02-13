@@ -8,12 +8,24 @@ import ProductCard from '../molecules/ProductCard';
 const ProductGridWrapper = styled.div`
   max-width: 1200px;
   margin: 30px auto;
+  padding: 20px;
   display: grid;
   grid-template: 1fr 1fr / 1fr 1fr 1fr 1fr;
   gap: 20px;
+  justify-items: center;
+
+  @media (max-width: 1200px) {
+    grid-template: 1fr 1fr/ 1fr 1fr 1fr;
+  }
+  @media (max-width: 950px) {
+    grid-template: 1fr/ 1fr 1fr;
+  }
+  @media (max-width: 600px) {
+    grid-template: 1fr/ 1fr;
+  }
 `;
 
-const ProductsGrid = ({userRole}) => {
+const ProductsGrid = ({ userRole }) => {
   const [productsArray, setProductsArray] = useState([]);
 
   useEffect(() => {
@@ -21,8 +33,6 @@ const ProductsGrid = ({userRole}) => {
   }, []);
 
   return (
-      <>
-    <Title>All Sneakers</Title>  
     <ProductGridWrapper>
       {productsArray.map((product) => {
         return (
@@ -30,7 +40,6 @@ const ProductsGrid = ({userRole}) => {
         );
       })}
     </ProductGridWrapper>
-      </>
   );
 };
 

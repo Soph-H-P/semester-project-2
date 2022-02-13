@@ -13,8 +13,9 @@ import AddToFavouritesButton from './AddToFavouritesButton';
 const CardWrpper = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 250px;
+  width: 100%;
   border: ${(props) => props.theme.black} solid 1px;
+  background: ${(props) => props.theme.white};
   transition: all 0.3s ease;
   text-decoration: none;
 

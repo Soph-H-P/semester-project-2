@@ -16,11 +16,12 @@ import Loader from '../components/atoms/Loader';
 import SearchInput from '../components/molecules/SearchInput';
 import IntegratedButtonInput from '../components/molecules/IntegratedButtonInput';
 import AddToFavouritesButton from '../components/molecules/AddToFavouritesButton';
-import ProductCard from '../components/molecules/ProductCard';
+// import ProductCard from '../components/molecules/ProductCard';
 import SignIn from '../components/molecules/SignIn';
 import EditProduct from '../components/molecules/EditProduct';
-import BagItem from '../components/organisms/BagItem';
+// import BagItem from '../components/organisms/BagItem';
 import OrderSummary from '../components/organisms/OrderSummary';
+import FeaturedProducts from '../components/organisms/FeaturedProducts';
 
 const Home = ({ setSignedIn, signedIn, setUserRole, userRole }) => {
   const [backgroundImage, setBackgroundImage] = useState('');
@@ -64,6 +65,7 @@ const Home = ({ setSignedIn, signedIn, setUserRole, userRole }) => {
       <OrderSummary numberOfItems={9} />
       <SignIn setSignedIn={setSignedIn} signedIn={signedIn} setUserRole={setUserRole} />
       <EditProduct title="Edit Product" userRole={userRole}></EditProduct>
+      <FeaturedProducts userRole={userRole} />
     </PageWrapper>
   );
 };

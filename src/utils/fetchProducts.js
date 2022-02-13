@@ -1,7 +1,8 @@
 import { baseUrl } from '../settings/api';
 
-const fetchProducts = async (setProductsArray) => {
-  const url = `${baseUrl}/products`;
+const fetchProducts = async (setProductsArray, featured = false) => {
+
+  const url = featured ? `${baseUrl}/products?featured=true` : `${baseUrl}/products`;
   try {
     const response = await fetch(url);
     const result = await response.json();
