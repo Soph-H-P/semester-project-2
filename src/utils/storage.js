@@ -19,6 +19,11 @@ export const saveToken = (tokenToSave) => {
 
 export const getToken = () => getFromStorage(tokenKey);
 
+export const logoutUser = () => {
+  localStorage.removeItem(tokenKey);
+  localStorage.removeItem(userKey);
+}
+
 export const saveUser = (user) => {
   saveToStorage(userKey, user);
 };
@@ -35,10 +40,6 @@ export const getUserRole = () => {
   const userRole = user.role ? user.role.name : null;
 
   return userRole;
-};
-
-export const clearStorage = () => {
-  localStorage.clear();
 };
 
 export const removeFromStorage = (key) => {

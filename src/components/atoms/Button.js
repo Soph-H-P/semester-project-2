@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 
 const StyledButton = styled.button`
-  width: 100px;
+  width: 115px;
   font-weight: 300;
   font-size: 18px;
   padding: 0.5rem;
@@ -46,9 +46,9 @@ const StyledButton = styled.button`
     `}
 `;
 
-const Button = ({ type, handleClick, children }) => {
+const Button = ({ type, handleClick, dataId = '', children }) => {
   return (
-    <StyledButton onClick={(e) => handleClick(e)} type={type}>
+    <StyledButton onClick={(e) => handleClick(e)} type={type} data-id={dataId}>
       {children}
     </StyledButton>
   );

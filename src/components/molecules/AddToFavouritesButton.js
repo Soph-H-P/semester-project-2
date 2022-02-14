@@ -31,11 +31,9 @@ const AddToFavouritesButton = ({ productId }) => {
       const newFavourite = { id };
       currentFavourites.push(newFavourite);
       setCurrentFavouritesArray(currentFavourites);
-      // saveToStorage(favouritesKey, currentFavourites);
     } else {
       const removedFavourite = filterList(currentFavourites, id);
       setCurrentFavouritesArray(removedFavourite);
-      // saveToStorage(favouritesKey, removedFavourite);
     }
   };
 

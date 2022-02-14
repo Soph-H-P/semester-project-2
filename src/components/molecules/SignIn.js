@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { clearStorage, getUsername, getUserRole } from '../../utils/storage';
+import { logoutUser, getUsername, getUserRole } from '../../utils/storage';
 import signInUser from '../../utils/signInUser';
 
 import Button from '../atoms/Button';
@@ -32,7 +32,7 @@ const SignIn = ({ setSignedIn, signedIn, setUserRole }) => {
 
   const handleSignOut = () => {
     if (window.confirm(`Hi ${signedIn}! Are you sure you want to log out?`)) {
-      clearStorage();
+      logoutUser();
       setSignedIn(getUsername());
       setUserRole(getUserRole());
     }

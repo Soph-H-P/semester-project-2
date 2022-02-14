@@ -8,7 +8,6 @@ const fetchCurrentProduct = async (id, setCurrentProduct) => {
     const result = await response.json();
 
     setCurrentProduct(result);
-    console.log(result)
   } catch (error) {
     console.log(error);
   }

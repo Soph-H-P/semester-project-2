@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import { getUserRole, getUsername } from './utils/storage';
+import { bagItemsKey } from './settings/settings';
+
+import { getUserRole, getUsername, getFromStorage } from './utils/storage';
 
 import GlobalStyle from './styles/GlobalStyle';
 import theme from './styles/theme';
@@ -19,15 +21,23 @@ import Footer from './components/atoms/Footer';
 
 const App = () => {
   const [signedIn, setSignedIn] = useState(getUsername());
-
   const [userRole, setUserRole] = useState(getUserRole());
+  const [itemsInBag, setItemsInBag] = useState(getFromStorage(bagItemsKey));
+
+  useEffect(() => {
+    setItemsInBag(getFromStorage(bagItemsKey));
+  }, []);
 
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <div className="wrapper">
           <GlobalStyle />
-          <Navigation userRole={userRole} signedIn={signedIn} />
+          <Navigation
+            userRole={userRole}
+            signedIn={signedIn}
+            itemsInBag={itemsInBag}
+          />
           <Routes>
             <Route
               exact
@@ -42,7 +52,10 @@ const App = () => {
               }
             ></Route>
             <Route path="/products" element={<Products userRole={userRole} />}></Route>
-            <Route path="/product" element={<Product userRole={userRole} />}></Route>
+            <Route
+              path="/product"
+              element={<Product userRole={userRole} setItemsInBag={setItemsInBag} />}
+            ></Route>
             <Route
               path="/login"
               element={

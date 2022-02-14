@@ -25,7 +25,6 @@ const EditProduct = ({ title, signedIn, userRole }) => {
     createProduct(title, price, featured, description, image, setIsError, setIsNetworkError);
   };
 
-  console.log(userRole)
 
   return (
     <StyledFormContainer width={650} align={'left'}>

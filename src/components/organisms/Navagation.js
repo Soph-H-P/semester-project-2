@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+
 import StyledNavLink from '../atoms/StyledNavLink';
 import Logo from '../atoms/Logo';
 import Icon from '../atoms/Icon';
@@ -22,6 +23,17 @@ const NavContainer = styled.div`
   z-index: 100000;
   width: 100%;
   max-height: 100vh;
+
+  a {
+    position: relative;
+  }
+
+  #bag::after {
+    content: '${(props) => props.itemsinbag}';
+    position: absolute;
+    top: 20px;
+    right: 5px;
+  }
 `;
 
 const DesktopNav = styled.nav`
@@ -44,16 +56,7 @@ const MobileNav = styled.nav`
 const NavBar = ({ userRole }) => {
   return (
     <>
-    <SearchInput />
-      {userRole === 'Authenticated' && (
-        <StyledNavLink
-          to="/content-editor"
-          className={(navData) => (navData.isActive ? 'active-style' : '')}
-          aria-label="content editor"
-        >
-          <Icon iconSource={editSvg} alt="content editor" />
-        </StyledNavLink>
-      )}
+      <SearchInput />
       <StyledNavLink
         to="/products"
         className={(navData) => (navData.isActive ? 'active-style' : '')}
@@ -74,10 +77,20 @@ const NavBar = ({ userRole }) => {
       >
         <Icon iconSource={loginSvg} alt="log in" />
       </StyledNavLink>
+      {userRole === 'Authenticated' && (
+        <StyledNavLink
+          to="/content-editor"
+          className={(navData) => (navData.isActive ? 'active-style' : '')}
+          aria-label="content editor"
+        >
+          <Icon iconSource={editSvg} alt="content editor" />
+        </StyledNavLink>
+      )}
       <StyledNavLink
         to="/your-bag"
         className={(navData) => (navData.isActive ? 'active-style' : '')}
         aria-label="your bag"
+        id="bag"
       >
         <Icon iconSource={bagSvg} alt="your bag" />
       </StyledNavLink>
@@ -85,7 +98,7 @@ const NavBar = ({ userRole }) => {
   );
 };
 
-const Navagation = ({ userRole, signedIn }) => {
+const Navagation = ({ userRole, itemsInBag }) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -103,27 +116,29 @@ const Navagation = ({ userRole, signedIn }) => {
   };
 
   return (
-    <NavContainer windowwidth={windowWidth}>
+    <NavContainer windowwidth={windowWidth} itemsinbag={itemsInBag.length}>
       <Logo windowwidth={windowWidth} />
       {windowWidth <= 999 && (
         <MobileNav open={menuOpen}>
           <NavBar userRole={userRole} />
-
         </MobileNav>
       )}
       {windowWidth <= 999 && !menuOpen ? (
         <Button handleClick={handleOpenMenu} type="icon">
           <Icon iconSource={menuSvg} alt="menu" />
         </Button>
-      ) : windowWidth <= 999 && menuOpen && (
-        <Button handleClick={handleOpenMenu} type="icon">
-          <Icon iconSource={closeSvg} alt="menu" />
-        </Button>
+      ) : (
+        windowWidth <= 999 &&
+        menuOpen && (
+          <Button handleClick={handleOpenMenu} type="icon">
+            <Icon iconSource={closeSvg} alt="menu" />
+          </Button>
+        )
       )}
       {windowWidth >= 1000 && (
-          <DesktopNav>
-            <NavBar userRole={userRole} />
-          </DesktopNav>
+        <DesktopNav>
+          <NavBar userRole={userRole} />
+        </DesktopNav>
       )}
     </NavContainer>
   );

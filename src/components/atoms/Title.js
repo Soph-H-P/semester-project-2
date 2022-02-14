@@ -5,6 +5,7 @@ const Title = styled.h1`
   position: relative;
   font-family: ${(props) => props.theme.headingFont};
   text-transform: capitalize;
+  text-align: left;
 
   &::after {
     content: '';

@@ -5,9 +5,7 @@ import fetchCurrentProduct from '../utils/fetchCurrentProduct';
 import PageWrapper from '../components/atoms/PageWrpper';
 import ProductDetails from '../components/molecules/ProductDetails';
 
-
-
-const Product = ({userRole}) => {
+const Product = ({ userRole, setItemsInBag }) => {
   const queryString = document.location.search;
   const params = new URLSearchParams(queryString);
   const productId = params.get('id');
@@ -21,7 +19,11 @@ const Product = ({userRole}) => {
 
   return (
     <PageWrapper>
-      <ProductDetails userRole={userRole} product={currentProduct}></ProductDetails>
+      <ProductDetails
+        userRole={userRole}
+        product={currentProduct}
+        setItemsInBag={setItemsInBag}
+      ></ProductDetails>
     </PageWrapper>
   );
 };
