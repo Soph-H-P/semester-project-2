@@ -46,11 +46,11 @@ export const removeFromStorage = (key) => {
 };
 
 export const findInList = (listToFilter, id) => {
-  const foundInList = listToFilter.find((bookmark) => parseInt(bookmark.id) === id);
+  const foundInList = listToFilter.find((favourite) => parseInt(favourite.id) === id);
   return foundInList;
 };
 
 export const filterList = (listToFilter, id) => {
-  const filteredList = listToFilter.filter((bookmark) => parseInt(bookmark.id) !== id);
+  const filteredList = listToFilter.filter((favourite) => parseInt(favourite.id) !== id);
   return filteredList;
 };

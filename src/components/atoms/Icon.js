@@ -14,10 +14,10 @@ const IconWrapper = styled.div`
   }
 `;
 
-const Icon = ({ iconSource, alt }) => {
+const Icon = ({ iconSource, alt, productId = '' }) => {
   return (
-    <IconWrapper>
-      <img src={iconSource} alt={alt} />
+    <IconWrapper data-id={productId} >
+      <img src={iconSource} alt={alt} data-id={productId} />
     </IconWrapper>
   );
 };

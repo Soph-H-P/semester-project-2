@@ -22,7 +22,6 @@ const App = () => {
 
   const [userRole, setUserRole] = useState(getUserRole());
 
-
   return (
     <Router>
       <ThemeProvider theme={theme}>
@@ -34,11 +33,16 @@ const App = () => {
               exact
               path="/"
               element={
-                <Home setSignedIn={setSignedIn} signedIn={signedIn} setUserRole={setUserRole} userRole={userRole} />
+                <Home
+                  setSignedIn={setSignedIn}
+                  signedIn={signedIn}
+                  setUserRole={setUserRole}
+                  userRole={userRole}
+                />
               }
             ></Route>
-            <Route path="/products" element={<Products userRole={userRole}/>}></Route>
-            <Route path="/product" element={<Product />}></Route>
+            <Route path="/products" element={<Products userRole={userRole} />}></Route>
+            <Route path="/product" element={<Product userRole={userRole} />}></Route>
             <Route
               path="/login"
               element={

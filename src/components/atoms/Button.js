@@ -48,7 +48,7 @@ const StyledButton = styled.button`
 
 const Button = ({ type, handleClick, children }) => {
   return (
-    <StyledButton onClick={() => handleClick()} type={type}>
+    <StyledButton onClick={(e) => handleClick(e)} type={type}>
       {children}
     </StyledButton>
   );

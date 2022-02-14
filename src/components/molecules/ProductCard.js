@@ -14,6 +14,7 @@ const CardWrpper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 400px;
   border: ${(props) => props.theme.black} solid 1px;
   background: ${(props) => props.theme.white};
   transition: all 0.3s ease;
