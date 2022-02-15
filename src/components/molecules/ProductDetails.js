@@ -176,7 +176,7 @@ const ProductDetails = ({ product, userRole, setItemsInBag }) => {
                 <p>£{product.price}</p>
               </div>
               <div>
-                <AddToFavouritesButton isFavourite={true} productId={product.id} />
+                <AddToFavouritesButton productId={product.id} />
                 {userRole === 'Authenticated' && (
                   <Link to={`/content-editor?id=${product.id}`}>
                     <Icon iconSource={edit} alt="edit product"></Icon>

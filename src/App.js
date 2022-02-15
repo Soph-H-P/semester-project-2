@@ -33,24 +33,9 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <div className="wrapper">
           <GlobalStyle />
-          <Navigation
-            userRole={userRole}
-            signedIn={signedIn}
-            itemsInBag={itemsInBag}
-          />
+          <Navigation userRole={userRole} signedIn={signedIn} itemsInBag={itemsInBag} />
           <Routes>
-            <Route
-              exact
-              path="/"
-              element={
-                <Home
-                  setSignedIn={setSignedIn}
-                  signedIn={signedIn}
-                  setUserRole={setUserRole}
-                  userRole={userRole}
-                />
-              }
-            ></Route>
+            <Route exact path="/" element={<Home userRole={userRole} />}></Route>
             <Route path="/products" element={<Products userRole={userRole} />}></Route>
             <Route
               path="/product"
@@ -62,9 +47,9 @@ const App = () => {
                 <Login setSignedIn={setSignedIn} signedIn={signedIn} setUserRole={setUserRole} />
               }
             ></Route>
-            <Route path="/favourites" element={<Favourites />}></Route>
-            <Route path="/your-bag" element={<Bag />}></Route>
-            <Route path="/content-editor" element={<ContentEditor />}></Route>
+            <Route path="/favourites" element={<Favourites  userRole={userRole}/>}></Route>
+            <Route path="/your-bag" element={<Bag  userRole={userRole}/>}></Route>
+            <Route path="/content-editor" element={<ContentEditor  userRole={userRole}/>}></Route>
           </Routes>
         </div>
         <Footer>&copy; Tracks 2022 </Footer>

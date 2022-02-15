@@ -1,5 +1,5 @@
-const tokenKey = 'token';
-const userKey = 'user';
+import { tokenKey } from "../settings/settings";
+import { userKey } from "../settings/settings";
 
 export const saveToStorage = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));

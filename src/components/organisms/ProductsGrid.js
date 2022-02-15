@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-import fetchProducts from '../../utils/fetchProducts';
 import ProductCard from '../molecules/ProductCard';
 import Loader from '../atoms/Loader';
 
@@ -25,26 +24,14 @@ const ProductGridWrapper = styled.div`
   }
 `;
 
-const ProductsGrid = ({ userRole }) => {
-  const [productsArray, setProductsArray] = useState([]);
-
-  useEffect(() => {
-    fetchProducts(setProductsArray);
-  }, []);
-
+const ProductsGrid = ({ userRole, productsArray, gridType, isEmpty = false, removeFromBag }) => {
   return (
     <>
-      {productsArray.length === 0 && <Loader />}
+      {productsArray.length === 0 && !isEmpty && <Loader />}
+      {(gridType === 'bag' || gridType === 'fav') && isEmpty && <p>{gridType === 'bag' ? 'Currently no items in your bag' : 'You have no favourites yet'}</p>}
       <ProductGridWrapper>
         {productsArray.map((product) => {
-          return (
-            <ProductCard
-              key={product.id}
-              product={product}
-              isFavourite={false}
-              userRole={userRole}
-            />
-          );
+          return <ProductCard key={product.id} product={product} userRole={userRole} type="bag" removeFromBag={removeFromBag}/>;
         })}
       </ProductGridWrapper>
     </>

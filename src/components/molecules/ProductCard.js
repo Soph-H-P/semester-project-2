@@ -6,6 +6,7 @@ import { baseUrl } from '../../settings/api';
 
 import edit from '../../assets/icons/editSvg.svg';
 
+import Button from '../atoms/Button';
 import SubTitle from '../atoms/SubTitle';
 import Icon from '../atoms/Icon';
 import AddToFavouritesButton from './AddToFavouritesButton';
@@ -68,7 +69,7 @@ const ProductInfoContainer = styled.div`
   }
 `;
 
-const ProductCard = ({ product, isFavourite, userRole }) => {
+const ProductCard = ({ product, userRole, type = '', removeFromBag }) => {
   return (
     <CardWrpper>
       <Link to={`/product/?id=${product.id}`} id="imageContainer">
@@ -86,11 +87,16 @@ const ProductCard = ({ product, isFavourite, userRole }) => {
           <p>£{product.price}</p>
         </div>
         <div>
-          <AddToFavouritesButton isFavourite={isFavourite} productId={product.id} />
+          <AddToFavouritesButton productId={product.id} />
           {userRole === 'Authenticated' && (
             <Link to={`/content-editor?id=${product.id}`}>
               <Icon iconSource={edit} alt="edit product"></Icon>
             </Link>
+          )}
+          {type === 'bag' && (
+            <Button data-id={product.id} handleClick={removeFromBag}>
+              Remove
+            </Button>
           )}
         </div>
       </ProductInfoContainer>

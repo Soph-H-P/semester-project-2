@@ -4,6 +4,7 @@ import fetchCurrentProduct from '../utils/fetchCurrentProduct';
 
 import PageWrapper from '../components/atoms/PageWrpper';
 import ProductDetails from '../components/molecules/ProductDetails';
+import FeaturedProducts from '../components/organisms/FeaturedProducts';
 
 const Product = ({ userRole, setItemsInBag }) => {
   const queryString = document.location.search;
@@ -24,6 +25,7 @@ const Product = ({ userRole, setItemsInBag }) => {
         product={currentProduct}
         setItemsInBag={setItemsInBag}
       ></ProductDetails>
+      <FeaturedProducts userRole={userRole} />
     </PageWrapper>
   );
 };

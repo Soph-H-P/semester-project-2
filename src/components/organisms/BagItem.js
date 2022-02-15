@@ -40,7 +40,7 @@ const ProductInfoContainer = styled.div`
   justify-content: space-between;
 `;
 
-const BagItem = ({ product, isFavourite }) => {
+const BagItem = ({ product }) => {
   const [totalPrice, setTotalPrice] = useState(product.price);
 
   const handleChange = (e) => {
@@ -54,7 +54,7 @@ const BagItem = ({ product, isFavourite }) => {
           <img src={baseUrl + product.url} alt={product.altText} />
         </Link>
         <div>
-          <AddToFavouritesButton isFavourite={isFavourite} productId={product.id} />
+          <AddToFavouritesButton productId={product.id} />
           <RemoveFromBagButton productId={product.id} />
         </div>
       </div>
