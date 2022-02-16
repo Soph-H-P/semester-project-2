@@ -4,18 +4,29 @@ import styled from 'styled-components';
 import searchSvg from '../../assets/icons/searchSvg.svg';
 import Icon from '../atoms/Icon';
 import TextInput from '../atoms/TextInput';
-
-const SearchInputWrapper = styled.div`
+import { useNavigate } from 'react-router-dom';
+const SearchInputWrapper = styled.form`
   display: flex;
   align-items: center;
   width: max-content;
 `;
 
 const SearchInput = () => {
+  const navigate = useNavigate();
+  const reRouteUser = (searchTerm) => {
+    navigate(`/search-results?search=${searchTerm}`);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const searchTerm = e.target.search.value
+    reRouteUser(searchTerm)
+  };
+
   return (
-    <SearchInputWrapper>
+    <SearchInputWrapper onSubmit={handleSubmit}>
       <Icon iconSource={searchSvg} alt="search" />
-      <TextInput label="Search" name="search-input"></TextInput>
+      <TextInput label="Search" name="search"></TextInput>
     </SearchInputWrapper>
   );
 };

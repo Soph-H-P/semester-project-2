@@ -27,7 +27,7 @@ const ProductsGrid = ({
   userRole,
   productsToRender,
   setItemsInFavourites,
-  setItemsInBag = null,
+  setItemsInBag = null
 }) => {
   return (
     <>

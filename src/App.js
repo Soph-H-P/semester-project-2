@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Product from './pages/Product';
 import Products from './pages/Products';
+import SearchResults from './pages/SearchResults';
 import { bagItemsKey, favouritesKey } from './settings/settings';
 import GlobalStyle from './styles/GlobalStyle';
 import theme from './styles/theme';
@@ -89,6 +90,12 @@ const App = () => {
               }
             ></Route>
             <Route path="/content-editor" element={<ContentEditor />}></Route>
+            <Route
+              path="/search-results"
+              element={
+                <SearchResults userRole={userRole} setItemsInFavourites={setItemsInFavourites} />
+              }
+            ></Route>
           </Routes>
         </div>
         <Footer>&copy; Tracks 2022 </Footer>
