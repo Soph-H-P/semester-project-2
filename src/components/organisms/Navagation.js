@@ -53,13 +53,14 @@ const MobileNav = styled.nav`
   align-items: center;
 `;
 
-const NavBar = ({ userRole }) => {
+const NavBar = ({ userRole, handleOpenMenu }) => {
   return (
     <>
       <SearchInput />
       <StyledNavLink
         to="/products"
         className={(navData) => (navData.isActive ? 'active-style' : '')}
+        onClick={handleOpenMenu}
       >
         Sneakers
       </StyledNavLink>
@@ -67,6 +68,7 @@ const NavBar = ({ userRole }) => {
         to="/favourites"
         className={(navData) => (navData.isActive ? 'active-style' : '')}
         aria-label="favourites"
+        onClick={handleOpenMenu}
       >
         <Icon iconSource={outlineHeartSvg} alt="favourites" />
       </StyledNavLink>
@@ -74,6 +76,7 @@ const NavBar = ({ userRole }) => {
         to="/login"
         className={(navData) => (navData.isActive ? 'active-style' : '')}
         aria-label="login"
+        onClick={handleOpenMenu}
       >
         <Icon iconSource={loginSvg} alt="log in" />
       </StyledNavLink>
@@ -82,6 +85,7 @@ const NavBar = ({ userRole }) => {
           to="/content-editor"
           className={(navData) => (navData.isActive ? 'active-style' : '')}
           aria-label="content editor"
+          onClick={handleOpenMenu}
         >
           <Icon iconSource={editSvg} alt="content editor" />
         </StyledNavLink>
@@ -91,6 +95,7 @@ const NavBar = ({ userRole }) => {
         className={(navData) => (navData.isActive ? 'active-style' : '')}
         aria-label="your bag"
         id="bag"
+        onClick={handleOpenMenu}
       >
         <Icon iconSource={bagSvg} alt="your bag" />
       </StyledNavLink>
@@ -120,7 +125,7 @@ const Navagation = ({ userRole, itemsInBag }) => {
       <Logo windowwidth={windowWidth} />
       {windowWidth <= 999 && (
         <MobileNav open={menuOpen}>
-          <NavBar userRole={userRole} />
+          <NavBar userRole={userRole} handleOpenMenu={handleOpenMenu} />
         </MobileNav>
       )}
       {windowWidth <= 999 && !menuOpen ? (
@@ -137,7 +142,7 @@ const Navagation = ({ userRole, itemsInBag }) => {
       )}
       {windowWidth >= 1000 && (
         <DesktopNav>
-          <NavBar userRole={userRole} />
+          <NavBar userRole={userRole} handleOpenMenu={handleOpenMenu} />
         </DesktopNav>
       )}
     </NavContainer>
