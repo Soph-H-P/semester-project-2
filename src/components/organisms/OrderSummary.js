@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import SubTitle from '../atoms/SubTitle';
 import Button from '../atoms/Button';
+import SubTitle from '../atoms/SubTitle';
 import BagSummaryRow from '../molecules/BagSummaryRow';
 
 const OrderSummaryWrapper = styled.div`
@@ -18,11 +18,15 @@ const OrderSummaryWrapper = styled.div`
   }
 `;
 
-const OrderSummary = ({numberOfItems}) => {
+const OrderSummary = ({ numberOfItems }) => {
   return (
     <OrderSummaryWrapper>
       <SubTitle>Order Summary</SubTitle>
-      <BagSummaryRow title="Subtotal" value="£00.00" details={`${numberOfItems} items`}></BagSummaryRow>
+      <BagSummaryRow
+        title="Subtotal"
+        value="£00.00"
+        details={`${numberOfItems} items`}
+      ></BagSummaryRow>
       <BagSummaryRow title="Shipping" value="£00.00" details="3-5 working days"></BagSummaryRow>
       <BagSummaryRow title="Order Total" value="£00.00" details="VAT inc."></BagSummaryRow>
       <Button>Buy Now</Button>

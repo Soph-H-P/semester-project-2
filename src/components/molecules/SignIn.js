@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { logoutUser, getUsername, getUserRole } from '../../utils/storage';
 import signInUser from '../../utils/signInUser';
-
+import { getUsername, getUserRole, logoutUser } from '../../utils/storage';
 import Button from '../atoms/Button';
-import Title from '../atoms/Title';
-import TextInput from '../atoms/TextInput';
 import StyledFormContainer, { ErrorMessage } from '../atoms/StyledFormContainer';
+import TextInput from '../atoms/TextInput';
+import Title from '../atoms/Title';
 
 const SignIn = ({ setSignedIn, signedIn, setUserRole }) => {
   const navigate = useNavigate();
@@ -25,7 +24,15 @@ const SignIn = ({ setSignedIn, signedIn, setUserRole }) => {
     setIsNetworkError(false);
     const email = e.target.email.value;
     const password = e.target.password.value;
-    signInUser(email, password, reRouteUser, setSignedIn, setUserRole, setIsError, setIsNetworkError);
+    signInUser(
+      email,
+      password,
+      reRouteUser,
+      setSignedIn,
+      setUserRole,
+      setIsError,
+      setIsNetworkError
+    );
     setSignedIn(getUsername());
     setUserRole(getUserRole());
   };

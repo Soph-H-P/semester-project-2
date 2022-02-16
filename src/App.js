@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import { bagItemsKey, favouritesKey } from './settings/settings';
-
-import { getUserRole, getUsername, getFromStorage } from './utils/storage';
-
-import GlobalStyle from './styles/GlobalStyle';
-import theme from './styles/theme';
-
-import Home from './pages/Home';
-import Product from './pages/Product';
-import Products from './pages/Products';
-import Login from './pages/Login';
+import Footer from './components/atoms/Footer';
+import Navigation from './components/organisms/Navagation';
 import Bag from './pages/Bag';
 import ContentEditor from './pages/ContentEditor';
 import Favourites from './pages/Favourites';
-import Navigation from './components/organisms/Navagation';
-import Footer from './components/atoms/Footer';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Product from './pages/Product';
+import Products from './pages/Products';
+import { bagItemsKey, favouritesKey } from './settings/settings';
+import GlobalStyle from './styles/GlobalStyle';
+import theme from './styles/theme';
+import { getFromStorage, getUsername, getUserRole } from './utils/storage';
 
 const App = () => {
   const [signedIn, setSignedIn] = useState(getUsername());
@@ -56,7 +53,13 @@ const App = () => {
             ></Route>
             <Route
               path="/product"
-              element={<Product userRole={userRole} setItemsInBag={setItemsInBag} setItemsInFavourites={setItemsInFavourites} />}
+              element={
+                <Product
+                  userRole={userRole}
+                  setItemsInBag={setItemsInBag}
+                  setItemsInFavourites={setItemsInFavourites}
+                />
+              }
             ></Route>
             <Route
               path="/login"

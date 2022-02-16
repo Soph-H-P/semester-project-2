@@ -6,6 +6,7 @@ const Title = styled.h1`
   font-family: ${(props) => props.theme.headingFont};
   text-transform: capitalize;
   text-align: left;
+  padding-left: 20px;
 
   &::after {
     content: '';
@@ -13,7 +14,7 @@ const Title = styled.h1`
     height: 3px;
     background-color: ${(props) => props.theme.primaryColor};
     position: absolute;
-    left: 0;
+    left: 20px;
     bottom: 0;
   }
 `;

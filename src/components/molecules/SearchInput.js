@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import TextInput from '../atoms/TextInput';
-import Icon from '../atoms/Icon';
 import searchSvg from '../../assets/icons/searchSvg.svg';
+import Icon from '../atoms/Icon';
+import TextInput from '../atoms/TextInput';
 
 const SearchInputWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    width: max-content;
-`
+  display: flex;
+  align-items: center;
+  width: max-content;
+`;
 
 const SearchInput = () => {
   return (

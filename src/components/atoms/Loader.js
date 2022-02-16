@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+
 import loadingSvg from '../../assets/icons/loadingSvg.svg';
 
 const loadingAnimationLarge = keyframes`

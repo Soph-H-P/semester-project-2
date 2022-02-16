@@ -1,7 +1,8 @@
-import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import shoePrintSvg from '../../assets/icons/shoePrintSvg.svg';
+import styled from 'styled-components';
+
 import shoePrintActiveSvg from '../../assets/icons/shoePrintActiveSvg.svg';
+import shoePrintSvg from '../../assets/icons/shoePrintSvg.svg';
 
 const StyledNavLink = styled(NavLink)`
   text-decoration: none;
@@ -17,7 +18,7 @@ const StyledNavLink = styled(NavLink)`
 
   &:hover,
   &.active,
-  &:focus  {
+  &:focus {
     background: no-repeat url(${shoePrintActiveSvg}) bottom center / 50px;
     opacity: 1;
   }

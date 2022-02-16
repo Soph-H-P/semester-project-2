@@ -1,18 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
-import { baseUrl } from '../../settings/api';
-import { getFromStorage, filterList, saveToStorage } from '../../utils/storage';
-
-import edit from '../../assets/icons/editSvg.svg';
 import deleteSvg from '../../assets/icons/deleteSvg.svg';
-
-import SubTitle from '../atoms/SubTitle';
-import Icon from '../atoms/Icon';
-import AddToFavouritesButton from './AddToFavouritesButton';
-import Button from '../atoms/Button';
+import edit from '../../assets/icons/editSvg.svg';
+import { baseUrl } from '../../settings/api';
 import { bagItemsKey } from '../../settings/settings';
+import { filterList, getFromStorage, saveToStorage } from '../../utils/storage';
+import Button from '../atoms/Button';
+import Icon from '../atoms/Icon';
+import SubTitle from '../atoms/SubTitle';
+import AddToFavouritesButton from './AddToFavouritesButton';
 
 const CardWrpper = styled.div`
   display: flex;

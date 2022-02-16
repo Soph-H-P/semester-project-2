@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { baseUrl } from '../../settings/api';
-
 import NumberInput from '../atoms/NumberInput';
 import SubTitle from '../atoms/SubTitle';
 import AddToFavouritesButton from '../molecules/AddToFavouritesButton';

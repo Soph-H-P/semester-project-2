@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import fetchLocalProducts from '../utils/fetchLocalProducts';
-
 import PageWrapper from '../components/atoms/PageWrpper';
 import ProductsGrid from '../components/organisms/ProductsGrid';
+import fetchLocalProducts from '../utils/fetchLocalProducts';
 
 const Bag = ({ userRole, itemsInBag, setItemsInFavourites, setItemsInBag }) => {
   const [currentBagItems, setCurrentBagItems] = useState([]);

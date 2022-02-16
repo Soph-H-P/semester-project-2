@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 
 import createProduct from '../../utils/createProduct';
-
-import Title from '../atoms/Title';
-import TextInput from '../atoms/TextInput';
 import NumberInput from '../atoms/NumberInput';
-import TextAreaInput from '../atoms/TextAreaInput';
-import ToggleCheckBox from '../atoms/ToggleCheckBox';
 import StyledFormContainer, { ErrorMessage } from '../atoms/StyledFormContainer';
+import TextAreaInput from '../atoms/TextAreaInput';
+import TextInput from '../atoms/TextInput';
+import Title from '../atoms/Title';
+import ToggleCheckBox from '../atoms/ToggleCheckBox';
 
-const EditProduct = ({ title, signedIn, userRole }) => {
+const EditProduct = ({ title, userRole }) => {
   const [isError, setIsError] = useState(false);
   const [isNetworkError, setIsNetworkError] = useState(false);
 
@@ -25,10 +24,13 @@ const EditProduct = ({ title, signedIn, userRole }) => {
     createProduct(title, price, featured, description, image, setIsError, setIsNetworkError);
   };
 
-
   return (
     <StyledFormContainer width={650} align={'left'}>
-      <Title>{userRole === 'Authenticated' ? title : 'Sorry you are not authorized to create or edit products. If you have an admin account, please log in : )'}</Title>
+      <Title>
+        {userRole === 'Authenticated'
+          ? title
+          : 'Sorry you are not authorized to create or edit products. If you have an admin account, please log in : )'}
+      </Title>
       {userRole === 'Authenticated' && (
         <form onSubmit={handleSubmit}>
           <TextInput label="Product Title" name="title" required={true}></TextInput>

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import ProductCard from '../molecules/ProductCard';
 import Loader from '../atoms/Loader';
+import ProductCard from '../molecules/ProductCard';
 
 const ProductGridWrapper = styled.div`
   max-width: 1200px;
@@ -23,7 +23,12 @@ const ProductGridWrapper = styled.div`
   }
 `;
 
-const ProductsGrid = ({ userRole, productsToRender, setItemsInFavourites, setItemsInBag = null }) => {
+const ProductsGrid = ({
+  userRole,
+  productsToRender,
+  setItemsInFavourites,
+  setItemsInBag = null,
+}) => {
   return (
     <>
       {productsToRender.length === 0 && <Loader />}

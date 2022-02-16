@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
-
-import { favouritesKey } from '../../settings/settings';
-import { getFromStorage, findInList, filterList, saveToStorage } from '../../utils/storage';
-
-import Button from '../atoms/Button';
-import Icon from '../atoms/Icon';
+import React, { useEffect, useState } from 'react';
 
 import filledHeart from '../../assets/icons/filledHeartSvg.svg';
 import outlineHeart from '../../assets/icons/outlineHeartSvg.svg';
+import { favouritesKey } from '../../settings/settings';
+import { filterList, findInList, getFromStorage, saveToStorage } from '../../utils/storage';
+import Button from '../atoms/Button';
+import Icon from '../atoms/Icon';
 
 const AddToFavouritesButton = ({ productId, setItemsInFavourites }) => {
   const [currentFavouritesArray, setCurrentFavouritesArray] = useState(

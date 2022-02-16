@@ -1,9 +1,8 @@
 import React from 'react';
 
+import deleteSvg from '../../assets/icons/deleteSvg.svg';
 import Button from '../atoms/Button';
 import Icon from '../atoms/Icon';
-
-import deleteSvg from '../../assets/icons/deleteSvg.svg';
 
 const RemoveFromBagButton = ({ productId }) => {
   const handleRemoveFromBag = () => {

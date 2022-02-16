@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
-import { findInList, getFromStorage, saveToStorage, filterList } from '../../utils/storage';
-import { bagItemsKey } from '../../settings/settings';
-
+import closeSvg from '../../assets/icons/closeSvg.svg';
+import edit from '../../assets/icons/editSvg.svg';
+import zoomSvg from '../../assets/icons/zoomSvg.svg';
 import { baseUrl } from '../../settings/api';
+import { bagItemsKey } from '../../settings/settings';
+import { filterList, findInList, getFromStorage, saveToStorage } from '../../utils/storage';
+import Button from '../atoms/Button';
+import Icon from '../atoms/Icon';
 import Loader from '../atoms/Loader';
 import Title from '../atoms/Title';
-import Icon from '../atoms/Icon';
-import edit from '../../assets/icons/editSvg.svg';
-import closeSvg from '../../assets/icons/closeSvg.svg';
-import zoomSvg from '../../assets/icons/zoomSvg.svg';
 import AddToFavouritesButton from './AddToFavouritesButton';
-import Button from '../atoms/Button';
 
 const ProductDetailsWrapper = styled.div`
   position: relative;
@@ -123,7 +122,7 @@ const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites
   useEffect(() => {
     setIsInBag(findInList(currentBagArray, product.id));
     saveToStorage(bagItemsKey, currentBagArray);
-    setItemsInBag(getFromStorage(bagItemsKey))
+    setItemsInBag(getFromStorage(bagItemsKey));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentBagArray]);
 
@@ -176,7 +175,11 @@ const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites
                 <p>£{product.price}</p>
               </div>
               <div>
-                <AddToFavouritesButton isFavourite={true} productId={product.id} setItemsInFavourites={setItemsInFavourites} />
+                <AddToFavouritesButton
+                  isFavourite={true}
+                  productId={product.id}
+                  setItemsInFavourites={setItemsInFavourites}
+                />
                 {userRole === 'Authenticated' && (
                   <Link to={`/content-editor?id=${product.id}`}>
                     <Icon iconSource={edit} alt="edit product"></Icon>

@@ -16,7 +16,7 @@ const IconWrapper = styled.div`
 
 const Icon = ({ iconSource, alt, productId = '' }) => {
   return (
-    <IconWrapper data-id={productId} >
+    <IconWrapper data-id={productId}>
       <img src={iconSource} alt={alt} data-id={productId} />
     </IconWrapper>
   );

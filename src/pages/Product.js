@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
-
-import fetchCurrentProduct from '../utils/fetchCurrentProduct';
+import React, { useEffect, useState } from 'react';
 
 import PageWrapper from '../components/atoms/PageWrpper';
 import ProductDetails from '../components/molecules/ProductDetails';
+import fetchCurrentProduct from '../utils/fetchCurrentProduct';
 
 const Product = ({ userRole, setItemsInBag, setItemsInFavourites }) => {
   const queryString = document.location.search;

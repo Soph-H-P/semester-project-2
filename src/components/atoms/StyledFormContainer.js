@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 const StyledFormContainer = styled.div`
   border: 1px solid ${(props) => props.theme.black};
-  max-width: ${(props) => props.width ? props.width + 'px' : '380px'};
+  max-width: ${(props) => (props.width ? props.width + 'px' : '380px')};
   padding: 25px 50px;
   display: flex;
   flex-direction: column;
-  align-items: ${(props) => props.align ? props.align : 'center'};
+  align-items: ${(props) => (props.align ? props.align : 'center')};
 
   input[type='submit'] {
     width: 100px;

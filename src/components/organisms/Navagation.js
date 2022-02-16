@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import StyledNavLink from '../atoms/StyledNavLink';
-import Logo from '../atoms/Logo';
-import Icon from '../atoms/Icon';
-import outlineHeartSvg from '../../assets/icons/outlineHeartSvg.svg';
-import menuSvg from '../../assets/icons/menuSvg.svg';
+import bagSvg from '../../assets/icons/bagSvg.svg';
 import closeSvg from '../../assets/icons/closeSvg.svg';
 import editSvg from '../../assets/icons/editSvg.svg';
 import loginSvg from '../../assets/icons/loginSvg.svg';
-import bagSvg from '../../assets/icons/bagSvg.svg';
-import SearchInput from '../molecules/SearchInput';
+import menuSvg from '../../assets/icons/menuSvg.svg';
+import outlineHeartSvg from '../../assets/icons/outlineHeartSvg.svg';
 import Button from '../atoms/Button';
+import Icon from '../atoms/Icon';
+import Logo from '../atoms/Logo';
+import StyledNavLink from '../atoms/StyledNavLink';
+import SearchInput from '../molecules/SearchInput';
 
 const NavContainer = styled.div`
   padding: ${(props) => (props.windowwidth >= 999 ? '20px' : '10px')};

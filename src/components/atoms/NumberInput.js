@@ -46,9 +46,9 @@ const NumberInput = ({ label, inputName, required, onChange, isPrice = false }) 
         required={required ? 'required' : ''}
         type="number"
         min={isPrice ? '0' : '1'}
-        max={isPrice ?  '' : '10'}
+        max={isPrice ? '' : '10'}
         defaultValue="1"
-        step={isPrice ?  '.01' : 'any'}
+        step={isPrice ? '.01' : 'any'}
       />
       <InputUnderline className="underline" />
     </StyledLabel>

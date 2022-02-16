@@ -21,9 +21,7 @@ const StyledDiv = styled.div`
 `;
 
 const HeroSection = ({ backgroundImage, children }) => {
-  return <StyledDiv backgroundImage={backgroundImage}>
-    {children}
-  </StyledDiv>;
+  return <StyledDiv backgroundImage={backgroundImage}>{children}</StyledDiv>;
 };
 
 export default HeroSection;
