@@ -27,7 +27,7 @@ const FeaturedProductsdGrid = styled.div`
   }
 `;
 
-const FeaturedProducts = ({ userRole }) => {
+const FeaturedProducts = ({ userRole, setItemsInFavourites }) => {
   const [productsArray, setProductsArray] = useState([]);
 
   useEffect(() => {
@@ -46,6 +46,7 @@ const FeaturedProducts = ({ userRole }) => {
               product={product}
               isFavourite={false}
               userRole={userRole}
+              setItemsInFavourites={setItemsInFavourites}
             />
           );
         })}

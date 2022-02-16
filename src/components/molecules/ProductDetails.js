@@ -109,7 +109,7 @@ const ProductInfoContainer = styled.div`
   }
 `;
 
-const ProductDetails = ({ product, userRole, setItemsInBag }) => {
+const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites }) => {
   const [imageZoom, setImageZoom] = useState(false);
 
   const handleImageClick = () => {
@@ -176,7 +176,7 @@ const ProductDetails = ({ product, userRole, setItemsInBag }) => {
                 <p>£{product.price}</p>
               </div>
               <div>
-                <AddToFavouritesButton isFavourite={true} productId={product.id} />
+                <AddToFavouritesButton isFavourite={true} productId={product.id} setItemsInFavourites={setItemsInFavourites} />
                 {userRole === 'Authenticated' && (
                   <Link to={`/content-editor?id=${product.id}`}>
                     <Icon iconSource={edit} alt="edit product"></Icon>

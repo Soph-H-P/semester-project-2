@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import { bagItemsKey } from './settings/settings';
+import { bagItemsKey, favouritesKey } from './settings/settings';
 
 import { getUserRole, getUsername, getFromStorage } from './utils/storage';
 
@@ -23,9 +23,11 @@ const App = () => {
   const [signedIn, setSignedIn] = useState(getUsername());
   const [userRole, setUserRole] = useState(getUserRole());
   const [itemsInBag, setItemsInBag] = useState(getFromStorage(bagItemsKey));
+  const [itemsInFavourites, setItemsInFavourites] = useState(getFromStorage(favouritesKey));
 
   useEffect(() => {
     setItemsInBag(getFromStorage(bagItemsKey));
+    setItemsInFavourites(getFromStorage(favouritesKey));
   }, []);
 
   return (
@@ -33,11 +35,7 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <div className="wrapper">
           <GlobalStyle />
-          <Navigation
-            userRole={userRole}
-            signedIn={signedIn}
-            itemsInBag={itemsInBag}
-          />
+          <Navigation userRole={userRole} signedIn={signedIn} itemsInBag={itemsInBag} />
           <Routes>
             <Route
               exact
@@ -48,13 +46,17 @@ const App = () => {
                   signedIn={signedIn}
                   setUserRole={setUserRole}
                   userRole={userRole}
+                  setItemsInFavourites={setItemsInFavourites}
                 />
               }
             ></Route>
-            <Route path="/products" element={<Products userRole={userRole} />}></Route>
+            <Route
+              path="/products"
+              element={<Products userRole={userRole} setItemsInFavourites={setItemsInFavourites} />}
+            ></Route>
             <Route
               path="/product"
-              element={<Product userRole={userRole} setItemsInBag={setItemsInBag} />}
+              element={<Product userRole={userRole} setItemsInBag={setItemsInBag} setItemsInFavourites={setItemsInFavourites} />}
             ></Route>
             <Route
               path="/login"
@@ -62,8 +64,27 @@ const App = () => {
                 <Login setSignedIn={setSignedIn} signedIn={signedIn} setUserRole={setUserRole} />
               }
             ></Route>
-            <Route path="/favourites" element={<Favourites />}></Route>
-            <Route path="/your-bag" element={<Bag />}></Route>
+            <Route
+              path="/favourites"
+              element={
+                <Favourites
+                  userRole={userRole}
+                  itemsInFavourites={itemsInFavourites}
+                  setItemsInFavourites={setItemsInFavourites}
+                />
+              }
+            ></Route>
+            <Route
+              path="/your-bag"
+              element={
+                <Bag
+                  userRole={userRole}
+                  itemsInBag={itemsInBag}
+                  setItemsInFavourites={setItemsInFavourites}
+                  setItemsInBag={setItemsInBag}
+                />
+              }
+            ></Route>
             <Route path="/content-editor" element={<ContentEditor />}></Route>
           </Routes>
         </div>

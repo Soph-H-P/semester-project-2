@@ -3,12 +3,16 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import { baseUrl } from '../../settings/api';
+import { getFromStorage, filterList, saveToStorage } from '../../utils/storage';
 
 import edit from '../../assets/icons/editSvg.svg';
+import deleteSvg from '../../assets/icons/deleteSvg.svg';
 
 import SubTitle from '../atoms/SubTitle';
 import Icon from '../atoms/Icon';
 import AddToFavouritesButton from './AddToFavouritesButton';
+import Button from '../atoms/Button';
+import { bagItemsKey } from '../../settings/settings';
 
 const CardWrpper = styled.div`
   display: flex;
@@ -68,7 +72,18 @@ const ProductInfoContainer = styled.div`
   }
 `;
 
-const ProductCard = ({ product, isFavourite, userRole }) => {
+const ProductCard = ({ product, isFavourite, userRole, setItemsInFavourites, setItemsInBag }) => {
+  const isBag = typeof setItemsInBag === 'function';
+
+  const handleRemoveItem = (e) => {
+    const item = e.target;
+    const id = parseInt(item.dataset.id);
+    const currentBagItems = getFromStorage(bagItemsKey);
+    const removedBagItem = filterList(currentBagItems, id);
+    saveToStorage(bagItemsKey, removedBagItem);
+    setItemsInBag(getFromStorage(bagItemsKey));
+  };
+
   return (
     <CardWrpper>
       <Link to={`/product/?id=${product.id}`} id="imageContainer">
@@ -86,7 +101,11 @@ const ProductCard = ({ product, isFavourite, userRole }) => {
           <p>£{product.price}</p>
         </div>
         <div>
-          <AddToFavouritesButton isFavourite={isFavourite} productId={product.id} />
+          <AddToFavouritesButton
+            isFavourite={isFavourite}
+            productId={product.id}
+            setItemsInFavourites={setItemsInFavourites}
+          />
           {userRole === 'Authenticated' && (
             <Link to={`/content-editor?id=${product.id}`}>
               <Icon iconSource={edit} alt="edit product"></Icon>
@@ -94,6 +113,11 @@ const ProductCard = ({ product, isFavourite, userRole }) => {
           )}
         </div>
       </ProductInfoContainer>
+      {isBag && (
+        <Button handleClick={handleRemoveItem} type="icon" dataId={product.id}>
+          <Icon productId={product.id} iconSource={deleteSvg} alt="remove product from bag"></Icon>
+        </Button>
+      )}
     </CardWrpper>
   );
 };

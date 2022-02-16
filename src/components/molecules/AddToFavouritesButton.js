@@ -9,7 +9,7 @@ import Icon from '../atoms/Icon';
 import filledHeart from '../../assets/icons/filledHeartSvg.svg';
 import outlineHeart from '../../assets/icons/outlineHeartSvg.svg';
 
-const AddToFavouritesButton = ({ productId }) => {
+const AddToFavouritesButton = ({ productId, setItemsInFavourites }) => {
   const [currentFavouritesArray, setCurrentFavouritesArray] = useState(
     getFromStorage(favouritesKey)
   );
@@ -19,6 +19,7 @@ const AddToFavouritesButton = ({ productId }) => {
   useEffect(() => {
     setIsFavourite(findInList(currentFavouritesArray, productId));
     saveToStorage(favouritesKey, currentFavouritesArray);
+    setItemsInFavourites(getFromStorage(favouritesKey));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentFavouritesArray]);
 

@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import fetchProducts from '../../utils/fetchProducts';
 import ProductCard from '../molecules/ProductCard';
 import Loader from '../atoms/Loader';
 
@@ -25,24 +23,19 @@ const ProductGridWrapper = styled.div`
   }
 `;
 
-const ProductsGrid = ({ userRole }) => {
-  const [productsArray, setProductsArray] = useState([]);
-
-  useEffect(() => {
-    fetchProducts(setProductsArray);
-  }, []);
-
+const ProductsGrid = ({ userRole, productsToRender, setItemsInFavourites, setItemsInBag = null }) => {
   return (
     <>
-      {productsArray.length === 0 && <Loader />}
+      {productsToRender.length === 0 && <Loader />}
       <ProductGridWrapper>
-        {productsArray.map((product) => {
+        {productsToRender.map((product) => {
           return (
             <ProductCard
               key={product.id}
               product={product}
-              isFavourite={false}
               userRole={userRole}
+              setItemsInFavourites={setItemsInFavourites}
+              setItemsInBag={setItemsInBag}
             />
           );
         })}
