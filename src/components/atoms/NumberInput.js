@@ -35,7 +35,14 @@ const InputUnderline = styled.div`
   }
 `;
 
-const NumberInput = ({ label, inputName, required, onChange, isPrice = false }) => {
+const NumberInput = ({
+  label,
+  inputName,
+  required,
+  onChange,
+  isPrice = false,
+  defalutValue = '1',
+}) => {
   return (
     <StyledLabel htmlFor={inputName}>
       {label}
@@ -47,7 +54,7 @@ const NumberInput = ({ label, inputName, required, onChange, isPrice = false }) 
         type="number"
         min={isPrice ? '0' : '1'}
         max={isPrice ? '' : '10'}
-        defaultValue="1"
+        defaultValue={defalutValue}
         step={isPrice ? '.01' : 'any'}
       />
       <InputUnderline className="underline" />

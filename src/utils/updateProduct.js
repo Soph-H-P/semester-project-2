@@ -1,7 +1,7 @@
 import { baseUrl } from '../settings/api.js';
 import { getToken } from './storage.js';
 
-const createProduct = async (
+const updateProduct = async (
   title,
   price,
   featured,
@@ -9,9 +9,10 @@ const createProduct = async (
   image_url,
   setIsError,
   setIsNetworkError,
-  setIsSuccess
+  setIsSuccess,
+  id
 ) => {
-  const URL = `${baseUrl}/products`;
+  const URL = `${baseUrl}/products/${id}`;
   const productData = JSON.stringify({
     title,
     price,
@@ -19,11 +20,10 @@ const createProduct = async (
     description,
     image_url,
   });
-  console.log(productData)
   const token = getToken();
 
   const options = {
-    method: 'POST',
+    method: 'PUT',
     body: productData,
     headers: {
       'content-type': 'application/json',
@@ -35,15 +35,15 @@ const createProduct = async (
     const response = await fetch(URL, options);
     const result = await response.json();
     console.log(result);
+
     if (result.id) {
       setIsSuccess(result.id);
     } else {
       setIsError(true);
     }
   } catch (error) {
-    setIsNetworkError(true);
     console.log(error);
   }
 };
 
-export default createProduct;
+export default updateProduct;

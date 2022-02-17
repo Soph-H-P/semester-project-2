@@ -87,7 +87,7 @@ const ProductCard = ({ product, isFavourite, userRole, setItemsInFavourites, set
       <Link to={`/product/?id=${product.id}`} id="imageContainer">
         <img
           src={product.image ? baseUrl + product.image.formats.small.url : product.image_url}
-          alt={product.alternativeText}
+          alt={product.alternativeText || product.title}
         />
       </Link>
       <ProductInfoContainer>

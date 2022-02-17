@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 const ToggleLabel = styled.label`
@@ -56,11 +57,17 @@ const ToggleContainer = styled.div`
   }
 `;
 
-const ToggleCheckBox = ({ label, name }) => {
+const ToggleCheckBox = ({ label, name, checked = false }) => {
   return (
     <ToggleLabel htmlFor={name}>
       {label}
-      <input type="checkbox" name={name} id="toggle-switch" value="featured" />
+      <input
+        type="checkbox"
+        name={name}
+        id="toggle-switch"
+        value="featured"
+        defaultChecked={checked}
+      />
       <ToggleContainer className="toggle" />
     </ToggleLabel>
   );

@@ -17,6 +17,7 @@ const StyledLabel = styled.label`
     font-family: ${(props) => props.theme.paragraphFont};
     font-weight: 300;
     font-size: 1rem;
+    height: 160px;
   }
 
   textarea:focus ~ .underline::after {
@@ -37,11 +38,16 @@ const InputUnderline = styled.div`
   }
 `;
 
-const TextAreaInput = ({ label, name, required }) => {
+const TextAreaInput = ({ label, name, required, defaultValue = '' }) => {
   return (
     <StyledLabel htmlFor={name}>
       {label}
-      <textarea name={name} id={name} required={required ? 'required' : ''} />
+      <textarea
+        name={name}
+        id={name}
+        required={required ? 'required' : ''}
+        defaultValue={defaultValue}
+      />
       <InputUnderline className="underline" />
     </StyledLabel>
   );

@@ -5,13 +5,14 @@ import searchSvg from '../../assets/icons/searchSvg.svg';
 import Icon from '../atoms/Icon';
 import TextInput from '../atoms/TextInput';
 import { useNavigate } from 'react-router-dom';
+
 const SearchInputWrapper = styled.form`
   display: flex;
   align-items: center;
   width: max-content;
 `;
 
-const SearchInput = () => {
+const SearchInput = ({ closeMenu }) => {
   const navigate = useNavigate();
   const reRouteUser = (searchTerm) => {
     navigate(`/search-results?search=${searchTerm}`);
@@ -19,8 +20,10 @@ const SearchInput = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const searchTerm = e.target.search.value
-    reRouteUser(searchTerm)
+    const searchTerm = e.target.search.value;
+    reRouteUser(searchTerm);
+    closeMenu();
+    e.target.search.value = '';
   };
 
   return (

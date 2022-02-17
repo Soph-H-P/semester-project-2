@@ -37,11 +37,18 @@ const InputUnderline = styled.div`
   }
 `;
 
-const TextInput = ({ label, name, required, type = 'text' }) => {
+const TextInput = ({ label, name, required, type = 'text', defaultValue = '' }) => {
+
   return (
     <StyledLabel htmlFor={name}>
       {label}
-      <input name={name} id={name} required={required ? 'required' : ''} type={type} />
+      <input
+        name={name}
+        id={name}
+        required={required ? 'required' : ''}
+        type={type}
+        defaultValue={defaultValue}
+      />
       <InputUnderline className="underline" />
     </StyledLabel>
   );

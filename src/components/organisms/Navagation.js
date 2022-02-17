@@ -56,7 +56,7 @@ const MobileNav = styled.nav`
 const NavBar = ({ userRole, handleOpenMenu }) => {
   return (
     <>
-      <SearchInput />
+      <SearchInput closeMenu={handleOpenMenu} />
       <StyledNavLink
         to="/products"
         className={(navData) => (navData.isActive ? 'active-style' : '')}

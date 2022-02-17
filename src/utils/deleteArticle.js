@@ -1,11 +1,8 @@
-import { renderMessage } from './renderFunctions/renderMessage.js';
 import { baseUrl } from '../settings/api.js';
 import { getToken } from './storage.js';
 
 const deleteArticle = async (id) => {
-  const URL = `${baseUrl}/articles/${id}`;
-  const error = document.querySelector('.error__container');
-  error.innerHTML = '';
+  const URL = `${baseUrl}/products/${id}`;
   const token = getToken();
 
   const options = {
@@ -19,7 +16,7 @@ const deleteArticle = async (id) => {
     const response = await fetch(URL, options);
     renderMessage('success', 'Successfully deleted ', '.container');
     setTimeout(() => {
-      location.href = '/';
+      location.href = '/products';
     }, 1000);
   } catch (error) {
     renderMessage(
