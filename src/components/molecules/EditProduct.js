@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import createProduct from '../../utils/createProduct';
 import deleteProduct from '../../utils/deleteProduct';
 import fetchCurrentProduct from '../../utils/fetchCurrentProduct';
@@ -11,6 +11,7 @@ import TextAreaInput from '../atoms/TextAreaInput';
 import TextInput from '../atoms/TextInput';
 import Title from '../atoms/Title';
 import ToggleCheckBox from '../atoms/ToggleCheckBox';
+import StyledLink from '../atoms/StyledLink';
 
 const EditProduct = ({ userRole }) => {
   const [isError, setIsError] = useState(false);
@@ -22,10 +23,14 @@ const EditProduct = ({ userRole }) => {
   const params = new URLSearchParams(queryString);
   const id = params.get('id');
   const pageTitle = id ? 'Edit Product' : 'Create New Product';
+  
+  const navigate = useNavigate();
+  const reRouteUser = () => {
+    navigate(`/products`);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const title = e.target.title.value;
     const price = e.target.price.value;
     const featured = e.target.featured.checked;
@@ -41,7 +46,8 @@ const EditProduct = ({ userRole }) => {
         image,
         setIsError,
         setIsNetworkError,
-        setIsSuccess
+        setIsSuccess,
+        navigate
       );
     } else {
       updateProduct(
@@ -56,11 +62,6 @@ const EditProduct = ({ userRole }) => {
         id
       );
     }
-  };
-
-  const navigate = useNavigate();
-  const reRouteUser = () => {
-    navigate(`/products`);
   };
 
   const handleDeleteProduct = (e) => {
@@ -84,9 +85,9 @@ const EditProduct = ({ userRole }) => {
           : 'Sorry you are not authorized to create or edit products. If you have an admin account, please log in : )'}
       </Title>
       {id && (
-        <Link to="/content-editor" onClick={() => setCurrentProduct(null)}>
-          Or create new product
-        </Link>
+        <StyledLink to="/content-editor" onClick={() => setCurrentProduct(null)}>
+          + or create new product
+        </StyledLink>
       )}
       {userRole === 'Authenticated' && (
         <form onSubmit={handleSubmit}>
@@ -101,7 +102,7 @@ const EditProduct = ({ userRole }) => {
             inputName="price"
             required={true}
             isPrice={true}
-            defaultValue={(currentProduct && currentProduct.price) || ''}
+            defaultValue={currentProduct && currentProduct.price}
           ></NumberInput>
           <ToggleCheckBox
             label="Featured"
@@ -127,13 +128,15 @@ const EditProduct = ({ userRole }) => {
             </ErrorMessage>
           )}
           {isDeleted && <p>Successfully Deleted</p>}
-          <input type={'submit'} value={id ? 'Update' : 'Create'} />
-          <Button type="secondary" handleClick={handleDeleteProduct}>
-            Delete
-          </Button>
-          {isSuccess && <Link to={`/product?id=${isSuccess}`}>View item</Link>}
+          <div>
+            <input type={'submit'} value={id ? 'Update' : 'Create'} />
+            <Button type="secondary" handleClick={handleDeleteProduct}>
+              Delete
+            </Button>
+          </div>
         </form>
       )}
+      {isSuccess && <StyledLink to={`/product?id=${isSuccess}`}>View item</StyledLink>}
     </StyledFormContainer>
   );
 };

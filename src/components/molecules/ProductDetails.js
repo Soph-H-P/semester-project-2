@@ -117,10 +117,7 @@ const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites
 
   const [currentBagArray, setCurrentBagArray] = useState(getFromStorage(bagItemsKey));
 
-  const [isInBag, setIsInBag] = useState(findInList(currentBagArray, product.id));
-
   useEffect(() => {
-    setIsInBag(findInList(currentBagArray, product.id));
     saveToStorage(bagItemsKey, currentBagArray);
     setItemsInBag(getFromStorage(bagItemsKey));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -188,7 +185,7 @@ const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites
               </div>
             </ProductInfoContainer>
             <Button dataId={product.id} handleClick={handleAddToBag}>
-              {isInBag ? 'Remove ' : 'Add to Bag'}
+              {findInList(currentBagArray, product.id) ? 'Remove ' : 'Add to Bag'}
             </Button>
           </div>
           <p>{product.description}</p>

@@ -9,7 +9,8 @@ const createProduct = async (
   image_url,
   setIsError,
   setIsNetworkError,
-  setIsSuccess
+  setIsSuccess,
+  navigate
 ) => {
   const URL = `${baseUrl}/products`;
   const productData = JSON.stringify({
@@ -33,9 +34,9 @@ const createProduct = async (
   try {
     const response = await fetch(URL, options);
     const result = await response.json();
-    console.log('only create')
     if (result.id) {
       setIsSuccess(result.id);
+      navigate(`/content-editor?id=${result.id}`);
     } else {
       setIsError(true);
     }

@@ -35,12 +35,12 @@ const updateProduct = async (
     const response = await fetch(URL, options);
     const result = await response.json();
     if (result.id) {
-      console.log('only update')
       setIsSuccess(result.id);
     } else {
       setIsError(true);
     }
   } catch (error) {
+    setIsNetworkError(true);
     console.log(error);
   }
 };

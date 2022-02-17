@@ -89,7 +89,7 @@ const App = () => {
                 />
               }
             ></Route>
-            <Route path="/content-editor" element={<ContentEditor userRole={userRole}/>}></Route>
+            <Route path="/content-editor" element={<ContentEditor userRole={userRole} />}></Route>
             <Route
               path="/search-results"
               element={
