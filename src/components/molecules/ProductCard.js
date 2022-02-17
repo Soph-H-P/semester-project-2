@@ -54,6 +54,14 @@ const CardWrpper = styled.div`
   img {
     width: 100%;
   }
+
+  #delete-button {
+    align-self: center;
+  }
+  #delete-button > div {
+    width: 32px;
+    height: 32px;
+  }
 `;
 
 const ProductInfoContainer = styled.div`
@@ -110,15 +118,16 @@ const ProductCard = ({ product, isFavourite, userRole, setItemsInFavourites, set
             setItemsInFavourites={setItemsInFavourites}
           />
           {userRole === 'Authenticated' && (
-            <Link id='edit-button' to={`/content-editor?id=${product.id}`}>
+            <Link id="edit-button" to={`/content-editor?id=${product.id}`}>
               <Icon iconSource={edit} alt="edit product"></Icon>
             </Link>
           )}
         </div>
       </ProductInfoContainer>
       {isBag && (
-        <Button handleClick={handleRemoveItem} type="icon" dataId={product.id}>
+        <Button id="delete-button" handleClick={handleRemoveItem} type="icon" dataId={product.id}>
           <Icon productId={product.id} iconSource={deleteSvg} alt="remove product from bag"></Icon>
+          Remove item from bag
         </Button>
       )}
     </CardWrpper>

@@ -1,28 +1,54 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 import PageWrapper from '../components/atoms/PageWrpper';
+import Title from '../components/atoms/Title';
+import OrderSummary from '../components/organisms/OrderSummary';
 import ProductsGrid from '../components/organisms/ProductsGrid';
 import fetchLocalProducts from '../utils/fetchLocalProducts';
-import OrderSummary from '../components/organisms/OrderSummary';
+
+const BagContainer = styled.div`
+  display: flex;
+  align-items: space-around;
+
+  @media (max-width: 610px) {
+    flex-direction: column;
+  }
+`;
 
 const Bag = ({ userRole, itemsInBag, setItemsInFavourites, setItemsInBag }) => {
   const [currentBagItems, setCurrentBagItems] = useState([]);
+  const [isPurchased, setIsPurchased] = useState(false);
 
   useEffect(() => {
     fetchLocalProducts(setCurrentBagItems, itemsInBag);
   }, [itemsInBag]);
 
-  console.log(itemsInBag);
-
   return (
     <PageWrapper>
-      <ProductsGrid
-        userRole={userRole}
-        productsToRender={currentBagItems}
-        setItemsInFavourites={setItemsInFavourites}
-        setItemsInBag={setItemsInBag}
-      ></ProductsGrid>
-      <OrderSummary ></OrderSummary>
+      {isPurchased && <Title>Congratulations your shoes are on the way!</Title>}
+      {itemsInBag.length === 0 && !isPurchased && <Title>Currently no items in your bag</Title>}
+      {itemsInBag.length >= 1 && !isPurchased && (
+        <>
+          <Title>
+            Your Bag ({currentBagItems.length}
+            {itemsInBag.length >= 2 ? ' items' : ' item'})
+          </Title>
+          <BagContainer>
+            <ProductsGrid
+              userRole={userRole}
+              productsToRender={currentBagItems}
+              setItemsInFavourites={setItemsInFavourites}
+              setItemsInBag={setItemsInBag}
+            ></ProductsGrid>
+            <OrderSummary
+              itemsInBag={currentBagItems}
+              setItemsInBag={setItemsInBag}
+              setIsPurchased={setIsPurchased}
+            ></OrderSummary>
+          </BagContainer>
+        </>
+      )}
     </PageWrapper>
   );
 };

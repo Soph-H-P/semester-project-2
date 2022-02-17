@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Loader from '../atoms/Loader';
 import ProductCard from '../molecules/ProductCard';
@@ -8,31 +8,39 @@ const ProductGridWrapper = styled.div`
   margin: 30px auto;
   padding: 20px;
   display: grid;
-  grid-template: 1fr 1fr / 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 20px;
   justify-items: center;
 
   @media (max-width: 1200px) {
-    grid-template: 1fr 1fr/ 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
   }
   @media (max-width: 950px) {
-    grid-template: 1fr/ 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
   @media (max-width: 600px) {
-    grid-template: 1fr/ 1fr;
+    grid-template-columns: 1fr;
   }
+
+  ${(props) =>
+    props.isbag &&
+    css`
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+    `}
 `;
 
 const ProductsGrid = ({
   userRole,
   productsToRender,
   setItemsInFavourites,
-  setItemsInBag = null
+  setItemsInBag = null,
 }) => {
   return (
     <>
       {productsToRender.length === 0 && <Loader />}
-      <ProductGridWrapper>
+      <ProductGridWrapper isbag={setItemsInBag ? true : false}>
         {productsToRender.map((product) => {
           return (
             <ProductCard

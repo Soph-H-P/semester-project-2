@@ -39,6 +39,9 @@ const StyledButton = styled.button`
       color: ${props.theme.black};
       border: none;
       width: fit-content;
+      display: flex;
+      align-items: center;
+      font-size: 0.8rem;
 
       &:hover {
         background: none;
@@ -48,9 +51,9 @@ const StyledButton = styled.button`
     `}
 `;
 
-const Button = ({ type, handleClick, dataId = '', children }) => {
+const Button = ({ type, handleClick, dataId = '', children, id = '' }) => {
   return (
-    <StyledButton onClick={(e) => handleClick(e)} type={type} data-id={dataId}>
+    <StyledButton id={id && id} onClick={(e) => handleClick(e)} type={type} data-id={dataId}>
       {children}
     </StyledButton>
   );

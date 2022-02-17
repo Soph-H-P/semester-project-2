@@ -41,8 +41,13 @@ const DesktopNav = styled.nav`
   width: max-content;
 `;
 const MobileNav = styled.nav`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  justify-content: center;
+  grid-template-areas:
+    'search search'
+    'sneakers sneakers'
+    'fav login'
+    'edit bag';
   position: absolute;
   background: ${(props) => props.theme.white};
   right: ${(props) => (props.open ? '0px' : '-1000px')};
@@ -51,6 +56,8 @@ const MobileNav = styled.nav`
   z-index: -1;
   min-width: 100%;
   align-items: center;
+  height: calc(100vh - 82px);
+  max-height: 500px;
 `;
 
 const NavBar = ({ userRole, handleOpenMenu }) => {
@@ -61,6 +68,7 @@ const NavBar = ({ userRole, handleOpenMenu }) => {
         to="/products"
         className={(navData) => (navData.isActive ? 'active-style' : '')}
         onClick={handleOpenMenu}
+        gridarea="sneakers"
       >
         Sneakers
       </StyledNavLink>
@@ -69,6 +77,7 @@ const NavBar = ({ userRole, handleOpenMenu }) => {
         className={(navData) => (navData.isActive ? 'active-style' : '')}
         aria-label="favourites"
         onClick={handleOpenMenu}
+        gridarea="fav"
       >
         <Icon iconSource={outlineHeartSvg} alt="favourites" />
       </StyledNavLink>
@@ -77,6 +86,7 @@ const NavBar = ({ userRole, handleOpenMenu }) => {
         className={(navData) => (navData.isActive ? 'active-style' : '')}
         aria-label="login"
         onClick={handleOpenMenu}
+        gridarea="login"
       >
         <Icon iconSource={loginSvg} alt="log in" />
       </StyledNavLink>
@@ -86,6 +96,7 @@ const NavBar = ({ userRole, handleOpenMenu }) => {
           className={(navData) => (navData.isActive ? 'active-style' : '')}
           aria-label="content editor"
           onClick={handleOpenMenu}
+          gridarea="edit"
         >
           <Icon iconSource={editSvg} alt="content editor" />
         </StyledNavLink>
@@ -96,6 +107,7 @@ const NavBar = ({ userRole, handleOpenMenu }) => {
         aria-label="your bag"
         id="bag"
         onClick={handleOpenMenu}
+        gridarea="bag"
       >
         <Icon iconSource={bagSvg} alt="your bag" />
       </StyledNavLink>

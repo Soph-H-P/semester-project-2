@@ -10,6 +10,7 @@ const SearchInputWrapper = styled.form`
   display: flex;
   align-items: center;
   width: max-content;
+  grid-area: search;
 `;
 
 const SearchInput = ({ closeMenu }) => {
