@@ -122,7 +122,12 @@ const Navagation = ({ userRole, itemsInBag }) => {
 
   return (
     <NavContainer windowwidth={windowWidth} itemsinbag={itemsInBag.length}>
-      <Logo windowwidth={windowWidth} />
+      <Logo
+        windowwidth={windowWidth}
+        handleClick={() => {
+          if (menuOpen) handleOpenMenu();
+        }}
+      />
       {windowWidth <= 999 && (
         <MobileNav open={menuOpen}>
           <NavBar userRole={userRole} handleOpenMenu={handleOpenMenu} />

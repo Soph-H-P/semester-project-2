@@ -19,7 +19,6 @@ const createProduct = async (
     description,
     image_url,
   });
-  console.log(productData)
   const token = getToken();
 
   const options = {
@@ -34,7 +33,7 @@ const createProduct = async (
   try {
     const response = await fetch(URL, options);
     const result = await response.json();
-    console.log(result);
+    console.log('only create')
     if (result.id) {
       setIsSuccess(result.id);
     } else {

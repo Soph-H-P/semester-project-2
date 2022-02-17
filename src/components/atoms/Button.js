@@ -5,7 +5,7 @@ const StyledButton = styled.button`
   width: 115px;
   font-weight: 300;
   font-size: 18px;
-  padding: 0.5rem;
+  padding: 8px;
   background: ${(props) => props.theme.primaryColor};
   border: none;
   cursor: pointer;
@@ -22,12 +22,14 @@ const StyledButton = styled.button`
     css`
       background: ${props.theme.white};
       color: ${props.theme.black};
-      border: ${props.theme.black} solid 1px;
+      border: ${props.theme.primaryColor} solid 1px;
+      padding: 7px;
 
       &:hover {
         background: ${(props) => props.theme.white};
         color: ${(props) => props.theme.primaryColor};
         border: ${props.theme.black} solid 3px;
+        padding: 5px;
       }
     `}
   ${(props) =>

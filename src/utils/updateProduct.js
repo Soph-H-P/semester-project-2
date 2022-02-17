@@ -34,9 +34,8 @@ const updateProduct = async (
   try {
     const response = await fetch(URL, options);
     const result = await response.json();
-    console.log(result);
-
     if (result.id) {
+      console.log('only update')
       setIsSuccess(result.id);
     } else {
       setIsError(true);

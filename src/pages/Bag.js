@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import PageWrapper from '../components/atoms/PageWrpper';
 import ProductsGrid from '../components/organisms/ProductsGrid';
 import fetchLocalProducts from '../utils/fetchLocalProducts';
+import OrderSummary from '../components/organisms/OrderSummary';
 
 const Bag = ({ userRole, itemsInBag, setItemsInFavourites, setItemsInBag }) => {
   const [currentBagItems, setCurrentBagItems] = useState([]);
@@ -10,6 +11,8 @@ const Bag = ({ userRole, itemsInBag, setItemsInFavourites, setItemsInBag }) => {
   useEffect(() => {
     fetchLocalProducts(setCurrentBagItems, itemsInBag);
   }, [itemsInBag]);
+
+  console.log(itemsInBag);
 
   return (
     <PageWrapper>
@@ -19,6 +22,7 @@ const Bag = ({ userRole, itemsInBag, setItemsInFavourites, setItemsInBag }) => {
         setItemsInFavourites={setItemsInFavourites}
         setItemsInBag={setItemsInBag}
       ></ProductsGrid>
+      <OrderSummary ></OrderSummary>
     </PageWrapper>
   );
 };

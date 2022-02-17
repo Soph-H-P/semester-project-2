@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import createProduct from '../../utils/createProduct';
+import deleteProduct from '../../utils/deleteProduct';
 import fetchCurrentProduct from '../../utils/fetchCurrentProduct';
 import updateProduct from '../../utils/updateProduct';
+import Button from '../atoms/Button';
 import NumberInput from '../atoms/NumberInput';
 import StyledFormContainer, { ErrorMessage } from '../atoms/StyledFormContainer';
 import TextAreaInput from '../atoms/TextAreaInput';
@@ -15,6 +17,7 @@ const EditProduct = ({ userRole }) => {
   const [isNetworkError, setIsNetworkError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(null);
+  const [isDeleted, setIsDeleted] = useState(false);
   const queryString = document.location.search;
   const params = new URLSearchParams(queryString);
   const id = params.get('id');
@@ -55,9 +58,17 @@ const EditProduct = ({ userRole }) => {
     }
   };
 
-  const handleDeleteProduct = (id) => {
+  const navigate = useNavigate();
+  const reRouteUser = () => {
+    navigate(`/products`);
+  };
 
-  }
+  const handleDeleteProduct = (e) => {
+    e.preventDefault();
+    if (window.confirm(`Are you sure you want to delete ${currentProduct.title}?`)) {
+      deleteProduct(reRouteUser, id, setIsDeleted);
+    }
+  };
 
   useEffect(() => {
     if (id) {
@@ -72,37 +83,42 @@ const EditProduct = ({ userRole }) => {
           ? pageTitle
           : 'Sorry you are not authorized to create or edit products. If you have an admin account, please log in : )'}
       </Title>
+      {id && (
+        <Link to="/content-editor" onClick={() => setCurrentProduct(null)}>
+          Or create new product
+        </Link>
+      )}
       {userRole === 'Authenticated' && (
         <form onSubmit={handleSubmit}>
           <TextInput
             label="Product Title"
             name="title"
             required={true}
-            defaultValue={currentProduct && currentProduct.title}
+            defaultValue={(currentProduct && currentProduct.title) || ''}
           ></TextInput>
           <NumberInput
             label="Price"
             inputName="price"
             required={true}
             isPrice={true}
-            defaultValue={currentProduct && currentProduct.price}
+            defaultValue={(currentProduct && currentProduct.price) || ''}
           ></NumberInput>
           <ToggleCheckBox
             label="Featured"
             name="featured"
-            checked={currentProduct && currentProduct.featured}
+            checked={(currentProduct && currentProduct.featured) || ''}
           ></ToggleCheckBox>
           <TextAreaInput
             label="Product Description"
             name="description"
             required={true}
-            defaultValue={currentProduct && currentProduct.description}
+            defaultValue={(currentProduct && currentProduct.description) || ''}
           ></TextAreaInput>
           <TextInput
             label="Image URL"
             name="image"
             type={'url'}
-            defaultValue={currentProduct && currentProduct.image_url}
+            defaultValue={(currentProduct && currentProduct.image_url) || ''}
           ></TextInput>
           {isError && <ErrorMessage>Invalid data please fill out all fields</ErrorMessage>}
           {isNetworkError && (
@@ -110,8 +126,12 @@ const EditProduct = ({ userRole }) => {
               There seems to be some trouble on our end please try again later.
             </ErrorMessage>
           )}
+          {isDeleted && <p>Successfully Deleted</p>}
           <input type={'submit'} value={id ? 'Update' : 'Create'} />
-          {isSuccess && <Link to={`/product?id=${isSuccess}`}>View created item</Link>}
+          <Button type="secondary" handleClick={handleDeleteProduct}>
+            Delete
+          </Button>
+          {isSuccess && <Link to={`/product?id=${isSuccess}`}>View item</Link>}
         </form>
       )}
     </StyledFormContainer>

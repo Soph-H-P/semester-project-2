@@ -12,9 +12,9 @@ const StyledLink = styled(Link)`
   background: no-repeat url(${logoBackgroundSvg}) center center / contain;
 `;
 
-const Logo = ({ windowWidth }) => {
+const Logo = ({ windowWidth, handleClick }) => {
   return (
-    <StyledLink windowwidth={windowWidth} to="/">
+    <StyledLink windowwidth={windowWidth} to="/" onClick={handleClick}>
       Tracks
     </StyledLink>
   );

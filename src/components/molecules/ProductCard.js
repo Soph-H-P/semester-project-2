@@ -22,10 +22,6 @@ const CardWrpper = styled.div`
   transition: all 0.3s ease;
   text-decoration: none;
 
-  &:hover {
-    border-width: 1px 1px 5px 1px;
-  }
-
   h2 {
     margin-bottom: 0px;
   }
@@ -50,6 +46,11 @@ const CardWrpper = styled.div`
     object-position: center;
   }
 
+  #imageContainer img:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+  }
+
   img {
     width: 100%;
   }
@@ -67,6 +68,10 @@ const ProductInfoContainer = styled.div`
 
   div:last-child {
     align-items: center;
+  }
+
+  #edit-button:hover {
+    transform: scale(1.1);
   }
 `;
 
@@ -105,7 +110,7 @@ const ProductCard = ({ product, isFavourite, userRole, setItemsInFavourites, set
             setItemsInFavourites={setItemsInFavourites}
           />
           {userRole === 'Authenticated' && (
-            <Link to={`/content-editor?id=${product.id}`}>
+            <Link id='edit-button' to={`/content-editor?id=${product.id}`}>
               <Icon iconSource={edit} alt="edit product"></Icon>
             </Link>
           )}
