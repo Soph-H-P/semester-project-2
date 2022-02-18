@@ -2,11 +2,13 @@ import styled from 'styled-components';
 
 const StyledFormContainer = styled.div`
   border: 1px solid ${(props) => props.theme.black};
+  width: 100%;
   max-width: ${(props) => (props.width ? props.width + 'px' : '380px')};
   padding: 25px 50px;
   display: flex;
   flex-direction: column;
   align-items: ${(props) => (props.align ? props.align : 'center')};
+  align-self: center;
 
   input[type='submit'] {
     width: 115px;
@@ -42,11 +44,12 @@ const StyledFormContainer = styled.div`
       color: ${(props) => props.theme.primaryColor};
     }
   }
+
+  @media (max-width: 450px) {
+    padding: 20px;
+  }
 `;
 
 export default StyledFormContainer;
 
-export const ErrorMessage = styled.p`
-  color: ${(props) => props.theme.errorColor};
-  text-align: center;
-`;
+

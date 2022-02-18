@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import Loader from '../atoms/Loader';
-import { ErrorMessage } from '../atoms/StyledFormContainer';
+import ErrorMessage from '../atoms/ErrorMessage';
 import ProductCard from '../molecules/ProductCard';
 
 const ProductGridWrapper = styled.div`

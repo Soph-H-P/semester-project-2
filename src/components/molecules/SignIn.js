@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import signInUser from '../../utils/signInUser';
 import { getUsername, getUserRole, logoutUser } from '../../utils/storage';
 import Button from '../atoms/Button';
-import StyledFormContainer, { ErrorMessage } from '../atoms/StyledFormContainer';
+import StyledFormContainer from '../atoms/StyledFormContainer';
+import ErrorMessage from '../atoms/ErrorMessage';
 import TextInput from '../atoms/TextInput';
 import Title from '../atoms/Title';
 

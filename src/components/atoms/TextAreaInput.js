@@ -5,7 +5,6 @@ const StyledLabel = styled.label`
   display: flex;
   flex-direction: column;
   font-weight: 300;
-  max-width: 450px;
   cursor: pointer;
   margin-bottom: 20px;
   position: relative;

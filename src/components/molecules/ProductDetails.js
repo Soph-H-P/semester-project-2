@@ -160,7 +160,7 @@ const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites
             <ImageContainer onClick={handleImageClick}>
               <img
                 src={product.image ? baseUrl + product.image.formats.small.url : product.image_url}
-                alt={product.alternativeText}
+                alt={product.alternativeText || product.title}
               />
               <Button type={'icon'} handleClick={handleImageClick}>
                 <Icon iconSource={zoomSvg} alt="edit product"></Icon>

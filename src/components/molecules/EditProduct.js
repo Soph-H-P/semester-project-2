@@ -7,7 +7,8 @@ import fetchCurrentProduct from '../../utils/fetchCurrentProduct';
 import updateProduct from '../../utils/updateProduct';
 import Button from '../atoms/Button';
 import NumberInput from '../atoms/NumberInput';
-import StyledFormContainer, { ErrorMessage } from '../atoms/StyledFormContainer';
+import StyledFormContainer from '../atoms/StyledFormContainer';
+import ErrorMessage from '../atoms/ErrorMessage';
 import StyledLink from '../atoms/StyledLink';
 import TextAreaInput from '../atoms/TextAreaInput';
 import TextInput from '../atoms/TextInput';
@@ -24,13 +25,16 @@ const EditProduct = ({ userRole }) => {
   const params = new URLSearchParams(queryString);
   const id = params.get('id');
   const pageTitle = id ? 'Edit Product' : 'Create New Product';
-  
+
   const navigate = useNavigate();
   const reRouteUser = () => {
     navigate(`/products`);
   };
 
   const handleSubmit = (e) => {
+    if (userRole !== 'Authorized') {
+        navigate(`/login`);
+    }
     e.preventDefault();
     const title = e.target.title.value;
     const price = e.target.price.value;
@@ -125,15 +129,18 @@ const EditProduct = ({ userRole }) => {
           {isError && <ErrorMessage>Invalid data please fill out all fields</ErrorMessage>}
           {isNetworkError && (
             <ErrorMessage>
-              There seems to be some trouble on our end please try again later. Sorry for any inconvenience
+              There seems to be some trouble on our end please try again later. Sorry for any
+              inconvenience
             </ErrorMessage>
           )}
           {isDeleted && <p>Successfully Deleted</p>}
           <div>
             <input type={'submit'} value={id ? 'Update' : 'Create'} />
-            <Button type="secondary" handleClick={handleDeleteProduct}>
-              Delete
-            </Button>
+            {id && (
+              <Button type="secondary" handleClick={handleDeleteProduct}>
+                Delete
+              </Button>
+            )}
           </div>
         </form>
       )}

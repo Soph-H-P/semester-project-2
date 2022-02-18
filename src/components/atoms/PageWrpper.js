@@ -5,6 +5,8 @@ const PageWrapper = styled.div`
   margin: 120px auto 0px auto;
   padding-top: 20px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 
   & > h1 {
     margin-left: 20px;
