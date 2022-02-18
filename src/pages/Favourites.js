@@ -15,13 +15,23 @@ const Favourites = ({ userRole, itemsInFavourites, setItemsInFavourites }) => {
 
   return (
     <PageWrapper>
-      <Title>Your Favourites</Title>
-      <ProductsGrid
-        userRole={userRole}
-        productsToRender={currentFavourites}
-        setItemsInFavourites={setItemsInFavourites}
-        isError={isError}
-      ></ProductsGrid>
+      {currentFavourites.length === 0 && <Title>Currently no favourited items</Title>}
+      {currentFavourites.length >= 1 && (
+        <>
+          {!isError && (
+            <Title>
+              Your Favourites ({currentFavourites.length}
+              {itemsInFavourites.length >= 2 ? ' items' : ' item'})
+            </Title>
+          )}
+          <ProductsGrid
+            userRole={userRole}
+            productsToRender={currentFavourites}
+            setItemsInFavourites={setItemsInFavourites}
+            isError={isError}
+          ></ProductsGrid>
+        </>
+      )}
     </PageWrapper>
   );
 };

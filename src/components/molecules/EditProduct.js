@@ -32,9 +32,6 @@ const EditProduct = ({ userRole }) => {
   };
 
   const handleSubmit = (e) => {
-    if (userRole !== 'Authorized') {
-        navigate(`/login`);
-    }
     e.preventDefault();
     const title = e.target.title.value;
     const price = e.target.price.value;
