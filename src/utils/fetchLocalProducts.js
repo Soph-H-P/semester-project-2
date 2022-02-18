@@ -7,19 +7,18 @@ const fetchLocalProducts = async (setCurrentItems, itemsInList, setIsError) => {
   try {
     const response = await fetch(url);
     const results = await response.json();
-    const items = []
-
+    const items = [];
 
     results.forEach((result) => {
-      const isInList = findInList(itemsInList, result.id)
-      if(isInList !== undefined) {
-        items.push(result)
+      const isInList = findInList(itemsInList, result.id);
+      if (isInList !== undefined) {
+        items.push(result);
       }
-    })
+    });
 
     setCurrentItems(items);
   } catch (error) {
-    setIsError(true)
+    setIsError(true);
     console.log(error);
   }
 };

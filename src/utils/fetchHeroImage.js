@@ -10,7 +10,7 @@ const fetchHeroImage = async (setBackgroundImage) => {
     const imageUrl = `${baseUrl}${image}`;
     setBackgroundImage(imageUrl);
   } catch (error) {
-    setBackgroundImage(loadingSvg)
+    setBackgroundImage(loadingSvg);
     console.log(error);
   }
 };

@@ -7,9 +7,7 @@ export const saveToStorage = (key, value) => {
 
 export const getFromStorage = (key) => {
   const value = localStorage.getItem(key);
-
   const returnedValue = !value ? [] : JSON.parse(value);
-
   return returnedValue;
 };
 
@@ -22,7 +20,7 @@ export const getToken = () => getFromStorage(tokenKey);
 export const logoutUser = () => {
   localStorage.removeItem(tokenKey);
   localStorage.removeItem(userKey);
-}
+};
 
 export const saveUser = (user) => {
   saveToStorage(userKey, user);
@@ -31,19 +29,13 @@ export const saveUser = (user) => {
 export const getUsername = () => {
   const user = getFromStorage(userKey);
   const username = user ? user.username : null;
-
   return username;
 };
 
 export const getUserRole = () => {
   const user = getFromStorage(userKey);
   const userRole = user.role ? user.role.name : null;
-
   return userRole;
-};
-
-export const removeFromStorage = (key) => {
-  localStorage.removeItem(key);
 };
 
 export const findInList = (listToFilter, id) => {
