@@ -1,7 +1,7 @@
 import { baseUrl } from '../settings/api';
 import { findInList } from './storage';
 
-const fetchLocalProducts = async (setCurrentItems, itemsInList) => {
+const fetchLocalProducts = async (setCurrentItems, itemsInList, setIsError) => {
   const url = `${baseUrl}/products`;
 
   try {
@@ -19,6 +19,7 @@ const fetchLocalProducts = async (setCurrentItems, itemsInList) => {
 
     setCurrentItems(items);
   } catch (error) {
+    setIsError(true)
     console.log(error);
   }
 };

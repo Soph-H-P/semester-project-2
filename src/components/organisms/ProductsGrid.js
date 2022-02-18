@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import Loader from '../atoms/Loader';
+import { ErrorMessage } from '../atoms/StyledFormContainer';
 import ProductCard from '../molecules/ProductCard';
 
 const ProductGridWrapper = styled.div`
@@ -35,11 +36,24 @@ const ProductsGrid = ({
   userRole,
   productsToRender,
   setItemsInFavourites,
+  isError,
   setItemsInBag = null,
 }) => {
   return (
     <>
-      {productsToRender.length === 0 && <Loader />}
+      {productsToRender.length === 0 && !isError && <Loader />}
+      {isError && !setItemsInBag && (
+        <ErrorMessage>
+          We seem to be having trouble finding these products at the moment. Sorry for any
+          inconvenience.
+        </ErrorMessage>
+      )}
+      {isError && setItemsInBag && (
+        <ErrorMessage>
+          We seem to have misplaced your bag, we are trying to find it as quickly as possible,
+          please try again later. Sorry for any inconvenience.
+        </ErrorMessage>
+      )}
       <ProductGridWrapper isbag={setItemsInBag ? true : false}>
         {productsToRender.map((product) => {
           return (

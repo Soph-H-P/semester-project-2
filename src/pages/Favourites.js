@@ -7,9 +7,10 @@ import fetchLocalProducts from '../utils/fetchLocalProducts';
 
 const Favourites = ({ userRole, itemsInFavourites, setItemsInFavourites }) => {
   const [currentFavourites, setCurrentFavourites] = useState([]);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    fetchLocalProducts(setCurrentFavourites, itemsInFavourites);
+    fetchLocalProducts(setCurrentFavourites, itemsInFavourites, setIsError);
   }, [itemsInFavourites]);
 
   return (
@@ -19,6 +20,7 @@ const Favourites = ({ userRole, itemsInFavourites, setItemsInFavourites }) => {
         userRole={userRole}
         productsToRender={currentFavourites}
         setItemsInFavourites={setItemsInFavourites}
+        isError={isError}
       ></ProductsGrid>
     </PageWrapper>
   );

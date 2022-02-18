@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import fetchProducts from '../../utils/fetchProducts';
 import Loader from '../atoms/Loader';
+import { ErrorMessage } from '../atoms/StyledFormContainer';
+import SubTitle from '../atoms/SubTitle';
 import Title from '../atoms/Title';
 import ProductCard from '../molecules/ProductCard';
 
@@ -29,15 +31,17 @@ const FeaturedProductsdGrid = styled.div`
 
 const FeaturedProducts = ({ userRole, setItemsInFavourites }) => {
   const [productsArray, setProductsArray] = useState([]);
+  const [isError, setIsError] = useState(false)
 
   useEffect(() => {
-    fetchProducts(setProductsArray, true);
+    fetchProducts(setProductsArray, setIsError, true);
   }, []);
 
   return (
     <FeaturedProductsdWrapper>
-      {productsArray.length === 0 && <Loader featured={true} />}
       <Title>Featured Sneakers</Title>
+      {productsArray.length === 0 && !isError && <Loader featured={true} />}
+      {isError && <ErrorMessage>We seem to be having trouble finding these products at the moment. Sorry for any inconvenience.</ErrorMessage>}
       <FeaturedProductsdGrid>
         {productsArray.map((product) => {
           return (

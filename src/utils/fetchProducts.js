@@ -1,6 +1,6 @@
 import { baseUrl } from '../settings/api';
 
-const fetchProducts = async (setProductsArray, featured = false) => {
+const fetchProducts = async (setProductsArray,  setIsError, featured = false) => {
   const url = featured ? `${baseUrl}/products?featured=true` : `${baseUrl}/products`;
   try {
     const response = await fetch(url);
@@ -8,6 +8,7 @@ const fetchProducts = async (setProductsArray, featured = false) => {
 
     setProductsArray(result);
   } catch (error) {
+    setIsError(true)
     console.log(error);
   }
 };

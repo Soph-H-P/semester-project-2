@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import createProduct from '../../utils/createProduct';
 import deleteProduct from '../../utils/deleteProduct';
 import fetchCurrentProduct from '../../utils/fetchCurrentProduct';
@@ -7,11 +8,11 @@ import updateProduct from '../../utils/updateProduct';
 import Button from '../atoms/Button';
 import NumberInput from '../atoms/NumberInput';
 import StyledFormContainer, { ErrorMessage } from '../atoms/StyledFormContainer';
+import StyledLink from '../atoms/StyledLink';
 import TextAreaInput from '../atoms/TextAreaInput';
 import TextInput from '../atoms/TextInput';
 import Title from '../atoms/Title';
 import ToggleCheckBox from '../atoms/ToggleCheckBox';
-import StyledLink from '../atoms/StyledLink';
 
 const EditProduct = ({ userRole }) => {
   const [isError, setIsError] = useState(false);
@@ -124,7 +125,7 @@ const EditProduct = ({ userRole }) => {
           {isError && <ErrorMessage>Invalid data please fill out all fields</ErrorMessage>}
           {isNetworkError && (
             <ErrorMessage>
-              There seems to be some trouble on our end please try again later.
+              There seems to be some trouble on our end please try again later. Sorry for any inconvenience
             </ErrorMessage>
           )}
           {isDeleted && <p>Successfully Deleted</p>}

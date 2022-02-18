@@ -9,13 +9,14 @@ import fetchProducts from '../utils/fetchProducts';
 const SearchResults = ({ userRole, setItemsInFavourites }) => {
   const [productsArray, setProductsArray] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
+  const [isError, setIsError] = useState(false);
   const queryString = document.location.search;
   const params = new URLSearchParams(queryString);
   const userSearch = params.get('search');
   const { search } = useLocation();
 
   useEffect(() => {
-    fetchProducts(setProductsArray);
+    fetchProducts(setProductsArray, setIsError);
   }, [userSearch]);
 
   useEffect(() => {
@@ -34,6 +35,7 @@ const SearchResults = ({ userRole, setItemsInFavourites }) => {
         userRole={userRole}
         productsToRender={searchResults}
         setItemsInFavourites={setItemsInFavourites}
+        isError={isError}
       />
     </PageWrapper>
   );

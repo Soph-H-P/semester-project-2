@@ -7,9 +7,10 @@ import fetchProducts from '../utils/fetchProducts';
 
 const Products = ({ userRole, setItemsInFavourites }) => {
   const [productsArray, setProductsArray] = useState([]);
+  const [isError, setIsError] = useState(false)
 
   useEffect(() => {
-    fetchProducts(setProductsArray);
+    fetchProducts(setProductsArray, setIsError);
   }, []);
 
   return (
@@ -19,6 +20,7 @@ const Products = ({ userRole, setItemsInFavourites }) => {
         userRole={userRole}
         productsToRender={productsArray}
         setItemsInFavourites={setItemsInFavourites}
+        isError={isError}
       />
     </PageWrapper>
   );

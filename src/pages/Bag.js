@@ -19,9 +19,10 @@ const BagContainer = styled.div`
 const Bag = ({ userRole, itemsInBag, setItemsInFavourites, setItemsInBag }) => {
   const [currentBagItems, setCurrentBagItems] = useState([]);
   const [isPurchased, setIsPurchased] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    fetchLocalProducts(setCurrentBagItems, itemsInBag);
+    fetchLocalProducts(setCurrentBagItems, itemsInBag, setIsError);
   }, [itemsInBag]);
 
   return (
@@ -30,16 +31,19 @@ const Bag = ({ userRole, itemsInBag, setItemsInFavourites, setItemsInBag }) => {
       {itemsInBag.length === 0 && !isPurchased && <Title>Currently no items in your bag</Title>}
       {itemsInBag.length >= 1 && !isPurchased && (
         <>
-          <Title>
-            Your Bag ({currentBagItems.length}
-            {itemsInBag.length >= 2 ? ' items' : ' item'})
-          </Title>
+          {!isError && (
+            <Title>
+              Your Bag ({currentBagItems.length}
+              {itemsInBag.length >= 2 ? ' items' : ' item'})
+            </Title>
+          )}
           <BagContainer>
             <ProductsGrid
               userRole={userRole}
               productsToRender={currentBagItems}
               setItemsInFavourites={setItemsInFavourites}
               setItemsInBag={setItemsInBag}
+              isError={isError}
             ></ProductsGrid>
             <OrderSummary
               itemsInBag={currentBagItems}

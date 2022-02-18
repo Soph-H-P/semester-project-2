@@ -47,5 +47,6 @@ const StyledFormContainer = styled.div`
 export default StyledFormContainer;
 
 export const ErrorMessage = styled.p`
-  color: ${(props) => props.theme.primaryColor};
+  color: ${(props) => props.theme.errorColor};
+  text-align: center;
 `;
