@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import MetaData from '../components/atoms/MetaData';
 import PageWrapper from '../components/atoms/PageWrpper';
 import Title from '../components/atoms/Title';
 import ProductsGrid from '../components/organisms/ProductsGrid';
@@ -15,6 +15,10 @@ const Favourites = ({ userRole, itemsInFavourites, setItemsInFavourites }) => {
 
   return (
     <PageWrapper>
+      <MetaData
+        title={`Favourites (${currentFavourites.length} items)`}
+        description="Have a look at all the items you thought were great."
+      ></MetaData>
       {currentFavourites.length === 0 && <Title>Currently no favourited items</Title>}
       {currentFavourites.length >= 1 && (
         <>

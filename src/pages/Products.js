@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import MetaData from '../components/atoms/MetaData';
 import PageWrapper from '../components/atoms/PageWrpper';
 import Title from '../components/atoms/Title';
 import ProductsGrid from '../components/organisms/ProductsGrid';
@@ -7,7 +7,7 @@ import fetchProducts from '../utils/fetchProducts';
 
 const Products = ({ userRole, setItemsInFavourites }) => {
   const [productsArray, setProductsArray] = useState([]);
-  const [isError, setIsError] = useState(false)
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     fetchProducts(setProductsArray, setIsError);
@@ -15,6 +15,10 @@ const Products = ({ userRole, setItemsInFavourites }) => {
 
   return (
     <PageWrapper>
+      <MetaData
+        title="Sneakers"
+        description="Browse all our sneakers, you are bound to find something you love! Order today and start making Tracks"
+      ></MetaData>
       <Title>All Sneakers</Title>
       <ProductsGrid
         userRole={userRole}

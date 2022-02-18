@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import MetaData from '../components/atoms/MetaData';
 import fetchCurrentProduct from '../utils/fetchCurrentProduct';
 
 import PageWrapper from '../components/atoms/PageWrpper';
@@ -14,11 +14,11 @@ const Product = ({ userRole, setItemsInBag, setItemsInFavourites }) => {
 
   useEffect(() => {
     fetchCurrentProduct(productId, setCurrentProduct);
-    document.querySelector('title').innerHTML = currentProduct.title + ' | Tracks';
-  }, [productId, currentProduct.title]);
+  }, [productId]);
 
   return (
     <PageWrapper>
+      <MetaData title={currentProduct.title} description={currentProduct.description}></MetaData>
       <ProductDetails
         userRole={userRole}
         product={currentProduct}

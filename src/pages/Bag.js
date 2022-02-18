@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-
+import MetaData from '../components/atoms/MetaData';
 import PageWrapper from '../components/atoms/PageWrpper';
 import Title from '../components/atoms/Title';
 import OrderSummary from '../components/organisms/OrderSummary';
@@ -27,6 +27,10 @@ const Bag = ({ userRole, itemsInBag, setItemsInFavourites, setItemsInBag }) => {
 
   return (
     <PageWrapper>
+      <MetaData
+        title={`Your bag (${itemsInBag.length} items)`}
+        description="Order now for free speedy delivery and free returns your perfect shoes are only a click away."
+      ></MetaData>
       {isPurchased && <Title>Congratulations your shoes are on the way!</Title>}
       {itemsInBag.length === 0 && !isPurchased && <Title>Currently no items in your bag</Title>}
       {itemsInBag.length >= 1 && !isPurchased && (
