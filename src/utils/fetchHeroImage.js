@@ -1,3 +1,4 @@
+import loadingSvg from '../assets/icons/loadingSvg.svg';
 import { baseUrl } from '../settings/api';
 
 const fetchHeroImage = async (setBackgroundImage) => {
@@ -9,6 +10,7 @@ const fetchHeroImage = async (setBackgroundImage) => {
     const imageUrl = `${baseUrl}${image}`;
     setBackgroundImage(imageUrl);
   } catch (error) {
+    setBackgroundImage(loadingSvg)
     console.log(error);
   }
 };
