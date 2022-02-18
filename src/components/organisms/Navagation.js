@@ -60,14 +60,24 @@ const MobileNav = styled.nav`
   max-height: 500px;
 `;
 
-const NavBar = ({ userRole, handleOpenMenu }) => {
+const NavBar = ({ userRole, handleOpenMenu, menuOpen }) => {
   return (
     <>
-      <SearchInput closeMenu={handleOpenMenu} />
+      <SearchInput
+        closeMenu={() => {
+          if (menuOpen) {
+            handleOpenMenu();
+          }
+        }}
+      />
       <StyledNavLink
         to="/products"
         className={(navData) => (navData.isActive ? 'active-style' : '')}
-        onClick={handleOpenMenu}
+        onClick={() => {
+          if (menuOpen) {
+            handleOpenMenu();
+          }
+        }}
         gridarea="sneakers"
       >
         Sneakers
@@ -76,7 +86,11 @@ const NavBar = ({ userRole, handleOpenMenu }) => {
         to="/favourites"
         className={(navData) => (navData.isActive ? 'active-style' : '')}
         aria-label="favourites"
-        onClick={handleOpenMenu}
+        onClick={() => {
+          if (menuOpen) {
+            handleOpenMenu();
+          }
+        }}
         gridarea="fav"
       >
         <Icon iconSource={outlineHeartSvg} alt="favourites" />
@@ -85,7 +99,11 @@ const NavBar = ({ userRole, handleOpenMenu }) => {
         to="/login"
         className={(navData) => (navData.isActive ? 'active-style' : '')}
         aria-label="login"
-        onClick={handleOpenMenu}
+        onClick={() => {
+          if (menuOpen) {
+            handleOpenMenu();
+          }
+        }}
         gridarea="login"
       >
         <Icon iconSource={loginSvg} alt="log in" />
@@ -95,7 +113,11 @@ const NavBar = ({ userRole, handleOpenMenu }) => {
           to="/content-editor"
           className={(navData) => (navData.isActive ? 'active-style' : '')}
           aria-label="content editor"
-          onClick={handleOpenMenu}
+          onClick={() => {
+            if (menuOpen) {
+              handleOpenMenu();
+            }
+          }}
           gridarea="edit"
         >
           <Icon iconSource={editSvg} alt="content editor" />
@@ -106,7 +128,11 @@ const NavBar = ({ userRole, handleOpenMenu }) => {
         className={(navData) => (navData.isActive ? 'active-style' : '')}
         aria-label="your bag"
         id="bag"
-        onClick={handleOpenMenu}
+        onClick={() => {
+          if (menuOpen) {
+            handleOpenMenu();
+          }
+        }}
         gridarea="bag"
       >
         <Icon iconSource={bagSvg} alt="your bag" />
@@ -142,7 +168,7 @@ const Navagation = ({ userRole, itemsInBag }) => {
       />
       {windowWidth <= 999 && (
         <MobileNav open={menuOpen}>
-          <NavBar userRole={userRole} handleOpenMenu={handleOpenMenu} />
+          <NavBar userRole={userRole} handleOpenMenu={handleOpenMenu} menuOpen={menuOpen} />
         </MobileNav>
       )}
       {windowWidth <= 999 && !menuOpen ? (
@@ -159,7 +185,7 @@ const Navagation = ({ userRole, itemsInBag }) => {
       )}
       {windowWidth >= 1000 && (
         <DesktopNav>
-          <NavBar userRole={userRole} handleOpenMenu={handleOpenMenu} />
+          <NavBar userRole={userRole} handleOpenMenu={handleOpenMenu} menuOpen={menuOpen} />
         </DesktopNav>
       )}
     </NavContainer>
