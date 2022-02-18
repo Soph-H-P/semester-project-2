@@ -36,7 +36,7 @@ const FeaturedProducts = ({ userRole, setItemsInFavourites }) => {
 
   return (
     <FeaturedProductsdWrapper>
-      {productsArray.length === 0 && <Loader />}
+      {productsArray.length === 0 && <Loader featured={true} />}
       <Title>Featured Sneakers</Title>
       <FeaturedProductsdGrid>
         {productsArray.map((product) => {

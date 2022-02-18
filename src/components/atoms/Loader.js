@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
+import featuredLoaderSvg from '../../assets/icons/featuredLoaderSvg.svg';
 import loadingSvg from '../../assets/icons/loadingSvg.svg';
 
 const loadingAnimationLarge = keyframes`
@@ -41,7 +42,8 @@ const Loader = styled.div`
   width: 100%;
   max-width: 1500px;
   margin: 0 auto;
-  background: left / 20% repeat-x url(${loadingSvg});
+  background: left / 20% repeat-x
+    url(${(props) => (props.featured ? featuredLoaderSvg : loadingSvg)});
   position: relative;
   overflow: hidden;
 
@@ -50,13 +52,15 @@ const Loader = styled.div`
     width: 100%;
     height: 100%;
     left: 0px;
-    background: ${(props) => props.theme.white};
+    background: ${(props) =>
+      props.featured ? props.theme.darkerBackgroundColor : props.theme.white};
     position: absolute;
     animation: ${loadingAnimationLarge} 7s infinite;
   }
 
   @media (max-width: 800px) {
-    background: left / 25% repeat-x url(${loadingSvg});
+    background: left / 25% repeat-x
+      url(${(props) => (props.featured ? featuredLoaderSvg : loadingSvg)});
 
     &::after {
       animation: ${loadingAnimationMedium} 5s infinite;
@@ -64,7 +68,8 @@ const Loader = styled.div`
   }
 
   @media (max-width: 400px) {
-    background: left / 50% repeat-x url(${loadingSvg});
+    background: left / 50% repeat-x
+      url(${(props) => (props.featured ? featuredLoaderSvg : loadingSvg)});
 
     &::after {
       animation: ${loadingAnimationSmall} 3s infinite;
