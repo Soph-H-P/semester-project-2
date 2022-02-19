@@ -38,12 +38,13 @@ const CardWrpper = styled.div`
   #imageContainer {
     height: 250px;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
   }
 
   #imageContainer img {
     object-fit: cover;
     height: 100%;
-    object-position: center;
   }
 
   #imageContainer img:hover {
@@ -53,6 +54,7 @@ const CardWrpper = styled.div`
 
   img {
     width: 100%;
+    margin: auto;
   }
 
   #delete-button {
@@ -109,7 +111,7 @@ const ProductCard = ({ product, isFavourite, userRole, setItemsInFavourites, set
             <SubTitle>{product.title}</SubTitle>
           </Link>
 
-          <p>£{product.price}</p>
+          <p>£{product.price.toFixed(2)}</p>
         </div>
         <div>
           <AddToFavouritesButton

@@ -88,7 +88,7 @@ const EditProduct = ({ userRole }) => {
       </Title>
       {id && (
         <StyledLink to="/content-editor" onClick={() => setCurrentProduct(null)}>
-          + or create new product
+          + or create a new product
         </StyledLink>
       )}
       {userRole === 'Authenticated' && (
@@ -109,7 +109,7 @@ const EditProduct = ({ userRole }) => {
           <ToggleCheckBox
             label="Featured"
             name="featured"
-            checked={(currentProduct && currentProduct.featured) || ''}
+            checked={(currentProduct && currentProduct.featured)}
           ></ToggleCheckBox>
           <TextAreaInput
             label="Product Description"
@@ -141,7 +141,7 @@ const EditProduct = ({ userRole }) => {
           </div>
         </form>
       )}
-      {isSuccess && <StyledLink to={`/product?id=${isSuccess}`}>View item</StyledLink>}
+      {isSuccess && <StyledLink to={`/product?id=${isSuccess}`}>Product saved!  View item</StyledLink>}
     </StyledFormContainer>
   );
 };

@@ -3,6 +3,7 @@ import MetaData from '../components/atoms/MetaData';
 import fetchCurrentProduct from '../utils/fetchCurrentProduct';
 
 import PageWrapper from '../components/atoms/PageWrpper';
+import Breadcrumbs from '../components/atoms/Breadcrumbs';
 import ProductDetails from '../components/molecules/ProductDetails';
 
 const Product = ({ userRole, setItemsInBag, setItemsInFavourites }) => {
@@ -19,6 +20,7 @@ const Product = ({ userRole, setItemsInBag, setItemsInFavourites }) => {
   return (
     <PageWrapper>
       <MetaData title={currentProduct.title} description={currentProduct.description}></MetaData>
+      <Breadcrumbs product={currentProduct.title}/>
       <ProductDetails
         userRole={userRole}
         product={currentProduct}

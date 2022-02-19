@@ -57,7 +57,7 @@ const ToggleContainer = styled.div`
   }
 `;
 
-const ToggleCheckBox = ({ label, name, checked = false }) => {
+const ToggleCheckBox = ({ label, name, checked }) => {
   return (
     <ToggleLabel htmlFor={name}>
       {label}
@@ -67,6 +67,7 @@ const ToggleCheckBox = ({ label, name, checked = false }) => {
         id="toggle-switch"
         value="featured"
         defaultChecked={checked}
+        onChange={() => console.log(checked)}
       />
       <ToggleContainer className="toggle" />
     </ToggleLabel>

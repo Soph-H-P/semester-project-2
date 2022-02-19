@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import closeSvg from '../../assets/icons/closeSvg.svg';
 import edit from '../../assets/icons/editSvg.svg';
-import zoomSvg from '../../assets/icons/zoomSvg.svg';
 import { baseUrl } from '../../settings/api';
 import { bagItemsKey } from '../../settings/settings';
 import { filterList, findInList, getFromStorage, saveToStorage } from '../../utils/storage';
@@ -22,20 +20,29 @@ const ProductDetailsWrapper = styled.div`
   margin: 20px;
   min-width: 320px;
 
-  & > p {
+  p {
     text-align: left;
-    padding-left: 20px;
-    margin: 0px;
+    padding: 20px;
   }
 
   & > div {
-    min-width: 280px;
+    min-width: 500px;
     text-align: center;
+  }
+
+  @media (max-width: 850px) {
+    & > div {
+      min-width: 350px;
+    }
   }
 
   @media (max-width: 730px) {
     flex-direction: column;
     margin: 20px 0px;
+
+    & > div {
+      min-width: 280px;
+    }
 
     & > p {
       text-align: left;
@@ -47,14 +54,14 @@ const ProductDetailsWrapper = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  height: 250px;
+  max-height: 400px;
   overflow: hidden;
-  cursor: pointer;
+  cursor: zoom-in;
   position: relative;
 
   img {
     max-width: 100%;
-    max-height: 100%;
+    max-height: 450px;
   }
 
   button {
@@ -64,32 +71,9 @@ const ImageContainer = styled.div`
   }
 `;
 
-const ImageZoomContainer = styled.div`
-  position: absolute;
-  background: ${(props) => props.theme.darkerBackgroundColor};
-  cursor: pointer;
-  width: 100%;
-  height: 80vh;
-  overflow: hidden;
-  z-index: 1;
-  top: 0px;
-  left: 0px;
-
-  img {
-    max-width: 100%;
-    max-height: 100%;
-  }
-
-  button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-  }
-`;
-
 const ProductInfoContainer = styled.div`
   display: flex;
-  padding: 10px;
+  padding: 0px 20px;
   justify-content: space-between;
 
   div {
@@ -111,7 +95,7 @@ const ProductInfoContainer = styled.div`
 const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites }) => {
   const [imageZoom, setImageZoom] = useState(false);
 
-  const handleImageClick = () => {
+  const handleImageZoom = () => {
     setImageZoom(!imageZoom);
   };
 
@@ -138,38 +122,50 @@ const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites
     }
   };
 
+  const ref = useRef(null);
+
+  const handleMouseEnter = () => {
+    handleImageZoom();
+    ref.current.style.transform = 'scale(2)';
+  };
+  const handleMouseLeave = () => {
+    handleImageZoom();
+    ref.current.style.transform = 'scale(1)';
+  };
+  const handleMouseMove = (e) => {
+    ref.current.style.transformOrigin = `${e.pageX - 10}px ${e.pageY - 150}px`;
+  };
+
   return (
     <ProductDetailsWrapper>
       {(Object.keys(product).length === 0) === 0 && <Loader />}
       {Object.keys(product).length >= 1 && (
         <>
+          <ImageContainer
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onMouseMove={handleMouseMove}
+            onTouchStart={handleMouseEnter}
+            onTouchEnd={handleMouseLeave}
+            onTouchMove={handleMouseMove}
+          >
+            <img
+              src={
+                product.image && !imageZoom
+                  ? baseUrl + product.image.formats.medium.url
+                  : product.image && imageZoom
+                  ? baseUrl + product.image.formats.large.url
+                  : product.image_url
+              }
+              alt={product.alternativeText || product.title}
+              ref={ref}
+            />
+          </ImageContainer>
           <div>
-            {imageZoom && (
-              <ImageZoomContainer onClick={handleImageClick}>
-                <img
-                  src={
-                    product.image ? baseUrl + product.image.formats.large.url : product.image_url
-                  }
-                  alt={product.alternativeText}
-                />
-                <Button type={'icon'} handleClick={handleImageClick}>
-                  <Icon iconSource={closeSvg} alt="edit product"></Icon>
-                </Button>
-              </ImageZoomContainer>
-            )}
-            <ImageContainer onClick={handleImageClick}>
-              <img
-                src={product.image ? baseUrl + product.image.formats.small.url : product.image_url}
-                alt={product.alternativeText || product.title}
-              />
-              <Button type={'icon'} handleClick={handleImageClick}>
-                <Icon iconSource={zoomSvg} alt="edit product"></Icon>
-              </Button>
-            </ImageContainer>
             <ProductInfoContainer>
               <div>
                 <Title>{product.title}</Title>
-                <p>£{product.price}</p>
+                <p>£{product.price.toFixed(2)}</p>
               </div>
               <div>
                 <AddToFavouritesButton
@@ -184,11 +180,11 @@ const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites
                 )}
               </div>
             </ProductInfoContainer>
+            <p>{product.description}</p>
             <Button dataId={product.id} handleClick={handleAddToBag}>
               {findInList(currentBagArray, product.id) ? 'Remove ' : 'Add to Bag'}
             </Button>
           </div>
-          <p>{product.description}</p>
         </>
       )}
     </ProductDetailsWrapper>

@@ -9,6 +9,7 @@ const StyledFormContainer = styled.div`
   flex-direction: column;
   align-items: ${(props) => (props.align ? props.align : 'center')};
   align-self: center;
+  margin-bottom: 30px;
 
   input[type='submit'] {
     width: 115px;
@@ -38,6 +39,8 @@ const StyledFormContainer = styled.div`
     a:last-child {
       text-align: right;
       font-size: 1.2rem;
+      margin: 30px 0px 0px 0px;
+      text-decoration: underline ${(props) => props.theme.primaryColor} 2px;
     }
     a:last-child::after {
       content: ' >>';
@@ -51,5 +54,3 @@ const StyledFormContainer = styled.div`
 `;
 
 export default StyledFormContainer;
-
-
