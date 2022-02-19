@@ -35,13 +35,20 @@ const SearchResults = ({ userRole, setItemsInFavourites }) => {
         title={`Searched "${userSearch}"`}
         description={`Currently viewing search results for "${userSearch}", hope you find what you were looking for.`}
       ></MetaData>
-      <Title>Search Results for: "{userSearch}"</Title>
-      <ProductsGrid
-        userRole={userRole}
-        productsToRender={searchResults}
-        setItemsInFavourites={setItemsInFavourites}
-        isError={isError}
-      />
+      {searchResults.length === 0 && !isError && (
+        <Title>Sorry no products were found that match: "{userSearch}"</Title>
+      )}
+      {searchResults.length > 0 && !isError && (
+        <>
+          <Title>Search Results for: "{userSearch}"</Title>
+          <ProductsGrid
+            userRole={userRole}
+            productsToRender={searchResults}
+            setItemsInFavourites={setItemsInFavourites}
+            isError={isError}
+          />
+        </>
+      )}
     </PageWrapper>
   );
 };
