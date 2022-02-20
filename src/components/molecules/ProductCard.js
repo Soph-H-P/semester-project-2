@@ -128,7 +128,7 @@ const ProductCard = ({ product, isFavourite, userRole, setItemsInFavourites, set
         </div>
       </ProductInfoContainer>
       {isBag && (
-        <Button id="delete-button" handleClick={handleRemoveItem} type="icon" dataId={product.id}>
+        <Button id="delete-button" handleClick={handleRemoveItem} icon={true} dataId={product.id}>
           <Icon productId={product.id} iconSource={deleteSvg} alt="remove product from bag" />
           Remove item from bag
         </Button>

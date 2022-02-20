@@ -1,8 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useRef, useState } from 'react';
+import styled, { css } from 'styled-components';
 
 import searchSvg from '../../assets/icons/searchSvg.svg';
 import Icon from '../atoms/Icon';
+import Button from '../atoms/Button';
 import TextInput from '../atoms/TextInput';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,9 +12,31 @@ const SearchInputWrapper = styled.form`
   align-items: center;
   width: max-content;
   grid-area: search;
+
+  label {
+    color: ${(props) => props.theme.white};
+  }
+
+  input {
+    display: block;
+  }
+
+  ${(props) =>
+    !props.expanded &&
+    css`
+      input {
+        display: none;
+      }
+
+      .underline {
+        display: none;
+      }
+    `}
 `;
 
 const SearchInput = ({ closeMenu }) => {
+  const [expandSearch, setExpandSearch] = useState(false);
+  const ref = useRef(null);
   const navigate = useNavigate();
   const reRouteUser = (searchTerm) => {
     navigate(`/search-results?search=${searchTerm}`);
@@ -25,13 +48,26 @@ const SearchInput = ({ closeMenu }) => {
     reRouteUser(searchTerm);
     closeMenu();
     e.target.search.value = '';
+    setExpandSearch(false);
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    setExpandSearch(!expandSearch);
+    console.log(expandSearch);
+    console.log(ref.current[1]);
+    ref.current[1].focus();
   };
 
   return (
-    <SearchInputWrapper onSubmit={handleSubmit}>
-      <Icon iconSource={searchSvg} alt="search" />
-      <TextInput label="Search" name="search"></TextInput>
-    </SearchInputWrapper>
+    <>
+      <SearchInputWrapper ref={ref} onSubmit={handleSubmit} expanded={expandSearch}>
+        <Button handleClick={handleClick} icon={true} type="button">
+          <Icon iconSource={searchSvg} alt="search" />
+        </Button>
+        <TextInput label="search" name="search"></TextInput>
+      </SearchInputWrapper>
+    </>
   );
 };
 

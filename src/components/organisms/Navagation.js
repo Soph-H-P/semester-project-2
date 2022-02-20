@@ -172,13 +172,13 @@ const Navagation = ({ userRole, itemsInBag }) => {
         </MobileNav>
       )}
       {windowWidth <= 999 && !menuOpen ? (
-        <Button handleClick={handleOpenMenu} type="icon">
+        <Button handleClick={handleOpenMenu} icon={true}>
           <Icon iconSource={menuSvg} alt="menu" />
         </Button>
       ) : (
         windowWidth <= 999 &&
         menuOpen && (
-          <Button handleClick={handleOpenMenu} type="icon">
+          <Button handleClick={handleOpenMenu} icon={true}>
             <Icon iconSource={closeSvg} alt="menu" />
           </Button>
         )

@@ -33,7 +33,7 @@ const StyledButton = styled.button`
       }
     `}
   ${(props) =>
-    props.type === 'icon' &&
+    props.icon === true &&
     css`
       background: none;
       color: ${props.theme.black};
@@ -51,9 +51,9 @@ const StyledButton = styled.button`
     `}
 `;
 
-const Button = ({ type, handleClick, dataId = '', children, id = '' }) => {
+const Button = ({ type, handleClick, dataId = '', children, id = '', icon = false }) => {
   return (
-    <StyledButton id={id && id} onClick={(e) => handleClick(e)} type={type} data-id={dataId}>
+    <StyledButton id={id && id} onClick={(e) => handleClick(e)} type={type} data-id={dataId} icon={icon}>
       {children}
     </StyledButton>
   );

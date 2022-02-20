@@ -89,7 +89,7 @@ const FeaturedProducts = ({ userRole, setItemsInFavourites }) => {
         </ErrorMessage>
       )}
       <FeaturedProductsdGrid>
-        <Button id="left-arrow" handleClick={handleLeftClick} type="icon">
+        <Button id="left-arrow" handleClick={handleLeftClick} icon={true}>
           <Icon iconSource={leftSvg} alt="scroll left" />
         </Button>
         <SlidingArea ref={ref}>
@@ -105,7 +105,7 @@ const FeaturedProducts = ({ userRole, setItemsInFavourites }) => {
             );
           })}
         </SlidingArea>
-        <Button id="right-arrow" handleClick={handleRightClick} type="icon">
+        <Button id="right-arrow" handleClick={handleRightClick} icon={true}>
           <Icon iconSource={rightSvg} alt="scroll right" />
         </Button>
       </FeaturedProductsdGrid>

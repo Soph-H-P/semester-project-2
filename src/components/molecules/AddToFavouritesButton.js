@@ -37,7 +37,7 @@ const AddToFavouritesButton = ({ productId, setItemsInFavourites }) => {
   };
 
   return (
-    <Button handleClick={handleAddToFavourites} type="icon" data-id={productId}>
+    <Button handleClick={handleAddToFavourites} icon={true} data-id={productId}>
       <Icon
         productId={productId}
         iconSource={isFavourite ? filledHeart : outlineHeart}
