@@ -15,6 +15,7 @@ import AddToFavouritesButton from './AddToFavouritesButton';
 const CardWrpper = styled.div`
   display: flex;
   flex-direction: column;
+  min-width: 250px;
   width: 100%;
   max-width: 400px;
   border: ${(props) => props.theme.black} solid 1px;
@@ -128,7 +129,7 @@ const ProductCard = ({ product, isFavourite, userRole, setItemsInFavourites, set
       </ProductInfoContainer>
       {isBag && (
         <Button id="delete-button" handleClick={handleRemoveItem} type="icon" dataId={product.id}>
-          <Icon productId={product.id} iconSource={deleteSvg} alt="remove product from bag"></Icon>
+          <Icon productId={product.id} iconSource={deleteSvg} alt="remove product from bag" />
           Remove item from bag
         </Button>
       )}

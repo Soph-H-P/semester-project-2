@@ -67,7 +67,6 @@ const ToggleCheckBox = ({ label, name, checked }) => {
         id="toggle-switch"
         value="featured"
         defaultChecked={checked}
-        onChange={() => console.log(checked)}
       />
       <ToggleContainer className="toggle" />
     </ToggleLabel>
