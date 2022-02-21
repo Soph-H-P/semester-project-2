@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 import searchSvg from '../../assets/icons/searchSvg.svg';
@@ -15,6 +15,7 @@ const SearchInputWrapper = styled.form`
 
   label {
     color: ${(props) => props.theme.white};
+    width: 200px;
   }
 
   input {
@@ -26,6 +27,10 @@ const SearchInputWrapper = styled.form`
     css`
       input {
         display: none;
+      }
+
+      label {
+        width: 0px;
       }
 
       .underline {
@@ -42,6 +47,12 @@ const SearchInput = ({ closeMenu }) => {
     navigate(`/search-results?search=${searchTerm}`);
   };
 
+  useEffect(() => {
+    if (ref.current) {
+      ref.current[1].focus();
+    }
+  }, [expandSearch]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const searchTerm = e.target.search.value;
@@ -54,9 +65,6 @@ const SearchInput = ({ closeMenu }) => {
   const handleClick = (e) => {
     e.preventDefault();
     setExpandSearch(!expandSearch);
-    console.log(expandSearch);
-    console.log(ref.current[1]);
-    ref.current[1].focus();
   };
 
   return (
