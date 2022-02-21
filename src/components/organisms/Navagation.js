@@ -63,13 +63,6 @@ const MobileNav = styled.nav`
 const NavBar = ({ userRole, handleOpenMenu, menuOpen }) => {
   return (
     <>
-      <SearchInput
-        closeMenu={() => {
-          if (menuOpen) {
-            handleOpenMenu();
-          }
-        }}
-      />
       <StyledNavLink
         to="/products"
         className={(navData) => (navData.isActive ? 'active-style' : '')}
@@ -80,21 +73,15 @@ const NavBar = ({ userRole, handleOpenMenu, menuOpen }) => {
         }}
         gridarea="sneakers"
       >
-        Sneakers
+        All Sneakers
       </StyledNavLink>
-      <StyledNavLink
-        to="/favourites"
-        className={(navData) => (navData.isActive ? 'active-style' : '')}
-        aria-label="favourites"
-        onClick={() => {
+      <SearchInput
+        closeMenu={() => {
           if (menuOpen) {
             handleOpenMenu();
           }
         }}
-        gridarea="fav"
-      >
-        <Icon iconSource={outlineHeartSvg} alt="favourites" />
-      </StyledNavLink>
+      />
       <StyledNavLink
         to="/login"
         className={(navData) => (navData.isActive ? 'active-style' : '')}
@@ -123,6 +110,19 @@ const NavBar = ({ userRole, handleOpenMenu, menuOpen }) => {
           <Icon iconSource={editSvg} alt="content editor" />
         </StyledNavLink>
       )}
+      <StyledNavLink
+        to="/favourites"
+        className={(navData) => (navData.isActive ? 'active-style' : '')}
+        aria-label="favourites"
+        onClick={() => {
+          if (menuOpen) {
+            handleOpenMenu();
+          }
+        }}
+        gridarea="fav"
+      >
+        <Icon iconSource={outlineHeartSvg} alt="favourites" />
+      </StyledNavLink>
       <StyledNavLink
         to="/your-bag"
         className={(navData) => (navData.isActive ? 'active-style' : '')}

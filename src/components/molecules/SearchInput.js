@@ -15,18 +15,30 @@ const SearchInputWrapper = styled.form`
 
   label {
     color: ${(props) => props.theme.white};
-    width: 200px;
+    width: 240px;
+    transition: width 1s ease;
   }
 
   input {
-    display: block;
+    width: 240px;
+    padding-left: 36px;
+    transition: width 1s ease;
+  }
+
+  ${(props) =>
+    props.expanded &&
+    css` button {
+    margin-right: -48px;
+    z-index: 1;
+  `}
   }
 
   ${(props) =>
     !props.expanded &&
     css`
       input {
-        display: none;
+        padding: 0px;
+        width: 0px;
       }
 
       label {
@@ -48,8 +60,11 @@ const SearchInput = ({ closeMenu }) => {
   };
 
   useEffect(() => {
-    if (ref.current) {
+    if (ref.current && expandSearch) {
       ref.current[1].focus();
+    }
+    if (ref.current && !expandSearch) {
+      ref.current[1].blur();
     }
   }, [expandSearch]);
 
@@ -71,7 +86,7 @@ const SearchInput = ({ closeMenu }) => {
     <>
       <SearchInputWrapper ref={ref} onSubmit={handleSubmit} expanded={expandSearch}>
         <Button handleClick={handleClick} icon={true} type="button">
-          <Icon iconSource={searchSvg} alt="search" />
+          <Icon iconSource={searchSvg} alt="search" productId="search-icon" />
         </Button>
         <TextInput label="search" name="search"></TextInput>
       </SearchInputWrapper>
