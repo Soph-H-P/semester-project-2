@@ -55,7 +55,7 @@ const SearchInput = ({ closeMenu }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const searchTerm = e.target.search.value;
+    const searchTerm = e.target.search.value.trim();
     reRouteUser(searchTerm);
     closeMenu();
     e.target.search.value = '';

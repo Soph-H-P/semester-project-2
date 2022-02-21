@@ -33,11 +33,11 @@ const EditProduct = ({ userRole }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const title = e.target.title.value;
-    const price = e.target.price.value;
+    const title = e.target.title.value.trim();
+    const price = e.target.price.value.trim();
     const featured = e.target.featured.checked;
-    const description = e.target.description.value;
-    const image = e.target.image.value;
+    const description = e.target.description.value.trim();
+    const image = e.target.image.value.trim();
 
     if (id === null) {
       createProduct(
