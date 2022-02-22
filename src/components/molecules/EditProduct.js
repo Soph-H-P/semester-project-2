@@ -109,7 +109,7 @@ const EditProduct = ({ userRole }) => {
           <ToggleCheckBox
             label="Featured"
             name="featured"
-            checked={(currentProduct && currentProduct.featured)}
+            checked={currentProduct && currentProduct.featured}
           ></ToggleCheckBox>
           <TextAreaInput
             label="Product Description"
@@ -130,8 +130,11 @@ const EditProduct = ({ userRole }) => {
               inconvenience
             </ErrorMessage>
           )}
-          {isDeleted && <p>Successfully Deleted</p>}
+          {isDeleted && <ErrorMessage>Successfully Deleted</ErrorMessage>}
           <div>
+            {!isDeleted && isSuccess && id && (
+              <StyledLink to={`/product?id=${isSuccess}`}>Product saved! View item</StyledLink>
+            )}
             <input type={'submit'} value={id ? 'Update' : 'Create'} />
             {id && (
               <Button type="secondary" handleClick={handleDeleteProduct}>
@@ -141,7 +144,6 @@ const EditProduct = ({ userRole }) => {
           </div>
         </form>
       )}
-      {isSuccess && <StyledLink to={`/product?id=${isSuccess}`}>Product saved!  View item</StyledLink>}
     </StyledFormContainer>
   );
 };

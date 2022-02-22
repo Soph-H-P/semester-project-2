@@ -5,6 +5,7 @@ const ErrorMessage = styled.p`
   text-align: center;
   background: ${(props) => props.theme.white};
   padding: 20px;
+  font-size: 21px;
 `;
 
 export default ErrorMessage;

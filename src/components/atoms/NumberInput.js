@@ -46,6 +46,7 @@ const NumberInput = ({ label, inputName, required, onChange, defaultValue = 0 })
         required={required ? 'required' : ''}
         type="number"
         defaultValue={defaultValue}
+        min="0"
         step=".01"
       />
       <InputUnderline className="underline" />

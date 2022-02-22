@@ -18,7 +18,7 @@ const deleteProduct = async (reRouteUser, id, setIsDeleted) => {
       setIsDeleted(true);
       setTimeout(() => {
         reRouteUser('/products');
-      }, 1000);
+      }, 1500);
     }
   } catch (error) {
     console.log(error);

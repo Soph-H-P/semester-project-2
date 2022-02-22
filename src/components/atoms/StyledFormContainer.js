@@ -36,13 +36,13 @@ const StyledFormContainer = styled.div`
     align-items: center;
   }
 
-    a:last-child {
+    a:first-child {
       text-align: right;
       font-size: 1.2rem;
-      margin: 30px 0px 0px 0px;
+      margin: 30px 0px;
       text-decoration: underline ${(props) => props.theme.primaryColor} 2px;
     }
-    a:last-child::after {
+    a:first-child::after {
       content: ' >>';
       color: ${(props) => props.theme.primaryColor};
     }
