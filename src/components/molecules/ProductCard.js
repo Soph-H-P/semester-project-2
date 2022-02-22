@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import deleteSvg from '../../assets/icons/deleteSvg.svg';
 import edit from '../../assets/icons/editSvg.svg';
@@ -65,12 +65,31 @@ const CardWrpper = styled.div`
     width: 32px;
     height: 32px;
   }
+
+  ${(props) =>
+    props.bag &&
+    css`
+      padding: 10px;
+
+      & > div {
+        display: flex;
+
+        align-items: center;
+      }
+
+      #imageContainer {
+        height: 100px;
+        width: 100px;
+        overflow: hidden;
+      }
+    `}
 `;
 
 const ProductInfoContainer = styled.div`
   display: flex;
   padding: 10px;
   justify-content: space-between;
+  width: 100%;
 
   div {
     display: flex;
@@ -99,34 +118,36 @@ const ProductCard = ({ product, isFavourite, userRole, setItemsInFavourites, set
   };
 
   return (
-    <CardWrpper>
-      <Link to={`/product/?id=${product.id}`} id="imageContainer">
-        <img
-          src={product.image ? baseUrl + product.image.formats.small.url : product.image_url}
-          alt={product.alternativeText || product.title}
-        />
-      </Link>
-      <ProductInfoContainer>
-        <div>
-          <Link to={`/product/?id=${product.id}`}>
-            <SubTitle>{product.title}</SubTitle>
-          </Link>
-
-          <p>£{product.price.toFixed(2)}</p>
-        </div>
-        <div>
-          <AddToFavouritesButton
-            isFavourite={isFavourite}
-            productId={product.id}
-            setItemsInFavourites={setItemsInFavourites}
+    <CardWrpper bag={isBag}>
+      <div>
+        <Link to={`/product/?id=${product.id}`} id="imageContainer">
+          <img
+            src={product.image ? baseUrl + product.image.formats.small.url : product.image_url}
+            alt={product.alternativeText || product.title}
           />
-          {userRole === 'Authenticated' && (
-            <Link id="edit-button" to={`/content-editor?id=${product.id}`}>
-              <Icon iconSource={edit} alt="edit product"></Icon>
+        </Link>
+        <ProductInfoContainer bag={isBag}>
+          <div>
+            <Link to={`/product/?id=${product.id}`}>
+              <SubTitle>{product.title}</SubTitle>
             </Link>
-          )}
-        </div>
-      </ProductInfoContainer>
+
+            <p>£{product.price.toFixed(2)}</p>
+          </div>
+          <div>
+            <AddToFavouritesButton
+              isFavourite={isFavourite}
+              productId={product.id}
+              setItemsInFavourites={setItemsInFavourites}
+            />
+            {userRole === 'Authenticated' && (
+              <Link id="edit-button" to={`/content-editor?id=${product.id}`}>
+                <Icon iconSource={edit} alt="edit product"></Icon>
+              </Link>
+            )}
+          </div>
+        </ProductInfoContainer>
+      </div>
       {isBag && (
         <Button id="delete-button" handleClick={handleRemoveItem} icon={true} dataId={product.id}>
           <Icon productId={product.id} iconSource={deleteSvg} alt="remove product from bag" />

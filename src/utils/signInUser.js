@@ -33,7 +33,7 @@ const signInUser = async (
       setSignedIn(getUsername());
       setUserRole(getUserRole());
       setIsError(false);
-      reRouteUser();
+      // reRouteUser();
     }
 
     if (result.error) {

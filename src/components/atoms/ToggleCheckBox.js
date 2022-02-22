@@ -23,6 +23,10 @@ const ToggleLabel = styled.label`
 
   #toggle-switch:checked ~ .toggle::after {
     left: 52px;
+    content: 'YES';
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   #toggle-switch:checked ~ .toggle {
@@ -42,7 +46,7 @@ const ToggleContainer = styled.div`
   border: solid 2px ${(props) => props.theme.black};
 
   &::after {
-    content: '';
+    content: 'NO';
     height: 46px;
     width: 46px;
     background: ${(props) => props.theme.white};
@@ -50,6 +54,9 @@ const ToggleContainer = styled.div`
     bottom: 2px;
     left: 2px;
     transition: left ease 0.6s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   #toggle-switch {

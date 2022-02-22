@@ -36,6 +36,9 @@ const SignIn = ({ setSignedIn, signedIn, setUserRole }) => {
     );
     setSignedIn(getUsername());
     setUserRole(getUserRole());
+    setTimeout(() => {
+        reRouteUser();
+    }, 1500);
   };
 
   const handleSignOut = () => {
@@ -50,7 +53,7 @@ const SignIn = ({ setSignedIn, signedIn, setUserRole }) => {
     <StyledFormContainer>
       {signedIn && (
         <>
-          <Title>Hi {signedIn}</Title>
+          <Title>Hi {signedIn} you're logged in</Title>
           <Button handleClick={handleSignOut}>Sign Out</Button>
         </>
       )}

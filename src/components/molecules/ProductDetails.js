@@ -133,7 +133,7 @@ const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites
     ref.current.style.transform = 'scale(1)';
   };
   const handleMouseMove = (e) => {
-    ref.current.style.transformOrigin = `${e.pageX - 10}px ${e.pageY - 150}px`;
+    ref.current.style.transformOrigin = `${e.pageX - 500}px ${e.pageY - 300}px`;
   };
 
   return (
