@@ -35,10 +35,10 @@ const AddToFavouritesContainer = styled.div`
     css`
   &::before {
     position: absolute;
-    animation: click-wave 0.5s;
+    animation: pulse 0.5s;
   `}
 
-  @keyframes click-wave {
+  @keyframes pulse {
     0% {
       height: 10px;
       width: 10px;

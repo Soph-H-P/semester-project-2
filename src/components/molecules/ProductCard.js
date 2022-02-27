@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
@@ -11,6 +11,8 @@ import Button from '../atoms/Button';
 import Icon from '../atoms/Icon';
 import SubTitle from '../atoms/SubTitle';
 import AddToFavouritesButton from './AddToFavouritesButton';
+import ChangeQuantity from './ChangeQuantity';
+import { findInList } from '../../utils/storage';
 
 const CardWrpper = styled.div`
   display: flex;
@@ -107,6 +109,13 @@ const ProductInfoContainer = styled.div`
 
 const ProductCard = ({ product, isFavourite, userRole, setItemsInFavourites, setItemsInBag }) => {
   const isBag = typeof setItemsInBag === 'function';
+  const [quantity, setQuantity] = useState(0);
+
+  useEffect(() => {
+    if (product && isBag) {
+      setQuantity(findInList(getFromStorage(bagItemsKey), product.id).quantity);
+    }
+  }, [isBag, product]);
 
   const handleRemoveItem = (e) => {
     const item = e.target;
@@ -131,8 +140,7 @@ const ProductCard = ({ product, isFavourite, userRole, setItemsInFavourites, set
             <Link to={`/product/?id=${product.id}`}>
               <SubTitle>{product.title}</SubTitle>
             </Link>
-
-            <p>£{product.price.toFixed(2)}</p>
+            <p>Price: £{product.price.toFixed(2)}</p>
           </div>
           <div>
             <AddToFavouritesButton
@@ -149,10 +157,18 @@ const ProductCard = ({ product, isFavourite, userRole, setItemsInFavourites, set
         </ProductInfoContainer>
       </div>
       {isBag && (
-        <Button id="delete-button" handleClick={handleRemoveItem} icon={true} dataId={product.id}>
-          <Icon productId={product.id} iconSource={deleteSvg} alt="remove product from bag" />
-          Remove item from bag
-        </Button>
+        <>
+          <ChangeQuantity
+            quantity={quantity}
+            setItemsInBag={setItemsInBag}
+            productId={product.id}
+          />
+          <p>Total price: £{(product.price * quantity).toFixed(2)}</p>
+          <Button id="delete-button" handleClick={handleRemoveItem} icon={true} dataId={product.id}>
+            <Icon productId={product.id} iconSource={deleteSvg} alt="remove product from bag" />
+            Remove item from bag
+          </Button>
+        </>
       )}
     </CardWrpper>
   );

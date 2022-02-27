@@ -12,6 +12,7 @@ import Icon from '../atoms/Icon';
 import Logo from '../atoms/Logo';
 import StyledNavLink from '../atoms/StyledNavLink';
 import SearchInput from '../molecules/SearchInput';
+import calculateNumberOfItems from '../../utils/calculateNumberOfItems';
 
 const NavContainer = styled.div`
   padding: ${(props) => (props.windowwidth >= 999 ? '20px' : '10px')};
@@ -159,7 +160,7 @@ const Navagation = ({ userRole, itemsInBag }) => {
   };
 
   return (
-    <NavContainer windowwidth={windowWidth} itemsinbag={itemsInBag.length}>
+    <NavContainer windowwidth={windowWidth} itemsinbag={calculateNumberOfItems(itemsInBag)}>
       <Logo
         windowwidth={windowWidth}
         handleClick={() => {

@@ -37,7 +37,8 @@ const EditProduct = ({ userRole }) => {
     const price = e.target.price.value.trim();
     const featured = e.target.featured.checked;
     const description = e.target.description.value.trim();
-    const image = e.target.image.value.trim();
+    const imageUrl = e.target.imageUrl.value.trim();
+    const image = e.target.image.files[0];
 
     if (id === null) {
       createProduct(
@@ -45,6 +46,7 @@ const EditProduct = ({ userRole }) => {
         price,
         featured,
         description,
+        imageUrl,
         image,
         setIsError,
         setIsNetworkError,
@@ -57,6 +59,7 @@ const EditProduct = ({ userRole }) => {
         price,
         featured,
         description,
+        imageUrl,
         image,
         setIsError,
         setIsNetworkError,
@@ -119,10 +122,11 @@ const EditProduct = ({ userRole }) => {
           ></TextAreaInput>
           <TextInput
             label="Image URL"
-            name="image"
+            name="imageUrl"
             type={'url'}
             defaultValue={(currentProduct && currentProduct.image_url) || ''}
           ></TextInput>
+          <input type="file" name="image" id="image" accept="image/png, image/jpeg" />
           {isError && <ErrorMessage>Invalid data please fill out all fields</ErrorMessage>}
           {isNetworkError && (
             <ErrorMessage>

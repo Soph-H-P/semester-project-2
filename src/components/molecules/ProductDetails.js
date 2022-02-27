@@ -5,7 +5,13 @@ import styled from 'styled-components';
 import edit from '../../assets/icons/editSvg.svg';
 import { baseUrl } from '../../settings/api';
 import { bagItemsKey } from '../../settings/settings';
-import { filterList, findInList, getFromStorage, saveToStorage } from '../../utils/storage';
+import {
+  filterList,
+  findInList,
+  getFromStorage,
+  saveToStorage,
+  updateStorage,
+} from '../../utils/storage';
 import Button from '../atoms/Button';
 import Icon from '../atoms/Icon';
 import Loader from '../atoms/Loader';
@@ -108,18 +114,26 @@ const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites
   }, [currentBagArray]);
 
   const handleAddToBag = (e) => {
-    const favourite = e.target;
-    const id = parseInt(favourite.dataset.id);
+    const bagItem = e.target;
+    const id = parseInt(bagItem.dataset.id);
     const currentBagItems = getFromStorage(bagItemsKey);
-    const findFavourite = findInList(currentBagItems, id);
-    if (findFavourite === undefined) {
-      const newFavourite = { id };
-      currentBagItems.push(newFavourite);
+    const findBagItems = findInList(currentBagItems, id);
+    if (findBagItems === undefined) {
+      const newBagItem = { id, quantity: 1 };
+      currentBagItems.push(newBagItem);
       setCurrentBagArray(currentBagItems);
     } else {
-      const removedBagItem = filterList(currentBagItems, id);
-      setCurrentBagArray(removedBagItem);
+      updateStorage(bagItemsKey, id);
+      setCurrentBagArray(getFromStorage(bagItemsKey));
     }
+  };
+
+  const handleRemoveFromBag = (e) => {
+    const bagItem = e.target;
+    const id = parseInt(bagItem.dataset.id);
+    const currentBagItems = getFromStorage(bagItemsKey);
+    const removedBagItem = filterList(currentBagItems, id);
+    setCurrentBagArray(removedBagItem);
   };
 
   const ref = useRef(null);
@@ -182,8 +196,13 @@ const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites
             </ProductInfoContainer>
             <p>{product.description}</p>
             <Button dataId={product.id} handleClick={handleAddToBag}>
-              {findInList(currentBagArray, product.id) ? 'Remove ' : 'Add to Bag'}
+              Add to Bag
             </Button>
+            {findInList(currentBagArray, product.id) && (
+              <Button type="secondary" dataId={product.id} handleClick={handleRemoveFromBag}>
+                Remove
+              </Button>
+            )}
           </div>
         </>
       )}

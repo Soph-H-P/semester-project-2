@@ -50,7 +50,8 @@ const Bag = ({ userRole, itemsInBag, setItemsInFavourites, setItemsInBag }) => {
               isError={isError}
             ></ProductsGrid>
             <OrderSummary
-              itemsInBag={currentBagItems}
+              currentBagItems={currentBagItems}
+              itemsInBag={itemsInBag}
               setItemsInBag={setItemsInBag}
               setIsPurchased={setIsPurchased}
             ></OrderSummary>
