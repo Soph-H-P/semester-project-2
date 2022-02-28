@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import edit from '../../assets/icons/editSvg.svg';
 import { baseUrl } from '../../settings/api';
@@ -98,6 +98,59 @@ const ProductInfoContainer = styled.div`
   }
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-around;
+
+  #add-to-bag {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: '';
+      height: 10px;
+      width: 10px;
+      left: 50px;
+      top: 15px;
+      background: ${(props) => props.theme.primaryColor};
+      opacity: 1;
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    ${(props) =>
+      props.pulse &&
+      css`
+        img {
+          height: 30px;
+          width: 33px;
+        }
+
+        &::after {
+          z-index: 1;
+          animation: move-up 2s;
+        }
+      `}
+
+    @keyframes move-up {
+      0% {
+        height: 10px;
+        width: 10px;
+        left: 50px;
+        top: 15px;
+        opacity: 1;
+      }
+      100% {
+        height: 100px;
+        width: 100px;
+        left: 1000px;
+        top: -1000px;
+        opacity: 1;
+      }
+    }
+  }
+`;
+
 const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites }) => {
   const [imageZoom, setImageZoom] = useState(false);
 
@@ -113,6 +166,8 @@ const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentBagArray]);
 
+  const [pulse, setPulse] = useState(false);
+
   const handleAddToBag = (e) => {
     const bagItem = e.target;
     const id = parseInt(bagItem.dataset.id);
@@ -126,6 +181,10 @@ const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites
       updateStorage(bagItemsKey, id);
       setCurrentBagArray(getFromStorage(bagItemsKey));
     }
+    setPulse(true);
+    setTimeout(() => {
+      setPulse(false);
+    }, 2000);
   };
 
   const handleRemoveFromBag = (e) => {
@@ -195,14 +254,16 @@ const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites
               </div>
             </ProductInfoContainer>
             <p>{product.description}</p>
-            <Button dataId={product.id} handleClick={handleAddToBag}>
-              Add to Bag
-            </Button>
-            {findInList(currentBagArray, product.id) && (
-              <Button type="secondary" dataId={product.id} handleClick={handleRemoveFromBag}>
-                Remove
+            <ButtonContainer pulse={pulse}>
+              <Button id="add-to-bag" dataId={product.id} handleClick={handleAddToBag}>
+                Add to Bag
               </Button>
-            )}
+              {findInList(currentBagArray, product.id) && (
+                <Button type="secondary" dataId={product.id} handleClick={handleRemoveFromBag}>
+                  Remove
+                </Button>
+              )}
+            </ButtonContainer>
           </div>
         </>
       )}

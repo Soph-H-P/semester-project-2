@@ -29,7 +29,7 @@ const NavContainer = styled.div`
     position: relative;
   }
 
-  #bag::after {
+  #bag::before {
     content: '${(props) => props.itemsinbag}';
     position: absolute;
     top: 20px;
@@ -61,7 +61,7 @@ const MobileNav = styled.nav`
   max-height: 500px;
 `;
 
-const NavBar = ({ userRole, handleOpenMenu, menuOpen }) => {
+const NavBar = ({ userRole, handleOpenMenu, menuOpen, pulse = false }) => {
   return (
     <>
       <StyledNavLink
@@ -155,6 +155,7 @@ const Navagation = ({ userRole, itemsInBag }) => {
     return () => window.removeEventListener('resize', handleResizeWindow);
   }, []);
 
+
   const handleOpenMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -186,7 +187,7 @@ const Navagation = ({ userRole, itemsInBag }) => {
       )}
       {windowWidth >= 1000 && (
         <DesktopNav>
-          <NavBar userRole={userRole} handleOpenMenu={handleOpenMenu} menuOpen={menuOpen} />
+          <NavBar userRole={userRole} handleOpenMenu={handleOpenMenu} menuOpen={menuOpen}/>
         </DesktopNav>
       )}
     </NavContainer>
