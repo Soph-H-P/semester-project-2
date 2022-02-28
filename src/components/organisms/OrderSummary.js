@@ -38,13 +38,21 @@ const OrderSummaryWrapper = styled.div`
 const OrderSummary = ({ itemsInBag, setItemsInBag, setIsPurchased, currentBagItems }) => {
   const [bagDetails, setBagDetails] = useState(0);
 
+  const calculateSubtotalPrice = () => {
+    let subtotalCount = 0;
+    if (currentBagItems) {
+      currentBagItems.forEach((item) => {
+        const quantity = findInList(getFromStorage(bagItemsKey), item.id).quantity;
+        const price = item.price * quantity;
+        subtotalCount += price;
+      });
+    }
+    setBagDetails(subtotalCount);
+  };
+
   useEffect(() => {
-    currentBagItems.forEach((item) => {
-      const quantity = findInList(getFromStorage(bagItemsKey), item.id).quantity;
-      const price = item.price * quantity;
-      setBagDetails(price * bagDetails);
-    });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    calculateSubtotalPrice();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentBagItems]);
 
   const simulatePurchase = () => {
@@ -58,13 +66,13 @@ const OrderSummary = ({ itemsInBag, setItemsInBag, setIsPurchased, currentBagIte
       <SubTitle>Order Summary</SubTitle>
       <BagSummaryRow
         title="Subtotal"
-        value={`£${bagDetails.toFixed(2)}`}
+        value={`£${bagDetails}`}
         details={`${calculateNumberOfItems(itemsInBag)} items`}
       ></BagSummaryRow>
       <BagSummaryRow title="Shipping" value="FREE" details="3-5 working days"></BagSummaryRow>
       <BagSummaryRow
         title="Order Total"
-        value={`£${bagDetails.toFixed(2)}`}
+        value={`£${bagDetails}`}
         details="VAT inc."
       ></BagSummaryRow>
       <Button handleClick={simulatePurchase}>Buy Now</Button>
