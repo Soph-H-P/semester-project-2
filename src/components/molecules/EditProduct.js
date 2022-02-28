@@ -38,7 +38,7 @@ const EditProduct = ({ userRole }) => {
     const featured = e.target.featured.checked;
     const description = e.target.description.value.trim();
     const imageUrl = e.target.imageUrl.value.trim();
-    const image = e.target.image.files[0];
+    // const image = e.target.image.files[0];
 
     if (id === null) {
       createProduct(
@@ -47,7 +47,7 @@ const EditProduct = ({ userRole }) => {
         featured,
         description,
         imageUrl,
-        image,
+        // image,
         setIsError,
         setIsNetworkError,
         setIsSuccess,
@@ -60,7 +60,7 @@ const EditProduct = ({ userRole }) => {
         featured,
         description,
         imageUrl,
-        image,
+        // image,
         setIsError,
         setIsNetworkError,
         setIsSuccess,
@@ -124,9 +124,10 @@ const EditProduct = ({ userRole }) => {
             label="Image URL"
             name="imageUrl"
             type={'url'}
+            required={true}
             defaultValue={(currentProduct && currentProduct.image_url) || ''}
           ></TextInput>
-          <input type="file" name="image" id="image" accept="image/png, image/jpeg" />
+          {/* <input type="file" name="image" id="image" accept="image/png, image/jpeg" /> */}
           {isError && <ErrorMessage>Invalid data please fill out all fields</ErrorMessage>}
           {isNetworkError && (
             <ErrorMessage>

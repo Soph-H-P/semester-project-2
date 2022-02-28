@@ -7,7 +7,7 @@ const createProduct = async (
   featured,
   description,
   image_url,
-  image,
+  // image,
   setIsError,
   setIsNetworkError,
   setIsSuccess,
