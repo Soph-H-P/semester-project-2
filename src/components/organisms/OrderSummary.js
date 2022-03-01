@@ -66,13 +66,13 @@ const OrderSummary = ({ itemsInBag, setItemsInBag, setIsPurchased, currentBagIte
       <SubTitle>Order Summary</SubTitle>
       <BagSummaryRow
         title="Subtotal"
-        value={`£${bagDetails}`}
+        value={`£${bagDetails.toFixed(2)}`}
         details={`${calculateNumberOfItems(itemsInBag)} items`}
       ></BagSummaryRow>
       <BagSummaryRow title="Shipping" value="FREE" details="3-5 working days"></BagSummaryRow>
       <BagSummaryRow
         title="Order Total"
-        value={`£${bagDetails}`}
+        value={`£${bagDetails.toFixed(2)}`}
         details="VAT inc."
       ></BagSummaryRow>
       <Button handleClick={simulatePurchase}>Buy Now</Button>

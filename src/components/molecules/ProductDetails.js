@@ -232,8 +232,10 @@ const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites
                 src={
                   product.image && !imageZoom
                     ? baseUrl + product.image.formats.medium.url
-                    : product.image && imageZoom
+                    : product.image.formats.large && imageZoom
                     ? baseUrl + product.image.formats.large.url
+                    : product.image.formats.medium && imageZoom
+                    ? baseUrl + product.image.formats.medium.url
                     : product.image_url
                 }
                 alt={product.alternativeText || product.title}

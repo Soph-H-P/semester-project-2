@@ -34,9 +34,7 @@ export const updateStorage = (key, itemId, remove = false) => {
       returnedValue[itemToUpdateIndex] = updatedItem;
       saveToStorage(key, returnedValue);
     } else {
-      console.log(returnedValue);
       const removedBagItem = filterList(returnedValue, itemId);
-      console.log(removedBagItem);
       saveToStorage(key, removedBagItem);
     }
   }

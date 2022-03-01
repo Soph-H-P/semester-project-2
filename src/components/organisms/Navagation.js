@@ -42,13 +42,8 @@ const DesktopNav = styled.nav`
   width: max-content;
 `;
 const MobileNav = styled.nav`
-  display: grid;
-  justify-content: center;
-  grid-template-areas:
-    'search search'
-    'sneakers sneakers'
-    'fav login'
-    'edit bag';
+  display: flex;
+  flex-direction: column;
   position: absolute;
   background: ${(props) => props.theme.white};
   right: ${(props) => (props.open ? '0px' : '-1000px')};
@@ -57,13 +52,26 @@ const MobileNav = styled.nav`
   z-index: -1;
   min-width: 100%;
   align-items: center;
+  justify-content: center;
   height: calc(100vh - 82px);
   max-height: 500px;
+
+  a {
+    max-width: 200px;
+    margin-top: 0px;
+  }
 `;
 
-const NavBar = ({ userRole, handleOpenMenu, menuOpen, pulse = false }) => {
+const NavBar = ({ userRole, handleOpenMenu, menuOpen }) => {
   return (
     <>
+      <SearchInput
+        closeMenu={() => {
+          if (menuOpen) {
+            handleOpenMenu();
+          }
+        }}
+      />
       <StyledNavLink
         to="/products"
         className={(navData) => (navData.isActive ? 'active-style' : '')}
@@ -72,17 +80,9 @@ const NavBar = ({ userRole, handleOpenMenu, menuOpen, pulse = false }) => {
             handleOpenMenu();
           }
         }}
-        gridarea="sneakers"
       >
         All Sneakers
       </StyledNavLink>
-      <SearchInput
-        closeMenu={() => {
-          if (menuOpen) {
-            handleOpenMenu();
-          }
-        }}
-      />
       <StyledNavLink
         to="/login"
         className={(navData) => (navData.isActive ? 'active-style' : '')}
@@ -92,7 +92,6 @@ const NavBar = ({ userRole, handleOpenMenu, menuOpen, pulse = false }) => {
             handleOpenMenu();
           }
         }}
-        gridarea="login"
       >
         <Icon iconSource={loginSvg} alt="log in" />
       </StyledNavLink>
@@ -106,7 +105,6 @@ const NavBar = ({ userRole, handleOpenMenu, menuOpen, pulse = false }) => {
               handleOpenMenu();
             }
           }}
-          gridarea="edit"
         >
           <Icon iconSource={editSvg} alt="content editor" />
         </StyledNavLink>
@@ -120,7 +118,6 @@ const NavBar = ({ userRole, handleOpenMenu, menuOpen, pulse = false }) => {
             handleOpenMenu();
           }
         }}
-        gridarea="fav"
       >
         <Icon iconSource={outlineHeartSvg} alt="favourites" />
       </StyledNavLink>
@@ -134,7 +131,6 @@ const NavBar = ({ userRole, handleOpenMenu, menuOpen, pulse = false }) => {
             handleOpenMenu();
           }
         }}
-        gridarea="bag"
       >
         <Icon iconSource={bagSvg} alt="your bag" />
       </StyledNavLink>
@@ -154,7 +150,6 @@ const Navagation = ({ userRole, itemsInBag }) => {
     window.addEventListener('resize', handleResizeWindow);
     return () => window.removeEventListener('resize', handleResizeWindow);
   }, []);
-
 
   const handleOpenMenu = () => {
     setMenuOpen(!menuOpen);
@@ -187,7 +182,7 @@ const Navagation = ({ userRole, itemsInBag }) => {
       )}
       {windowWidth >= 1000 && (
         <DesktopNav>
-          <NavBar userRole={userRole} handleOpenMenu={handleOpenMenu} menuOpen={menuOpen}/>
+          <NavBar userRole={userRole} handleOpenMenu={handleOpenMenu} menuOpen={menuOpen} />
         </DesktopNav>
       )}
     </NavContainer>

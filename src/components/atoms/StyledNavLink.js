@@ -15,7 +15,6 @@ const StyledNavLink = styled(NavLink)`
   color: ${(props) => props.theme.black};
   background: no-repeat url(${shoePrintSvg}) bottom center / 50px;
   opacity: 0.7;
-  grid-area: ${(props) => (props.gridarea ? props.gridarea : '')};
 
   &:hover,
   &.active,

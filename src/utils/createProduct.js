@@ -7,7 +7,6 @@ const createProduct = async (
   featured,
   description,
   image_url,
-  // image,
   setIsError,
   setIsNetworkError,
   setIsSuccess,
@@ -22,16 +21,6 @@ const createProduct = async (
     description,
     image_url,
   });
-
-  // let formData = new FormData();
-  // formData.append('files.image', image, image.name);
-  // formData.append('data', productData);
-
-  // formData.forEach((value, key) => {
-  //   console.log('key %s: value %s', key, value);
-  // });
-
-  // console.log(formData);
 
   const token = getToken();
 

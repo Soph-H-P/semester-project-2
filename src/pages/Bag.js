@@ -11,7 +11,7 @@ const BagContainer = styled.div`
   display: flex;
   align-items: space-around;
 
-  @media (max-width: 610px) {
+  @media (max-width: 630px) {
     flex-direction: column;
   }
 `;
