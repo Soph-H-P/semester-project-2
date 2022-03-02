@@ -16,6 +16,10 @@ const FeaturedProductsdWrapper = styled.div`
   background: ${(props) => props.theme.darkerBackgroundColor};
   margin: 30px auto;
   padding: 20px;
+
+  @media (max-width: 400px) {
+    padding: 5px;
+  }
 `;
 const FeaturedProductsdGrid = styled.div`
   display: grid;
@@ -23,18 +27,13 @@ const FeaturedProductsdGrid = styled.div`
   grid-template-areas: 'left-arrow posts right-arrow';
   align-items: center;
 
-  // background: ${(props) => props.theme.darkerBackgroundColor};
-  // display: grid;
-  // grid-template: 1fr / 1fr 1fr 1fr 1fr;
-  // gap: 20px;
-  // justify-items: center;
-
-  // @media (max-width: 1100px) {
-  //   grid-template: 1fr 1fr/ 1fr 1fr;
-  // }
-  // @media (max-width: 600px) {
-  //   grid-template: 1fr/ 1fr;
-  // }
+  @media (max-width: 400px) {
+    #right-arrow, #left-arrow {
+      height: 30px;
+      width: 30px;
+      padding: 0px;
+    }
+  }
 `;
 
 const SlidingArea = styled.div`
@@ -58,8 +57,11 @@ const FeaturedProducts = ({ userRole, setItemsInFavourites }) => {
   }, []);
 
   const getScrollDistance = () => {
-    const productCardWidth = 258;
+    const productCardWidth = 257;
     const scrollAmount = ref.current.offsetWidth % productCardWidth;
+    if (ref.current.offsetWidth - scrollAmount <= 0) {
+      return productCardWidth;
+    }
     return ref.current.offsetWidth - scrollAmount;
   };
 

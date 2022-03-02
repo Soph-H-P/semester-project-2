@@ -23,6 +23,10 @@ const ProductGridWrapper = styled.div`
     grid-template-columns: 1fr;
   }
 
+  @media (max-width: 400px) {
+    padding: 5px;
+  }
+
   ${(props) =>
     props.isbag &&
     css`

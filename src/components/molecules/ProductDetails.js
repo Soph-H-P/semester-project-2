@@ -62,17 +62,15 @@ const ProductDetailsWrapper = styled.div`
 const ImageContainer = styled.div`
   max-height: 400px;
   max-width: 400px;
-  overflow: hidden;
   cursor: zoom-in;
-  position: relative;
+  overflow: hidden;
   display: flex;
-  align-items: center;
   justify-content: center;
 
   img {
-    min-width: 100%;
-    object-fit: contain;
-    transition: all 0.1s ease;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
   }
 
   button {
@@ -204,14 +202,14 @@ const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites
 
   const handleMouseEnter = () => {
     handleImageZoom();
-    ref.current.style.transform = 'scale(1.5)';
+    ref.current.style.transform = 'scale(2)';
   };
   const handleMouseLeave = () => {
     handleImageZoom();
     ref.current.style.transform = 'scale(1)';
   };
   const handleMouseMove = (e) => {
-    ref.current.style.transformOrigin = `${e.pageX / 5}% ${e.pageY / 5}%`;
+    ref.current.style.transformOrigin = `${e.pageX / 6}% ${e.pageY / 6}%`;
   };
 
   return (
@@ -227,21 +225,19 @@ const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites
             onTouchEnd={handleMouseLeave}
             onTouchMove={handleMouseMove}
           >
-            <div>
-              <img
-                src={
-                  product.image && !imageZoom
-                    ? baseUrl + product.image.formats.medium.url
-                    : product.image.formats.large && imageZoom
-                    ? baseUrl + product.image.formats.large.url
-                    : product.image.formats.medium && imageZoom
-                    ? baseUrl + product.image.formats.medium.url
-                    : product.image_url
-                }
-                alt={product.alternativeText || product.title}
-                ref={ref}
-              />
-            </div>
+            <img
+              src={
+                product.image_url
+                  ? product.image_url
+                  : product.image && !imageZoom
+                  ? baseUrl + product.image.formats.medium.url
+                  : product.image.formats.large && imageZoom
+                  ? baseUrl + product.image.formats.large.url
+                  : baseUrl + product.image.formats.medium.url
+              }
+              alt={product.alternativeText || product.title}
+              ref={ref}
+            />
           </ImageContainer>
           <div>
             <ProductInfoContainer>
