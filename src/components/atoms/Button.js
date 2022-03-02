@@ -53,7 +53,13 @@ const StyledButton = styled.button`
 
 const Button = ({ type, handleClick, dataId = '', children, id = '', icon = false }) => {
   return (
-    <StyledButton id={id && id} onClick={(e) => handleClick(e)} type={type} data-id={dataId} icon={icon}>
+    <StyledButton
+      id={id && id}
+      onClick={(e) => handleClick(e)}
+      type={type}
+      data-id={dataId}
+      icon={icon}
+    >
       {children}
     </StyledButton>
   );

@@ -20,7 +20,7 @@ const Product = ({ userRole, setItemsInBag, setItemsInFavourites }) => {
   return (
     <PageWrapper>
       <MetaData title={currentProduct.title} description={currentProduct.description}></MetaData>
-      <Breadcrumbs product={currentProduct.title}/>
+      <Breadcrumbs product={currentProduct.title} />
       <ProductDetails
         userRole={userRole}
         product={currentProduct}

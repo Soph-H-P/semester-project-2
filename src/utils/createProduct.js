@@ -36,7 +36,7 @@ const createProduct = async (
   try {
     const response = await fetch(URL, options);
     const result = await response.json();
-    
+
     if (result.id) {
       setIsSuccess(result.id);
       navigate(`/content-editor?id=${result.id}`);

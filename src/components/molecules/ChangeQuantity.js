@@ -29,7 +29,6 @@ const ChangeQuantity = ({ quantity, setItemsInBag, productId }) => {
     const id = parseInt(item.dataset.id);
     updateStorage(bagItemsKey, id);
     setCurrentBagArray(getFromStorage(bagItemsKey));
-    console.log(item);
   };
 
   const removeItem = (e) => {

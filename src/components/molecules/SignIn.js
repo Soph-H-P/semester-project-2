@@ -37,7 +37,7 @@ const SignIn = ({ setSignedIn, signedIn, setUserRole }) => {
     setSignedIn(getUsername());
     setUserRole(getUserRole());
     setTimeout(() => {
-        reRouteUser();
+      reRouteUser();
     }, 1500);
   };
 

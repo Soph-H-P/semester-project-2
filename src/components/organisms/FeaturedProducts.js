@@ -28,7 +28,8 @@ const FeaturedProductsdGrid = styled.div`
   align-items: center;
 
   @media (max-width: 400px) {
-    #right-arrow, #left-arrow {
+    #right-arrow,
+    #left-arrow {
       height: 30px;
       width: 30px;
       padding: 0px;
