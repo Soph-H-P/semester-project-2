@@ -14,6 +14,7 @@ import TextAreaInput from '../atoms/TextAreaInput';
 import TextInput from '../atoms/TextInput';
 import Title from '../atoms/Title';
 import ToggleCheckBox from '../atoms/ToggleCheckBox';
+import StyledImagePreviewContainer from '../atoms/StyledImagePreviewContainer';
 
 const EditProduct = ({ userRole }) => {
   const [isError, setIsError] = useState(false);
@@ -21,6 +22,7 @@ const EditProduct = ({ userRole }) => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(null);
   const [isDeleted, setIsDeleted] = useState(false);
+  const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
   const queryString = document.location.search;
   const params = new URLSearchParams(queryString);
   const id = params.get('id');
@@ -38,7 +40,6 @@ const EditProduct = ({ userRole }) => {
     const featured = e.target.featured.checked;
     const description = e.target.description.value.trim();
     const imageUrl = e.target.imageUrl.value.trim();
-    // const image = e.target.image.files[0];
 
     if (id === null) {
       createProduct(
@@ -47,7 +48,6 @@ const EditProduct = ({ userRole }) => {
         featured,
         description,
         imageUrl,
-        // image,
         setIsError,
         setIsNetworkError,
         setIsSuccess,
@@ -60,7 +60,6 @@ const EditProduct = ({ userRole }) => {
         featured,
         description,
         imageUrl,
-        // image,
         setIsError,
         setIsNetworkError,
         setIsSuccess,
@@ -76,11 +75,22 @@ const EditProduct = ({ userRole }) => {
     }
   };
 
+  const handleAddImageUrl = (e) => {
+    const previewImageUrl = e.target.value;
+    setImagePreviewUrl(previewImageUrl);
+  };
+
   useEffect(() => {
     if (id) {
       fetchCurrentProduct(id, setCurrentProduct);
     }
   }, [id]);
+
+  useEffect(() => {
+    if (id && currentProduct && currentProduct.image_url) {
+      setImagePreviewUrl(currentProduct.image_url);
+    }
+  }, [id, currentProduct]);
 
   return (
     <StyledFormContainer width={650} align={'left'}>
@@ -90,7 +100,12 @@ const EditProduct = ({ userRole }) => {
           : 'Sorry you are not authorized to create or edit products. If you have an admin account, please log in : )'}
       </Title>
       {id && (
-        <StyledLink to="/content-editor" onClick={() => setCurrentProduct(null)}>
+        <StyledLink
+          to="/content-editor"
+          onClick={() => {
+            setCurrentProduct(null);
+          }}
+        >
           + or create a new product
         </StyledLink>
       )}
@@ -120,14 +135,22 @@ const EditProduct = ({ userRole }) => {
             required={true}
             defaultValue={(currentProduct && currentProduct.description) || ''}
           ></TextAreaInput>
+          {((currentProduct && currentProduct.image_url) || imagePreviewUrl) && (
+            <StyledImagePreviewContainer>
+              <img
+                src={imagePreviewUrl}
+                alt="Looks like that url does not work please try a different link"
+              />
+            </StyledImagePreviewContainer>
+          )}
           <TextInput
             label="Image URL"
             name="imageUrl"
             type={'url'}
             required={true}
             defaultValue={(currentProduct && currentProduct.image_url) || ''}
+            onChange={handleAddImageUrl}
           ></TextInput>
-          {/* <input type="file" name="image" id="image" accept="image/png, image/jpeg" /> */}
           {isError && <ErrorMessage>Invalid data please fill out all fields</ErrorMessage>}
           {isNetworkError && (
             <ErrorMessage>

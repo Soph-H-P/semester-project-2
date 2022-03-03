@@ -13,6 +13,7 @@ const createProduct = async (
   navigate
 ) => {
   const URL = `${baseUrl}/products`;
+  const token = getToken();
 
   const productData = JSON.stringify({
     title,
@@ -21,8 +22,6 @@ const createProduct = async (
     description,
     image_url,
   });
-
-  const token = getToken();
 
   const options = {
     method: 'POST',
