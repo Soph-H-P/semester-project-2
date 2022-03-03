@@ -8,7 +8,7 @@ const ToggleLabel = styled.label`
   width: max-content;
   position: relative;
   cursor: pointer;
-  margin: 10px;
+  margin: 20px 0px;
 
   #toggle-switch {
     opacity: 0;
@@ -34,7 +34,8 @@ const ToggleLabel = styled.label`
   }
 
   #toggle-switch:focus ~ .toggle {
-    border: blue 2px solid;
+    border: blue solid;
+    border-width: 1px 1px 3px 1px;
   }
 `;
 
@@ -43,16 +44,16 @@ const ToggleContainer = styled.div`
   transition: background ease 0.6s;
   height: 50px;
   width: 100px;
-  border: solid 2px ${(props) => props.theme.black};
-
+  border: solid ${(props) => props.theme.black};
+  border-width: 1px 1px 3px 1px;
   &::after {
     content: 'NO';
     height: 46px;
     width: 46px;
     background: ${(props) => props.theme.white};
     position: absolute;
-    bottom: 2px;
-    left: 2px;
+    bottom: 3px;
+    left: 1px;
     transition: left ease 0.6s;
     display: flex;
     justify-content: center;

@@ -1,3 +1,5 @@
+import { bagItemsKey, favouritesKey } from '../settings/settings';
+
 const tokenKey = 'token';
 const userKey = 'user';
 
@@ -16,7 +18,8 @@ export const filterList = (listToFilter, id) => {
   return filteredList;
 };
 
-export const updateStorage = (key, itemId, remove = false) => {
+export const updateStorage = (key, id, remove = false) => {
+  const itemId = JSON.parse(id);
   const value = localStorage.getItem(key);
   const returnedValue = !value ? [] : JSON.parse(value);
   const itemToUpdateIndex = returnedValue.findIndex((item) => item.id === itemId);
@@ -51,6 +54,16 @@ export const getToken = () => getFromStorage(tokenKey);
 export const logoutUser = () => {
   localStorage.removeItem(tokenKey);
   localStorage.removeItem(userKey);
+};
+
+export const deleteFromStorage = (id) => {
+  const itemId = JSON.parse(id);
+  const value = localStorage.getItem(bagItemsKey);
+  const returnedValue = !value ? [] : JSON.parse(value);
+  const removedBagItem = filterList(returnedValue, itemId);
+  saveToStorage(bagItemsKey, removedBagItem);
+  const removedFavouriteItem = filterList(returnedValue, itemId);
+  saveToStorage(favouritesKey, removedFavouriteItem);
 };
 
 export const saveUser = (user) => {

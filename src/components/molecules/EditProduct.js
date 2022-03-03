@@ -16,7 +16,7 @@ import Title from '../atoms/Title';
 import ToggleCheckBox from '../atoms/ToggleCheckBox';
 import StyledImagePreviewContainer from '../atoms/StyledImagePreviewContainer';
 
-const EditProduct = ({ userRole }) => {
+const EditProduct = ({ userRole, setItemsInBag }) => {
   const [isError, setIsError] = useState(false);
   const [isNetworkError, setIsNetworkError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -35,6 +35,7 @@ const EditProduct = ({ userRole }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsDeleted(false);
     const title = e.target.title.value.trim();
     const price = e.target.price.value.trim();
     const featured = e.target.featured.checked;
@@ -71,7 +72,7 @@ const EditProduct = ({ userRole }) => {
   const handleDeleteProduct = (e) => {
     e.preventDefault();
     if (window.confirm(`Are you sure you want to delete ${currentProduct.title}?`)) {
-      deleteProduct(reRouteUser, id, setIsDeleted);
+      deleteProduct(reRouteUser, id, setIsDeleted, setItemsInBag);
     }
   };
 
@@ -104,6 +105,7 @@ const EditProduct = ({ userRole }) => {
           to="/content-editor"
           onClick={() => {
             setCurrentProduct(null);
+            setImagePreviewUrl(null);
           }}
         >
           + or create a new product
@@ -147,7 +149,7 @@ const EditProduct = ({ userRole }) => {
             label="Image URL"
             name="imageUrl"
             type={'url'}
-            required={true}
+            required={currentProduct && currentProduct.image ? false : true}
             defaultValue={(currentProduct && currentProduct.image_url) || ''}
             onChange={handleAddImageUrl}
           ></TextInput>
@@ -158,7 +160,12 @@ const EditProduct = ({ userRole }) => {
               inconvenience
             </ErrorMessage>
           )}
-          {isDeleted && <ErrorMessage>Successfully Deleted</ErrorMessage>}
+          {isDeleted === 'error' && (
+            <ErrorMessage>
+              Unable to delete this item at the moment, please try again later.
+            </ErrorMessage>
+          )}
+          {isDeleted === true && <ErrorMessage>Successfully Deleted</ErrorMessage>}
           <div>
             {!isDeleted && isSuccess && id && (
               <StyledLink to={`/product?id=${isSuccess}`}>Product saved! View item</StyledLink>

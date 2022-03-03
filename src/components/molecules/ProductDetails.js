@@ -265,7 +265,7 @@ const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites
               </Button>
               {findInList(currentBagArray, product.id) && (
                 <Button type="secondary" dataId={product.id} handleClick={handleRemoveFromBag}>
-                  Remove
+                  Remove item(s)
                 </Button>
               )}
             </ButtonContainer>

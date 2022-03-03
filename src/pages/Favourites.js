@@ -4,6 +4,18 @@ import PageWrapper from '../components/atoms/PageWrpper';
 import Title from '../components/atoms/Title';
 import ProductsGrid from '../components/organisms/ProductsGrid';
 import fetchLocalProducts from '../utils/fetchLocalProducts';
+import Button from '../components/atoms/Button';
+import { favouritesKey } from '../settings/settings';
+import { saveToStorage, getFromStorage } from '../utils/storage';
+import styled from 'styled-components';
+
+const StyledButtonContainer = styled.div`
+  text-align: center;
+
+  button {
+    width: max-content;
+  }
+`;
 
 const Favourites = ({ userRole, itemsInFavourites, setItemsInFavourites }) => {
   const [currentFavourites, setCurrentFavourites] = useState([]);
@@ -12,6 +24,13 @@ const Favourites = ({ userRole, itemsInFavourites, setItemsInFavourites }) => {
   useEffect(() => {
     fetchLocalProducts(setCurrentFavourites, itemsInFavourites, setIsError);
   }, [itemsInFavourites]);
+
+  const handleClearFavourites = () => {
+    if (window.confirm(`Are you sure you want to remove all your favourites?`)) {
+      saveToStorage(favouritesKey, []);
+      setItemsInFavourites(getFromStorage(favouritesKey));
+    }
+  };
 
   return (
     <PageWrapper>
@@ -35,6 +54,13 @@ const Favourites = ({ userRole, itemsInFavourites, setItemsInFavourites }) => {
             isError={isError}
           ></ProductsGrid>
         </>
+      )}
+      {currentFavourites.length !== 0 && (
+        <StyledButtonContainer>
+          <Button handleClick={handleClearFavourites} type="secondary">
+            Clear all favourites
+          </Button>
+        </StyledButtonContainer>
       )}
     </PageWrapper>
   );
