@@ -10,6 +10,7 @@ const StyledFormContainer = styled.div`
   align-items: ${(props) => (props.align ? props.align : 'center')};
   align-self: center;
   margin-bottom: 30px;
+  background: ${(props) => props.theme.white};
 
   input[type='submit'] {
     width: 115px;

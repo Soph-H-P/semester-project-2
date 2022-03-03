@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import fetchHeroImage from '../../utils/fetchHeroImage';
 
 const StyledDiv = styled.div`
   width: 100%;
@@ -20,7 +21,13 @@ const StyledDiv = styled.div`
   }
 `;
 
-const HeroSection = ({ backgroundImage, children }) => {
+const HeroSection = ({ children }) => {
+  const [backgroundImage, setBackgroundImage] = useState('');
+
+  useEffect(() => {
+    fetchHeroImage(setBackgroundImage);
+  }, []);
+
   return <StyledDiv backgroundImage={backgroundImage}>{children}</StyledDiv>;
 };
 
