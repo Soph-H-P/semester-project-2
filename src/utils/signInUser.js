@@ -33,7 +33,9 @@ const signInUser = async (
       setSignedIn(getUsername());
       setUserRole(getUserRole());
       setIsError(false);
-      // reRouteUser();
+      setTimeout(() => {
+        reRouteUser();
+      }, 1500);
     }
 
     if (result.error) {

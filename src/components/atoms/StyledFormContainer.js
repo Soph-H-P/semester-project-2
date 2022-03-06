@@ -13,7 +13,7 @@ const StyledFormContainer = styled.div`
   background: ${(props) => props.theme.white};
 
   input[type='submit'] {
-    width: 115px;
+    width: 160px;
     font-weight: 300;
     font-size: 18px;
     padding: 0.5rem;

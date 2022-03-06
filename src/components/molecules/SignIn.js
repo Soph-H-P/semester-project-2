@@ -34,11 +34,6 @@ const SignIn = ({ setSignedIn, signedIn, setUserRole }) => {
       setIsError,
       setIsNetworkError
     );
-    setSignedIn(getUsername());
-    setUserRole(getUserRole());
-    setTimeout(() => {
-      reRouteUser();
-    }, 1500);
   };
 
   const handleSignOut = () => {

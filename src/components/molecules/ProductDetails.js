@@ -152,6 +152,15 @@ const ButtonContainer = styled.div`
       }
     }
   }
+
+  @media (max-width: 400px) {
+    flex-direction: column;
+    align-items: center;
+
+    button {
+      margin-bottom: 20px;
+    }
+  }
 `;
 
 const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites }) => {

@@ -4,6 +4,7 @@ import PageWrapper from '../components/atoms/PageWrpper';
 import Title from '../components/atoms/Title';
 import ProductsGrid from '../components/organisms/ProductsGrid';
 import fetchProducts from '../utils/fetchProducts';
+import Breadcrumbs from '../components/atoms/Breadcrumbs';
 
 const Products = ({ userRole, setItemsInFavourites }) => {
   const [productsArray, setProductsArray] = useState([]);
@@ -20,6 +21,7 @@ const Products = ({ userRole, setItemsInFavourites }) => {
         description="Browse all our sneakers, you are bound to find something you love! Order today and start making Tracks"
       ></MetaData>
       <Title>All Sneakers</Title>
+      <Breadcrumbs product={null} />
       <ProductsGrid
         userRole={userRole}
         productsToRender={productsArray}

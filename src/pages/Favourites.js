@@ -11,6 +11,7 @@ import styled from 'styled-components';
 
 const StyledButtonContainer = styled.div`
   text-align: center;
+  padding-bottom: 20px;
 
   button {
     width: max-content;
