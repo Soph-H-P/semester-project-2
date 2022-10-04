@@ -168,7 +168,7 @@ const EditProduct = ({ userRole, setItemsInBag }) => {
           {isDeleted === true && <ErrorMessage>Successfully Deleted</ErrorMessage>}
           <div>
             {!isDeleted && isSuccess && id && (
-              <StyledLink to={`/product?id=${isSuccess.id}`}>Product saved! View item</StyledLink>
+              <StyledLink to={`/product?id=${isSuccess}`}>Product saved! View item</StyledLink>
             )}
             <input type={'submit'} value={id ? 'Update' : 'Create'} />
             {id && (

@@ -1,7 +1,7 @@
 import { baseUrl } from '../settings/api';
 
 const fetchProducts = async (setProductsArray, setIsError, setIsLoading, featured = false) => {
-  const url = featured ? `${baseUrl}/products?featured=true` : `${baseUrl}/products`;
+  const url = featured ? `${baseUrl}/products?filters[featured]=[$eq]true` : `${baseUrl}/products`;
   try {
     setIsLoading(true);
     const response = await fetch(url);
