@@ -107,15 +107,22 @@ const ProductInfoContainer = styled.div`
   }
 `;
 
-const ProductCard = ({ product, isFavourite, userRole, setItemsInFavourites, setItemsInBag }) => {
+const ProductCard = ({
+  product,
+  isFavourite,
+  userRole,
+  setItemsInFavourites,
+  setItemsInBag,
+  productId,
+}) => {
   const isBag = typeof setItemsInBag === 'function';
   const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
     if (product && isBag) {
-      setQuantity(findInList(getFromStorage(bagItemsKey), product.id).quantity);
+      setQuantity(findInList(getFromStorage(bagItemsKey), productId).quantity);
     }
-  }, [isBag, product]);
+  }, [isBag, product, productId]);
 
   const handleRemoveItem = (e) => {
     const item = e.target;
@@ -129,15 +136,15 @@ const ProductCard = ({ product, isFavourite, userRole, setItemsInFavourites, set
   return (
     <CardWrpper bag={isBag}>
       <div>
-        <Link to={`/product/?id=${product.id}`} id="imageContainer">
+        <Link to={`/product/?id=${productId}`} id="imageContainer">
           <img
-            src={product.image ? baseUrl + product.image.formats.small.url : product.image_url}
+            src={product.image_url ? product.image_url : ''}
             alt={product.alternativeText || product.title}
           />
         </Link>
         <ProductInfoContainer bag={isBag}>
           <div>
-            <Link to={`/product/?id=${product.id}`}>
+            <Link to={`/product/?id=${productId}`}>
               <SubTitle>{product.title}</SubTitle>
             </Link>
             <p>Price: £{product.price.toFixed(2)}</p>
@@ -145,11 +152,11 @@ const ProductCard = ({ product, isFavourite, userRole, setItemsInFavourites, set
           <div>
             <AddToFavouritesButton
               isFavourite={isFavourite}
-              productId={product.id}
+              productId={productId}
               setItemsInFavourites={setItemsInFavourites}
             />
             {userRole === 'Authenticated' && (
-              <Link id="edit-button" to={`/content-editor?id=${product.id}`}>
+              <Link id="edit-button" to={`/content-editor?id=${productId}`}>
                 <Icon iconSource={edit} alt="edit product"></Icon>
               </Link>
             )}
@@ -158,14 +165,10 @@ const ProductCard = ({ product, isFavourite, userRole, setItemsInFavourites, set
       </div>
       {isBag && (
         <>
-          <ChangeQuantity
-            quantity={quantity}
-            setItemsInBag={setItemsInBag}
-            productId={product.id}
-          />
+          <ChangeQuantity quantity={quantity} setItemsInBag={setItemsInBag} productId={productId} />
           <p>Total price: £{(product.price * quantity).toFixed(2)}</p>
-          <Button id="delete-button" handleClick={handleRemoveItem} icon={true} dataId={product.id}>
-            <Icon productId={product.id} iconSource={deleteSvg} alt="remove product from bag" />
+          <Button id="delete-button" handleClick={handleRemoveItem} icon={true} dataId={productId}>
+            <Icon productId={productId} iconSource={deleteSvg} alt="remove product from bag" />
             Remove item from bag
           </Button>
         </>

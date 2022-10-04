@@ -51,10 +51,11 @@ const SlidingArea = styled.div`
 const FeaturedProducts = ({ userRole, setItemsInFavourites }) => {
   const [productsArray, setProductsArray] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const ref = useRef(null);
 
   useEffect(() => {
-    fetchProducts(setProductsArray, setIsError, true);
+    fetchProducts(setProductsArray, setIsError, setIsLoading, true);
   }, []);
 
   const getScrollDistance = () => {
@@ -84,7 +85,7 @@ const FeaturedProducts = ({ userRole, setItemsInFavourites }) => {
   return (
     <FeaturedProductsdWrapper>
       <Title>Featured Sneakers</Title>
-      {productsArray.length === 0 && !isError && <Loader featured={true} />}
+      {isLoading && <Loader featured={true} />}
       {isError && (
         <ErrorMessage>
           We seem to be having trouble finding these products at the moment. Sorry for any
@@ -100,10 +101,11 @@ const FeaturedProducts = ({ userRole, setItemsInFavourites }) => {
             return (
               <ProductCard
                 key={product.id}
-                product={product}
+                product={product.attributes}
                 isFavourite={false}
                 userRole={userRole}
                 setItemsInFavourites={setItemsInFavourites}
+                productId={product.id}
               />
             );
           })}

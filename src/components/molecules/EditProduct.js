@@ -71,7 +71,7 @@ const EditProduct = ({ userRole, setItemsInBag }) => {
 
   const handleDeleteProduct = (e) => {
     e.preventDefault();
-    if (window.confirm(`Are you sure you want to delete ${currentProduct.title}?`)) {
+    if (window.confirm(`Are you sure you want to delete ${currentProduct.attributes.title}?`)) {
       deleteProduct(reRouteUser, id, setIsDeleted, setItemsInBag);
     }
   };
@@ -88,8 +88,8 @@ const EditProduct = ({ userRole, setItemsInBag }) => {
   }, [id]);
 
   useEffect(() => {
-    if (id && currentProduct && currentProduct.image_url) {
-      setImagePreviewUrl(currentProduct.image_url);
+    if (id && currentProduct && currentProduct.attributes.image_url) {
+      setImagePreviewUrl(currentProduct.attributes.image_url);
     }
   }, [id, currentProduct]);
 
@@ -117,27 +117,27 @@ const EditProduct = ({ userRole, setItemsInBag }) => {
             label="Product Title"
             name="title"
             required={true}
-            defaultValue={(currentProduct && currentProduct.title) || ''}
+            defaultValue={(currentProduct && currentProduct.attributes.title) || ''}
           ></TextInput>
           <NumberInput
             label="Price"
             inputName="price"
             required={true}
             isPrice={true}
-            defaultValue={currentProduct && currentProduct.price}
+            defaultValue={currentProduct && currentProduct.attributes.price}
           ></NumberInput>
           <ToggleCheckBox
             label="Featured"
             name="featured"
-            checked={currentProduct && currentProduct.featured}
+            checked={currentProduct && currentProduct.attributes.featured}
           ></ToggleCheckBox>
           <TextAreaInput
             label="Product Description"
             name="description"
             required={true}
-            defaultValue={(currentProduct && currentProduct.description) || ''}
+            defaultValue={(currentProduct && currentProduct.attributes.description) || ''}
           ></TextAreaInput>
-          {((currentProduct && currentProduct.image_url) || imagePreviewUrl) && (
+          {((currentProduct && currentProduct.attributes.image_url) || imagePreviewUrl) && (
             <StyledImagePreviewContainer>
               <img
                 src={imagePreviewUrl}
@@ -150,7 +150,7 @@ const EditProduct = ({ userRole, setItemsInBag }) => {
             name="imageUrl"
             type={'url'}
             required={currentProduct && currentProduct.image ? false : true}
-            defaultValue={(currentProduct && currentProduct.image_url) || ''}
+            defaultValue={(currentProduct && currentProduct.attributes.image_url) || ''}
             onChange={handleAddImageUrl}
           ></TextInput>
           {isError && <ErrorMessage>Invalid data please fill out all fields</ErrorMessage>}
@@ -168,7 +168,7 @@ const EditProduct = ({ userRole, setItemsInBag }) => {
           {isDeleted === true && <ErrorMessage>Successfully Deleted</ErrorMessage>}
           <div>
             {!isDeleted && isSuccess && id && (
-              <StyledLink to={`/product?id=${isSuccess}`}>Product saved! View item</StyledLink>
+              <StyledLink to={`/product?id=${isSuccess.id}`}>Product saved! View item</StyledLink>
             )}
             <input type={'submit'} value={id ? 'Update' : 'Create'} />
             {id && (

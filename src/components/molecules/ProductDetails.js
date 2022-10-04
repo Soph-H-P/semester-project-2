@@ -235,24 +235,16 @@ const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites
             onTouchMove={handleMouseMove}
           >
             <img
-              src={
-                product.image_url
-                  ? product.image_url
-                  : product.image && !imageZoom
-                  ? baseUrl + product.image.formats.medium.url
-                  : product.image.formats.large && imageZoom
-                  ? baseUrl + product.image.formats.large.url
-                  : baseUrl + product.image.formats.medium.url
-              }
-              alt={product.alternativeText || product.title}
+              src={product.attributes.image_url ? product.attributes.image_url : ''}
+              alt={product.attributes.alternativeText || product.attributes.title}
               ref={ref}
             />
           </ImageContainer>
           <div>
             <ProductInfoContainer>
               <div>
-                <Title>{product.title}</Title>
-                <p>£{product.price.toFixed(2)}</p>
+                <Title>{product.attributes.title}</Title>
+                <p>£{product.attributes.price.toFixed(2)}</p>
               </div>
               <div>
                 <AddToFavouritesButton
@@ -267,7 +259,7 @@ const ProductDetails = ({ product, userRole, setItemsInBag, setItemsInFavourites
                 )}
               </div>
             </ProductInfoContainer>
-            <p>{product.description}</p>
+            <p>{product.attributes.description}</p>
             <ButtonContainer pulse={pulse}>
               <Button id="add-to-bag" dataId={product.id} handleClick={handleAddToBag}>
                 Add to Bag

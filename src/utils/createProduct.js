@@ -15,17 +15,19 @@ const createProduct = async (
   const URL = `${baseUrl}/products`;
   const token = getToken();
 
-  const productData = JSON.stringify({
-    title,
-    price,
-    featured,
-    description,
-    image_url,
+  const reviewObj = JSON.stringify({
+    data: {
+      title,
+      price,
+      featured,
+      description,
+      image_url,
+    },
   });
 
   const options = {
     method: 'POST',
-    body: productData,
+    body: reviewObj,
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
@@ -36,9 +38,9 @@ const createProduct = async (
     const response = await fetch(URL, options);
     const result = await response.json();
 
-    if (result.id) {
-      setIsSuccess(result.id);
-      navigate(`/content-editor?id=${result.id}`);
+    if (result.data.id) {
+      setIsSuccess(result.data.id);
+      navigate(`/content-editor?id=${result.data.id}`);
     } else {
       setIsError(true);
     }

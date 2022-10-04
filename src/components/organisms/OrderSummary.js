@@ -37,13 +37,12 @@ const OrderSummaryWrapper = styled.div`
 
 const OrderSummary = ({ itemsInBag, setItemsInBag, setIsPurchased, currentBagItems }) => {
   const [bagDetails, setBagDetails] = useState(0);
-
   const calculateSubtotalPrice = () => {
     let subtotalCount = 0;
     if (currentBagItems) {
       currentBagItems.forEach((item) => {
         const quantity = findInList(getFromStorage(bagItemsKey), item.id).quantity;
-        const price = item.price * quantity;
+        const price = item.attributes.price * quantity;
         subtotalCount += price;
       });
     }

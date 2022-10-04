@@ -9,9 +9,10 @@ import Breadcrumbs from '../components/atoms/Breadcrumbs';
 const Products = ({ userRole, setItemsInFavourites }) => {
   const [productsArray, setProductsArray] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    fetchProducts(setProductsArray, setIsError);
+    fetchProducts(setProductsArray, setIsError, setIsLoading);
   }, []);
 
   return (
@@ -27,6 +28,7 @@ const Products = ({ userRole, setItemsInFavourites }) => {
         productsToRender={productsArray}
         setItemsInFavourites={setItemsInFavourites}
         isError={isError}
+        isLoading={isLoading}
       />
     </PageWrapper>
   );

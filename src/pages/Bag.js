@@ -25,6 +25,7 @@ const Bag = ({ userRole, itemsInBag, setItemsInFavourites, setItemsInBag }) => {
     fetchLocalProducts(setCurrentBagItems, itemsInBag, setIsError);
   }, [itemsInBag]);
 
+
   return (
     <PageWrapper>
       <MetaData

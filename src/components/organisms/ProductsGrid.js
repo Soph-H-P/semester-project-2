@@ -41,37 +41,52 @@ const ProductsGrid = ({
   productsToRender,
   setItemsInFavourites,
   isError,
+  isLoading,
   setItemsInBag = null,
 }) => {
+
+  if (isError && !setItemsInBag) {
+    return (
+      <ErrorMessage>
+        We seem to be having trouble finding these products at the moment. Sorry for any
+        inconvenience.
+      </ErrorMessage>
+    );
+  }
+  if (isError && setItemsInBag) {
+    return (
+      <ErrorMessage>
+        We seem to have misplaced your bag, we are trying to find it as quickly as possible, please
+        try again later. Sorry for any inconvenience.
+      </ErrorMessage>
+    );
+  }
+  if (isLoading) {
+    return <Loader />;
+  }
+  if (productsToRender.length === 0 && !isLoading) {
+    return (
+      <ErrorMessage>
+        There are no items to view yet. Adding new items soon, check back later.
+      </ErrorMessage>
+    );
+  }
+
   return (
-    <>
-      {productsToRender.length === 0 && !isError && <Loader />}
-      {isError && !setItemsInBag && (
-        <ErrorMessage>
-          We seem to be having trouble finding these products at the moment. Sorry for any
-          inconvenience.
-        </ErrorMessage>
-      )}
-      {isError && setItemsInBag && (
-        <ErrorMessage>
-          We seem to have misplaced your bag, we are trying to find it as quickly as possible,
-          please try again later. Sorry for any inconvenience.
-        </ErrorMessage>
-      )}
-      <ProductGridWrapper isbag={setItemsInBag ? true : false}>
-        {productsToRender.map((product) => {
-          return (
-            <ProductCard
-              key={product.id}
-              product={product}
-              userRole={userRole}
-              setItemsInFavourites={setItemsInFavourites}
-              setItemsInBag={setItemsInBag}
-            />
-          );
-        })}
-      </ProductGridWrapper>
-    </>
+    <ProductGridWrapper isbag={setItemsInBag ? true : false}>
+      {productsToRender.map((product) => {
+        return (
+          <ProductCard
+            key={product.id}
+            productId={product.id}
+            product={product.attributes}
+            userRole={userRole}
+            setItemsInFavourites={setItemsInFavourites}
+            setItemsInBag={setItemsInBag}
+          />
+        );
+      })}
+    </ProductGridWrapper>
   );
 };
 

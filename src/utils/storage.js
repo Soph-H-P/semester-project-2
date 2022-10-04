@@ -78,7 +78,7 @@ export const getUsername = () => {
 
 export const getUserRole = () => {
   const user = getFromStorage(userKey);
-  const userRole = user.role ? user.role.name : null;
+  const userRole = user.username ? user.username : null;
   return userRole;
 };
 

@@ -11,20 +11,21 @@ const SearchResults = ({ userRole, setItemsInFavourites }) => {
   const [productsArray, setProductsArray] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const queryString = document.location.search;
   const params = new URLSearchParams(queryString);
   const userSearch = params.get('search');
   const { search } = useLocation();
 
   useEffect(() => {
-    fetchProducts(setProductsArray, setIsError);
+    fetchProducts(setProductsArray, setIsError, setIsLoading);
   }, [userSearch]);
 
   useEffect(() => {
     const foundSearchResults = productsArray.filter(
       (product) =>
-        product.title.toLowerCase().includes(userSearch.toLowerCase()) ||
-        product.description.toLowerCase().includes(userSearch.toLowerCase())
+        product.attributes.title.toLowerCase().includes(userSearch.toLowerCase()) ||
+        product.attributes.description.toLowerCase().includes(userSearch.toLowerCase())
     );
     setSearchResults(foundSearchResults);
   }, [productsArray, userSearch, search]);
@@ -46,6 +47,7 @@ const SearchResults = ({ userRole, setItemsInFavourites }) => {
             productsToRender={searchResults}
             setItemsInFavourites={setItemsInFavourites}
             isError={isError}
+            isLoading={isLoading}
           />
         </>
       )}

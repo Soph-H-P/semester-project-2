@@ -22,7 +22,6 @@ const App = () => {
   const [userRole, setUserRole] = useState(getUserRole());
   const [itemsInBag, setItemsInBag] = useState(getFromStorage(bagItemsKey));
   const [itemsInFavourites, setItemsInFavourites] = useState(getFromStorage(favouritesKey));
-
   useEffect(() => {
     setItemsInBag(getFromStorage(bagItemsKey));
     setItemsInFavourites(getFromStorage(favouritesKey));
