@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
 import edit from '../../assets/icons/editSvg.svg';
-import { baseUrl } from '../../settings/api';
 import { bagItemsKey } from '../../settings/settings';
 import {
   filterList,

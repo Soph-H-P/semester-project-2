@@ -4,7 +4,6 @@ import styled, { css } from 'styled-components';
 
 import deleteSvg from '../../assets/icons/deleteSvg.svg';
 import edit from '../../assets/icons/editSvg.svg';
-import { baseUrl } from '../../settings/api';
 import { bagItemsKey } from '../../settings/settings';
 import { filterList, getFromStorage, saveToStorage } from '../../utils/storage';
 import Button from '../atoms/Button';
