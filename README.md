@@ -31,6 +31,7 @@ I used the following tech stack:
 
 - [React.js](https://reactjs.org/)
 - [Styled components](https://styled-components.com/)
+- [Strapi backend](https://strapi.io/)
 
 ## Getting Started
 
