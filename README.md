@@ -5,7 +5,7 @@
 In this project I had to design and make an e-commerce site for shoes.
 There is also an admin part to the site where products can be added, edited or removed.
 
-[Link to live site](https://dapper-shoes.netlify.app){:target="_blank" rel="noopener"}
+[Link to live site](https://dapper-shoes.netlify.app)
 
 ## Description
 
